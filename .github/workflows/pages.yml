@@ -1,3 +1,4 @@
+# Publishes the current fork's viewer directory to this fork's GitHub Pages site.
 name: Deploy GitHub Pages
 
 on:
