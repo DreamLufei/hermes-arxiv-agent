@@ -1,13 +1,13 @@
 :root {
-  --bg: #f7f5ef;
-  --card: #fffdf8;
-  --ink: #1b1f24;
-  --muted: #5a6472;
-  --line: #dfd8cb;
-  --accent: #0d9488;
-  --accent-soft: #ccfbf1;
-  --chip: #efe9dc;
-  --shadow: 0 10px 30px rgba(24, 29, 37, 0.08);
+  --bg: #eef6f7;
+  --card: #fbfefe;
+  --ink: #16323a;
+  --muted: #5a7077;
+  --line: #cfe0e4;
+  --accent: #1f7a8c;
+  --accent-soft: #d9f0f4;
+  --chip: #e7f1f3;
+  --shadow: 0 10px 30px rgba(22, 50, 58, 0.08);
 }
 
 * {
@@ -17,7 +17,7 @@
 body {
   margin: 0;
   color: var(--ink);
-  background: radial-gradient(circle at 10% -10%, #fff5df 0%, rgba(255, 245, 223, 0) 45%), var(--bg);
+  background: radial-gradient(circle at 12% -10%, #d7eef3 0%, rgba(215, 238, 243, 0) 42%), radial-gradient(circle at 92% 8%, #dcefe7 0%, rgba(220, 239, 231, 0) 30%), var(--bg);
   font-family: "Noto Sans SC", "Manrope", sans-serif;
 }
 
@@ -34,7 +34,7 @@ body {
   height: 260px;
   right: 5%;
   top: 12%;
-  background: #5eead4;
+  background: #7dd3c7;
 }
 
 .bg-shape-b {
@@ -42,14 +42,14 @@ body {
   height: 320px;
   left: -80px;
   bottom: 8%;
-  background: #fcd34d;
+  background: #9ec5d1;
 }
 
 .topbar {
   position: sticky;
   top: 0;
   backdrop-filter: blur(12px);
-  background: rgba(247, 245, 239, 0.85);
+  background: rgba(238, 246, 247, 0.88);
   border-bottom: 1px solid var(--line);
   z-index: 10;
 }
@@ -67,8 +67,8 @@ body {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #0d9488, #eab308);
-  box-shadow: 0 0 0 6px rgba(13, 148, 136, 0.12);
+  background: linear-gradient(135deg, #1f7a8c, #5aa89d);
+  box-shadow: 0 0 0 6px rgba(31, 122, 140, 0.14);
 }
 
 h1 {
@@ -199,8 +199,8 @@ input[type="date"] {
 
 .btn-primary {
   border-color: transparent;
-  color: #042f2e;
-  background: linear-gradient(135deg, #2dd4bf, #facc15);
+  color: #f8fcfd;
+  background: linear-gradient(135deg, #1f7a8c, #5aa89d);
   font-weight: 700;
 }
 
