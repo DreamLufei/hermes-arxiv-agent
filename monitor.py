@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-arxiv LLM 量化论文自动监控主脚本
+arxiv 论文自动监控主脚本
 每天定时执行：搜索 -> 查重 -> 下载 PDF -> 输出结构化 JSON
 中文总结和作者单位提取由 hermes cronjob agent 调用 LLM 完成
 """
@@ -31,6 +31,7 @@ OUTPUT_JSON = BASE_DIR / "new_papers.json"   # 输出给 hermes agent 的中间�
 ARXIV_API = "https://export.arxiv.org/api/query"
 MAX_RESULTS = 50
 REQUEST_INTERVAL = 3  # 秒
+ARXIV_RETRY_DELAYS = [3, 9]
 
 # ==================== 工具函数 ====================
 
@@ -111,8 +112,32 @@ def search_arxiv_papers(keywords: str, max_results: int = MAX_RESULTS) -> list[d
     )
 
     print(f"[INFO] Searching arxiv: {keywords}")
-    response = requests.get(url, timeout=30)
-    response.raise_for_status()
+
+    response = None
+    for attempt in range(len(ARXIV_RETRY_DELAYS) + 1):
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            break
+        except requests.HTTPError as e:
+            status_code = e.response.status_code if e.response is not None else None
+            if status_code == 429 and attempt < len(ARXIV_RETRY_DELAYS):
+                delay = ARXIV_RETRY_DELAYS[attempt]
+                print(f"[WARN] arXiv API rate limited (HTTP 429). Retrying in {delay}s...")
+                time.sleep(delay)
+                continue
+            raise RuntimeError(
+                f"arXiv API request failed with HTTP {status_code}. "
+                "Aborting run so stale local state is not mistaken for today's result."
+            ) from e
+        except requests.RequestException as e:
+            raise RuntimeError(
+                "arXiv API request failed before a valid response was received. "
+                "Aborting run so stale local state is not mistaken for today's result."
+            ) from e
+
+    if response is None:
+        raise RuntimeError("arXiv API request did not produce a response.")
 
     ns = {"a": "http://www.w3.org/2005/Atom"}
     root = ET.fromstring(response.content)
@@ -509,7 +534,11 @@ def main():
 
     # 搜索
     keywords = load_search_keywords()
-    all_papers = search_arxiv_papers(keywords)
+    try:
+        all_papers = search_arxiv_papers(keywords)
+    except RuntimeError as e:
+        print(f"[ERROR] {e}")
+        raise SystemExit(1) from e
     print(f"[INFO] Retrieved {len(all_papers)} papers from arxiv")
 
     # 查重
@@ -549,7 +578,7 @@ def main():
             "pending_count": 0,
             "new_papers": [],
             "papers_to_process": [],
-            "feishu_msg": f"✅ 今日（{date.today().isoformat()}）未发现新的 LLM 量化论文。",
+            "feishu_msg": f"✅ 今日（{date.today().isoformat()}）未发现新的论文。",
         }
         with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
