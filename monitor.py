@@ -11,7 +11,7 @@ import json
 import re
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
@@ -35,6 +35,7 @@ PRELIM_KEEP_IDS_FILE = BASE_DIR / "prelim_keep_ids.txt"
 ARXIV_API = "https://export.arxiv.org/api/query"
 ARXIV_RSS = "https://arxiv.org/rss"
 MAX_RESULTS = 100
+PUBLISHED_LOOKBACK_DAYS = 2
 REQUEST_INTERVAL = 3  # 秒
 ARXIV_RETRY_DELAYS = [3, 9]
 
@@ -139,6 +140,21 @@ def build_no_keep_after_prelim_message(candidate_count: int) -> str:
         "🔗 历史论文与完整列表：\n"
         "https://dreamlufei.github.io/hermes-arxiv-agent/"
     )
+
+
+def get_published_cutoff_date() -> date:
+    return date.today() - timedelta(days=PUBLISHED_LOOKBACK_DAYS - 1)
+
+
+def is_recent_published(paper: dict, cutoff: date) -> bool:
+    published_raw = str(paper.get("published_date", "")).strip()
+    if not published_raw:
+        return False
+    try:
+        published = date.fromisoformat(published_raw)
+    except ValueError:
+        return False
+    return published >= cutoff
 
 
 def load_search_keywords() -> str:
@@ -793,8 +809,11 @@ def main():
         return
     print(f"[INFO] Retrieved {len(all_papers)} papers from arxiv")
 
-    # 查重
-    new_papers = [p for p in all_papers if p["arxiv_id"] not in crawled_ids]
+    # 查重 + 发表日期时间窗过滤
+    published_cutoff = get_published_cutoff_date()
+    recency_filtered = [p for p in all_papers if is_recent_published(p, published_cutoff)]
+    print(f"[INFO] {len(recency_filtered)} papers within published_date >= {published_cutoff.isoformat()}")
+    new_papers = [p for p in recency_filtered if p["arxiv_id"] not in crawled_ids]
     print(f"[INFO] {len(new_papers)} NEW papers")
 
     if new_papers:
