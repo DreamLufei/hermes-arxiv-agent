@@ -53,8 +53,10 @@ def load_rows() -> list[dict]:
         return (
             1 if p.get("summary_cn") else 0,
             1 if p.get("affiliations") else 0,
+            1 if p.get("notes") else 0,
             len(p.get("summary_cn", "")),
             len(p.get("affiliations", "")),
+            len(p.get("notes", "")),
             len(p.get("abstract", "")),
             p.get("crawled_date", ""),
             p.get("published_date", ""),

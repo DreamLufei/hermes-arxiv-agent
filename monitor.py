@@ -8,9 +8,11 @@ arxiv 论文自动监控主脚本
 import os
 import sys
 import json
+import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, date
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import requests
@@ -29,11 +31,19 @@ OUTPUT_JSON = BASE_DIR / "new_papers.json"   # 输出给 hermes agent 的中间�
 
 # arxiv API 配置
 ARXIV_API = "https://export.arxiv.org/api/query"
+ARXIV_RSS = "https://arxiv.org/rss"
 MAX_RESULTS = 50
 REQUEST_INTERVAL = 3  # 秒
 ARXIV_RETRY_DELAYS = [3, 9]
 
 # ==================== 工具函数 ====================
+
+
+class ArxivQueryError(RuntimeError):
+    def __init__(self, message: str, status_code: int | None = None, response_text: str = ""):
+        super().__init__(message)
+        self.status_code = status_code
+        self.response_text = response_text
 
 def load_crawled_ids() -> set:
     if not CRAWLED_IDS_FILE.exists():
@@ -103,6 +113,89 @@ def load_search_keywords() -> str:
     return default_keywords
 
 
+def extract_categories_from_keywords(keywords: str) -> list[str]:
+    return sorted(set(re.findall(r"cat:([A-Za-z0-9.\-]+)", keywords)))
+
+
+def inspect_rss_feeds(categories: list[str]) -> list[dict]:
+    checks: list[dict] = []
+    for category in categories:
+        url = f"{ARXIV_RSS}/{category}"
+        record = {
+            "category": category,
+            "url": url,
+            "status": "error",
+            "last_build_date": "",
+            "last_build_date_iso": "",
+            "item_count": 0,
+        }
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
+            root = ET.fromstring(response.content)
+            channel = root.find("channel")
+            if channel is not None:
+                last_build_raw = (channel.findtext("lastBuildDate") or "").strip()
+                items = channel.findall("item")
+            else:
+                last_build_raw = ""
+                items = []
+            record["last_build_date"] = last_build_raw
+            record["item_count"] = len(items)
+            if last_build_raw:
+                parsed = parsedate_to_datetime(last_build_raw)
+                record["last_build_date_iso"] = parsed.astimezone().date().isoformat()
+            record["status"] = "ok"
+        except Exception as e:
+            record["error"] = str(e)
+        checks.append(record)
+    return checks
+
+
+def classify_query_failure(keywords: str, error: ArxivQueryError) -> tuple[str, str, dict]:
+    today = date.today().isoformat()
+    categories = extract_categories_from_keywords(keywords)
+    rss_checks = inspect_rss_feeds(categories) if categories else []
+    rss_advanced_today = any(
+        item.get("last_build_date_iso") and item["last_build_date_iso"] >= today
+        for item in rss_checks
+        if item.get("status") == "ok"
+    )
+
+    if rss_checks and not rss_advanced_today:
+        status = "upstream_not_updated"
+        feishu_msg = (
+            f"⏳ 今日（{today}）arXiv RSS 尚未更新到新一期，暂不判定为无新论文。\n"
+            "🔁 机器人会在下一个计划时段继续检查。\n"
+            "🔗 历史论文与完整列表：\n"
+            "https://dreamlufei.github.io/hermes-arxiv-agent/"
+        )
+    elif error.status_code == 429:
+        status = "api_limited"
+        feishu_msg = (
+            f"⚠️ 今日（{today}）arXiv 接口限流（HTTP 429），暂未确认是否有新论文。\n"
+            "🔁 机器人会在下一个计划时段继续检查。\n"
+            "🔗 历史论文与完整列表：\n"
+            "https://dreamlufei.github.io/hermes-arxiv-agent/"
+        )
+    else:
+        status = "api_error"
+        feishu_msg = (
+            f"⚠️ 今日（{today}）arXiv 查询失败，暂未确认是否有新论文。\n"
+            "🔁 机器人会在下一个计划时段继续检查。\n"
+            "🔗 历史论文与完整列表：\n"
+            "https://dreamlufei.github.io/hermes-arxiv-agent/"
+        )
+
+    diagnostics = {
+        "api_error": str(error),
+        "api_status_code": error.status_code,
+        "api_response_text": error.response_text,
+        "rss_checks": rss_checks,
+    }
+    return status, feishu_msg, diagnostics
+
+
 def search_arxiv_papers(keywords: str, max_results: int = MAX_RESULTS) -> list[dict]:
     url = (
         f"{ARXIV_API}?search_query={keywords}"
@@ -126,18 +219,20 @@ def search_arxiv_papers(keywords: str, max_results: int = MAX_RESULTS) -> list[d
                 print(f"[WARN] arXiv API rate limited (HTTP 429). Retrying in {delay}s...")
                 time.sleep(delay)
                 continue
-            raise RuntimeError(
+            raise ArxivQueryError(
                 f"arXiv API request failed with HTTP {status_code}. "
-                "Aborting run so stale local state is not mistaken for today's result."
+                "Aborting run so stale local state is not mistaken for today's result.",
+                status_code=status_code,
+                response_text=(e.response.text[:500] if e.response is not None and e.response.text else ""),
             ) from e
         except requests.RequestException as e:
-            raise RuntimeError(
+            raise ArxivQueryError(
                 "arXiv API request failed before a valid response was received. "
                 "Aborting run so stale local state is not mistaken for today's result."
             ) from e
 
     if response is None:
-        raise RuntimeError("arXiv API request did not produce a response.")
+        raise ArxivQueryError("arXiv API request did not produce a response.")
 
     ns = {"a": "http://www.w3.org/2005/Atom"}
     root = ET.fromstring(response.content)
@@ -241,7 +336,7 @@ def append_to_excel(wb: openpyxl.Workbook, paper: dict):
         paper.get("summary_cn", ""),
         paper["pdf_filename"],
         today,
-        "",  # notes
+        paper.get("notes", ""),
     ]
     ws.append(row)
     last_row = ws.max_row
@@ -296,6 +391,8 @@ def upsert_to_excel(
             updates["affiliations"] = paper.get("affiliations", "")
         if paper.get("summary_cn"):
             updates["summary_cn"] = paper.get("summary_cn", "")
+        if paper.get("notes"):
+            updates["notes"] = paper.get("notes", "")
 
         for key, value in updates.items():
             col = header_index.get(key)
@@ -365,8 +462,10 @@ def export_viewer_json_from_excel():
         return (
             1 if p.get("summary_cn") else 0,
             1 if p.get("affiliations") else 0,
+            1 if p.get("notes") else 0,
             len(p.get("summary_cn", "")),
             len(p.get("affiliations", "")),
+            len(p.get("notes", "")),
             len(p.get("abstract", "")),
             p.get("crawled_date", ""),
             p.get("published_date", ""),
@@ -466,10 +565,13 @@ def write_llm_output_json(
     papers_to_process: list[dict],
     fresh_downloaded_count: int = 0,
     feishu_msg: str = "",
+    status: str = "needs_llm",
+    diagnostics: dict | None = None,
 ):
     """输出当前待处理状态，供 Hermes agent 继续执行或安全重试。"""
     output = {
         "date": date.today().isoformat(),
+        "status": status,
         "new_count": fresh_downloaded_count,
         "pending_count": len(papers_to_process),
         "excel_file": str(EXCEL_FILE),
@@ -477,6 +579,7 @@ def write_llm_output_json(
         "new_papers": papers_to_process,
         "papers_to_process": papers_to_process,
         "feishu_msg": feishu_msg,
+        "diagnostics": diagnostics or {},
     }
     with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
@@ -536,9 +639,34 @@ def main():
     keywords = load_search_keywords()
     try:
         all_papers = search_arxiv_papers(keywords)
-    except RuntimeError as e:
+    except ArxivQueryError as e:
         print(f"[ERROR] {e}")
-        raise SystemExit(1) from e
+        status, feishu_msg, diagnostics = classify_query_failure(keywords, e)
+        papers_to_process = [
+            incomplete_excel_papers[arxiv_id]
+            for arxiv_id in sorted(pending_ids)
+            if arxiv_id in incomplete_excel_papers
+        ]
+        save_pending_llm_ids({p["arxiv_id"] for p in papers_to_process})
+        write_llm_output_json(
+            papers_to_process=papers_to_process,
+            fresh_downloaded_count=0,
+            feishu_msg=feishu_msg,
+            status=status if not papers_to_process else "needs_llm",
+            diagnostics=diagnostics,
+        )
+        if papers_to_process:
+            print(
+                f"[WARN] arXiv query failed, but {len(papers_to_process)} pending papers still need LLM completion."
+            )
+            print("[INFO] Proceed with pending papers from Excel/new_papers.json.")
+            print("[LLM_SUMMARIZATION_REQUIRED]")
+            print(f"JSON file: {OUTPUT_JSON}")
+            print(f"Papers awaiting LLM completion: {len(papers_to_process)}")
+        else:
+            print(f"[INFO] Wrote graceful status output: {status}")
+            print(f"[INFO] JSON file: {OUTPUT_JSON}")
+        return
     print(f"[INFO] Retrieved {len(all_papers)} papers from arxiv")
 
     # 查重
@@ -574,11 +702,13 @@ def main():
         # 无新论文，且无待补全论文
         output = {
             "date": date.today().isoformat(),
+            "status": "no_new",
             "new_count": 0,
             "pending_count": 0,
             "new_papers": [],
             "papers_to_process": [],
             "feishu_msg": f"✅ 今日（{date.today().isoformat()}）未发现新的论文。",
+            "diagnostics": {},
         }
         with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
@@ -590,6 +720,7 @@ def main():
     write_llm_output_json(
         papers_to_process=papers_to_process,
         fresh_downloaded_count=len(downloaded),
+        status="needs_llm",
     )
 
     print(f"[INFO] Output JSON: {OUTPUT_JSON}")

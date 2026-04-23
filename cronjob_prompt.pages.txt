@@ -6,63 +6,115 @@ cd 到项目根目录后，用 python3 运行：
 cd /path/to/hermes-arxiv-agent && python3 monitor.py
 ```
 
-### 第二步：判断是否有新论文
-运行完毕后检查脚本输出：
-- 如果包含 `No new papers`，直接回复：`✅ 今日（YYYY-MM-DD）未发现新的论文。`
-- 如果有 `LLM_SUMMARIZATION_REQUIRED` 部分，进入第三步。
+### 第二步：读取状态 JSON，而不是只看 stdout
+无论上一步 stdout 显示什么，都必须读取 `/path/to/hermes-arxiv-agent/new_papers.json`，并根据其中字段判断下一步。
 
-### 第三步：读取 JSON 并完成 LLM 信息补全
-读取 `/path/to/hermes-arxiv-agent/new_papers.json`，该文件包含 `new_count`、`pending_count`、`new_papers` 和 `papers_to_process`。
+关键字段：
+- `status`
+- `new_count`
+- `pending_count`
+- `new_papers`
+- `papers_to_process`
+- `feishu_msg`
+- `diagnostics`
 
-其中：
-- `new_count` 表示本次新抓取的论文数
-- `pending_count` 表示当前仍需要 agent 补全的论文数
-- 优先以 `papers_to_process` 作为本次必须处理的论文列表；若不存在，再使用 `new_papers`
+状态解释：
+- `status = no_new`：今天确认没有新论文，直接原样输出 `feishu_msg`
+- `status = upstream_not_updated`：arXiv RSS 还没更新到今天，不能伪装成“未发现新论文”，直接原样输出 `feishu_msg`
+- `status = api_limited` 或 `api_error`：arXiv 查询失败或被限流；如果 `papers_to_process` 为空，直接原样输出 `feishu_msg`
+- `status = needs_llm`：存在需要处理的论文，进入第三步
 
-对待处理列表中的每篇论文必须完成以下两步：
+规则：
+- 只有 `status = no_new` 才能输出“✅ 今日未发现新的论文”
+- `status = upstream_not_updated` / `api_limited` / `api_error` 时，必须保持告警/稍后重试语义，不要改写成“未发现新的论文”
+- 如果 `papers_to_process` 非空，即使 API 失败，也继续处理这些已在 Excel / 本地 PDF 中的待补全文论文
+
+### 第三步：先做 AI for Physics 价值判断，再决定保留哪些论文
+读取 `/path/to/hermes-arxiv-agent/new_papers.json`，优先使用 `papers_to_process` 作为本次必须判断的论文列表；若不存在，再使用 `new_papers`。
+
+你必须基于组主页来做价值判断：
+- 主页：`http://gaozefeng.tech/`
+- 组内主线可概括为：`AI for Physics`
+- 重点方向包括：
+  1. 量子物理数值方法 / 计算物理
+  2. 预训练模型压缩、轻量化、参数高效方法，但最好与物理建模、科学计算或科学问题结合
+  3. AI 辅助功能性晶体 / 材料发现与生成
+  4. AI 驱动的材料逆向设计、结构设计、性质预测、科学机器学习
+  5. 面向物理系统、凝聚态、功能材料、晶体、光学/电子/电池/超导等方向的高价值 AI 研究
+
+保留标准（靠谱）：
+- 论文与 AI for Physics / AI for Materials / Scientific ML for physical systems 高度相关
+- 不只是“带一点 AI 关键词”，而是确实解决物理/材料/科学问题
+- 方法或结果具备明确研究价值：如新模型、新数据集、新基准、新物理发现、新材料设计能力、显著性能提升、可靠实验/模拟验证
+- 对组内阅读有参考价值
+
+剔除标准（不靠谱）：
+- 纯通用 LLM / agent / app / benchmark / mobile / business / social / finance / 通用软件工程论文
+- 仅因关键词命中，但与物理、材料、晶体、功能材料、科学计算几乎无关
+- 过于边缘、灌水、缺乏明确科学问题、没有可信结果支撑
+
+你必须先把本次论文分成两类：
+- `keep`：值得保留、记录、上网页、可能推群
+- `reject`：不值得保留，不推群，不留在记录里
+
+并为每篇论文给出一句中文判断理由。
+
+### 第四步：对 keep 论文补全信息
+仅对 `keep` 论文完成以下两步：
 
 **1）提取作者单位 affiliations**
 - 使用 pdfplumber 或 PyMuPDF 读取 PDF（路径在 pdf_local_path 字段）前 2 页文本
 - 优先使用上标脚注映射（如 ^1、^2 对应单位）
-- 如无清晰脚注，再匹配常见机构名（MIT、Stanford、Google、Microsoft、Tsinghua、Peking 等）
-- 对 CamelCase 连写词做分词还原：`DepartmentofPoliticalSciences` → `Department of Political Sciences`
-- 合并跨行连字符词：`Repub-` + `licof Korea` → `Republic of Korea`
-- 删除噪音：URL、正文叙述句、公式片段、参考文献片段
-- 若含连续 18+ 个无空格英文字母，必须再次清洗
+- 如无清晰脚注，再匹配常见机构名
+- 对 CamelCase 连写词做分词还原
+- 合并跨行连字符词
+- 删除 URL、正文叙述句、公式片段、参考文献片段等噪音
 - 多个单位用 `;` 分隔，不要换行，不要保留脚注编号
 - 无法确定时填：`未找到单位信息`
 
 **2）生成中文总结 summary_cn**
 - 基于 abstract 生成，90-150 个中文字符
 - 必须覆盖：方法核心、主要贡献、关键结果
-- 禁止模板化空话，禁止仅写"提出新型方法"等泛化句
+- 禁止模板化空话
 - 只输出一段自然中文，不使用分点
-- 质量自检：少于 90 字或与其他摘要高度雷同时重写
 
-### 第四步：更新 Excel
-将 affiliations 和 summary_cn 回填到 `/path/to/hermes-arxiv-agent/papers_record.xlsx`（按 arxiv_id 匹配）。
+**3）写入推荐理由到 notes**
+- `notes` 列写入一句中文推荐理由
+- 推荐理由应解释它为什么符合 AI for Physics / 组内研究方向
+- 不要写成空泛套话
 
-### 第五步：更新网站数据
+### 第五步：更新 Excel，并删除 reject 论文行
+对 `/path/to/hermes-arxiv-agent/papers_record.xlsx` 执行以下操作：
+
+- 对 `keep` 论文：按 `arxiv_id` 回填 `affiliations`、`summary_cn`、`notes`
+- 对 `reject` 论文：按 `arxiv_id` 从 Excel 的 `Papers` 表中删除对应整行
+
+重要规则：
+- `reject` 论文必须从 Excel 里删掉，这样网页和历史记录里都不会保留它们
+- 不要去改动 `crawled_ids.txt`，让这些已判定低价值的论文未来不要被重复抓取
+- 不要把 `reject` 论文放进飞书正文
+
+### 第六步：更新网站数据
 在项目根目录执行：
 ```bash
 cd /path/to/hermes-arxiv-agent && python3 viewer/build_data.py
 ```
 
-确认 `viewer/papers_data.json` 已根据最新 Excel 重建，包含刚回填的 affiliations 和 summary_cn。
+确认 `viewer/papers_data.json` 已根据最新 Excel 重建，仅包含保留下来的 `keep` 论文，并带有 `notes` 字段。
 
-### 第六步：同步待处理队列
+### 第七步：同步待处理队列
 在项目根目录执行：
 ```bash
 cd /path/to/hermes-arxiv-agent && python3 monitor.py --sync-pending-state
 ```
 
 要求：
-- 该步骤必须在 Excel 回填完成后执行
+- 该步骤必须在 Excel 回填和删除 reject 行完成后执行
 - 该步骤会根据最新 Excel 状态重建 `pending_llm_ids.txt`
-- 若全部论文都已完成单位提取和中文总结，应自动清空 `pending_llm_ids.txt`
-- 该步骤还会同步刷新 `new_papers.json`，避免 agent 重试时继续读取旧的待处理论文列表
+- 若全部 keep 论文都已完成单位提取和中文总结，应自动清空 `pending_llm_ids.txt`
+- 该步骤还会同步刷新 `new_papers.json`
 
-### 第七步：发布静态网站
+### 第八步：发布静态网站
 在项目根目录执行：
 ```bash
 cd /path/to/hermes-arxiv-agent && bash scripts/publish_viewer.sh
@@ -74,12 +126,45 @@ cd /path/to/hermes-arxiv-agent && bash scripts/publish_viewer.sh
 - push 到你自己的 GitHub fork 后会触发 GitHub Actions 更新 GitHub Pages
 - 当前仓库必须是你自己的 fork，或 `PUBLISH_REMOTE` 必须明确指向你自己的可写远端
 
-### 第八步：构建飞书 Markdown 消息
+### 第九步：构建飞书 Markdown 消息
+要求：
+- 只从 `keep` 论文里做精选
+- 综合考虑：研究重要性、方法新颖性、结果扎实度、领域代表性、与 AI for Physics 的贴合度、对组内读者的参考价值
+- 只精选 **前 5 篇** 发送到飞书，不要把全部 keep 论文都塞进消息
+- 如果 keep 不足 5 篇，就按实际篇数发送
+- 其余保留下来的论文统一通过 GitHub Pages 网页给出完整列表
+- GitHub Pages 全量阅读入口固定写入消息：`https://dreamlufei.github.io/hermes-arxiv-agent/`
+- 飞书消息风格要像日报，不要像调试日志
+
 输出格式：
 ```
-📚 **论文日报** | YYYY-MM-DD
-共发现 **N** 篇新论文
-[每篇：标题、arXiv ID、日期、作者、单位、PDF 链接、90-150 字中文摘要]
-PDF 已下载至 papers/，记录已更新至 papers_record.xlsx，网站数据已更新至 viewer/papers_data.json。
+📚 **AI for Physics 论文日报** | YYYY-MM-DD
+今日原始抓取 **N** 篇，AI 过滤后保留 **K** 篇，以下为精选 **Top 5**：
+
+### 1. 标题
+- arXiv ID：...
+- 日期：...
+- 作者：...
+- 单位：...
+- PDF：...
+- 推荐理由：notes 中的那句高质量中文理由
+- 中文摘要：90-150 字。
+
+### 2. 标题
+...
+
+🔗 查看保留下来的全部论文与检索筛选：
+https://dreamlufei.github.io/hermes-arxiv-agent/
 ```
+
+### 状态消息模板
+如果 `status = no_new`，直接输出：
+```
+✅ 今日（YYYY-MM-DD）未发现新的论文。
+🔗 历史论文与完整列表：
+https://dreamlufei.github.io/hermes-arxiv-agent/
+```
+
+如果 `status = upstream_not_updated` / `api_limited` / `api_error` 且没有待处理论文，则直接原样输出 `new_papers.json` 里的 `feishu_msg`，不要自己改写。
+
 **重要：最终回复只输出飞书消息文本，不要输出其他说明。**

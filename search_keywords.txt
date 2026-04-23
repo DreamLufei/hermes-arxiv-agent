@@ -1,1 +1,1 @@
-cat:cond-mat.mtrl-sci+OR+all:materials+AND+all:science
+(cat:cond-mat.mtrl-sci+OR+cat:cond-mat.supr-con+OR+cat:physics.comp-ph+OR+cat:cs.LG+OR+cat:cs.AI)+AND+(abs:%22machine+learning%22+OR+abs:%22artificial+intelligence%22+OR+abs:%22large+language+model%22+OR+abs:%22AI-driven%22+OR+abs:%22data-driven%22)+AND+(abs:%22materials+discovery%22+OR+abs:%22inverse+design%22+OR+abs:superconduct*+OR+abs:battery+OR+abs:%22lithium-ion%22+OR+abs:perovskite+OR+abs:crystal+OR+abs:phonon+OR+abs:altermagnet*)
