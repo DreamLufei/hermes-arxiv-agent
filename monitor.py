@@ -597,7 +597,15 @@ def sync_pending_state_from_excel(refresh_output_json: bool = True) -> list[dict
     ]
     save_pending_llm_ids({p["arxiv_id"] for p in papers_to_process})
     if refresh_output_json:
-        write_llm_output_json(papers_to_process=papers_to_process)
+        write_llm_output_json(
+            papers_to_process=papers_to_process,
+            status="needs_llm" if papers_to_process else "no_new",
+            feishu_msg=(
+                f"✅ 今日（{date.today().isoformat()}）未发现新的论文。"
+                if not papers_to_process
+                else ""
+            ),
+        )
     return papers_to_process
 
 
