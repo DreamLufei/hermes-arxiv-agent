@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Materials Science arXiv Viewer</title>
+  <title>AI for Physics arXiv Viewer</title>
   <meta name="theme-color" content="#eef6f7">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
     <div class="brand">
       <div class="brand-dot"></div>
       <div>
-        <h1>材料科学 arXiv 论文阅读器</h1>
+        <h1>AI for Physics arXiv 论文阅读器</h1>
         <p id="metaText">加载中...</p>
       </div>
     </div>
@@ -57,7 +57,7 @@
 
       <div class="field search-field">
         <label for="keyword">关键词</label>
-        <input id="keyword" type="text" placeholder="标题/作者/单位/摘要关键词">
+        <input id="keyword" type="text" placeholder="标题/作者/单位/摘要/推荐理由关键词">
       </div>
 
       <div class="field favorite-only-field">
@@ -90,6 +90,10 @@
       <div class="section">
         <h3>单位</h3>
         <p class="affiliations"></p>
+      </div>
+      <div class="section">
+        <h3>AI 评估 / 推荐理由</h3>
+        <p class="notes"></p>
       </div>
       <div class="section">
         <h3>中文总结</h3>

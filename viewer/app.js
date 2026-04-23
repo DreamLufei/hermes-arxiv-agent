@@ -78,6 +78,7 @@ function matchesKeyword(paper, keyword) {
     paper.categories,
     paper.summary_cn,
     paper.abstract,
+    paper.notes,
   ].join(" ").toLowerCase();
   return target.includes(keyword.toLowerCase());
 }
@@ -137,6 +138,7 @@ function renderCards(papers) {
     });
 
     node.querySelector(".affiliations").textContent = text(p.affiliations) || "未提供";
+    node.querySelector(".notes").textContent = text(p.notes) || "未提供";
     node.querySelector(".summary-cn").textContent = text(p.summary_cn) || "未提供";
     node.querySelector(".abstract").textContent = text(p.abstract) || "未提供";
 
@@ -219,7 +221,7 @@ async function init() {
   const defaultMax = payload.crawled_date_max || "";
 
   document.getElementById("metaText").textContent =
-    `收录 ${payload.count || allPapers.length} 篇 | 抓取区间 ${defaultMin || "-"} ~ ${defaultMax || "-"}`;
+    `收录 ${payload.count || allPapers.length} 篇 AI for Physics 保留论文 | 抓取区间 ${defaultMin || "-"} ~ ${defaultMax || "-"}`;
 
   const startDate = document.getElementById("startDate");
   const endDate = document.getElementById("endDate");

@@ -1,10 +1,38 @@
 {
-  "count": 50,
+  "count": 52,
   "crawled_date_min": "2026-04-22",
-  "crawled_date_max": "2026-04-22",
+  "crawled_date_max": "2026-04-23",
   "published_date_min": "2026-03-26",
-  "published_date_max": "2026-04-21",
+  "published_date_max": "2026-04-22",
   "papers": [
+    {
+      "arxiv_id": "2604.20355",
+      "title": "Fluctuation-driven multi-step charge density wave transition in monolayer TiSe$_2$",
+      "authors": "Luka Benić, Dino Novko, Ivor Lončarić",
+      "affiliations": "Ruđer Bošković Institute, Zagreb, Croatia; University of Zagreb, Zagreb, Croatia; Centre for Advanced Laser Techniques, Institute of Physics, Zagreb, Croatia",
+      "published_date": "2026-04-22",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "The exact microscopic origin, symmetry, and thermal melting mechanism of the charge density wave (CDW) phase in TiSe$_{2}$ remain a subject of intense debate, particularly regarding the presence of chiral structural order and a multi-step phase transition. Here, we resolve the finite-temperature structural dynamics of the monolayer TiSe$_{2}$ using large-scale molecular dynamics simulations driven by an accurate, first-principles-trained machine-learning interatomic potential. We demonstrate that the CDW melting deviates from a conventional second-order phase transition, while it undergoes a two-step melting process characterised by an extended fluctuation regime between $T^{\\ast}\\approx200$ K and $T_{\\mathrm{CDW}}\\approx250$ K, with proliferation of topological defects and domain walls, and accompanied by a completely overdamped soft optical phonon. Furthermore, we reveal that anisotropic long-wavelength thermal fluctuations spontaneously stabilise an asymmetric $3Q$ chiral CDW order with $C2$ symmetry. These findings provide a unified microscopic framework for understanding complex fluctuation-driven phase transitions in 2D quantum materials, demonstrating that the intricate CDW physics of TiSe$_{2}$ can be largely captured without invoking excitonic correlations.",
+      "summary_cn": "论文利用第一性原理训练的机器学习原子势开展大规模分子动力学，解析单层TiSe₂电荷密度波相的有限温结构动力学。结果表明其熔化并非传统二级相变，而是在约200至250 K间经历含拓扑缺陷和畴壁增殖的两步转变，并出现由长波热涨落稳定的手性3Q序。",
+      "pdf_filename": "2604.20355.pdf",
+      "crawled_date": "2026-04-23",
+      "notes": "用第一性原理训练的机器学习原子势研究二维量子材料TiSe₂的CDW多步熔化与手性序，是AI辅助凝聚态/材料物理发现的代表性工作。",
+      "pdf_url": "https://arxiv.org/pdf/2604.20355"
+    },
+    {
+      "arxiv_id": "2604.20175",
+      "title": "Physics-Enhanced Deep Learning for Proactive Thermal Runaway Forecasting in Li-Ion Batteries",
+      "authors": "Salman Khan, Muhammad Zunair Zamir, Syed Sajid Ullah, Jie Li",
+      "affiliations": "School of Energy and Electrical Engineering, Chang’an University, Xi’an, China; School of Information Engineering, Chang’an University, Xi’an, China",
+      "published_date": "2026-04-22",
+      "categories": "cs.LG, cs.AI",
+      "abstract": "Accurate prediction of thermal runaway in lithium-ion batteries is essential for ensuring the safety, efficiency, and reliability of modern energy storage systems. Conventional data-driven approaches, such as Long Short-Term Memory (LSTM) networks, can capture complex temporal dependencies but often violate thermodynamic principles, resulting in physically inconsistent predictions. Conversely, physics-based thermal models provide interpretability but are computationally expensive and difficult to parameterize for real-time applications. To bridge this gap, this study proposes a Physics-Informed Long Short-Term Memory (PI-LSTM) framework that integrates governing heat transfer equations directly into the deep learning architecture through a physics-based regularization term in the loss function. The model leverages multi-feature input sequences, including state of charge, voltage, current, mechanical stress, and surface temperature, to forecast battery temperature evolution while enforcing thermal diffusion constraints. Extensive experiments conducted on thirteen lithium-ion battery datasets demonstrate that the proposed PI-LSTM achieves an 81.9% reduction in root mean square error (RMSE) and an 81.3% reduction in mean absolute error (MAE) compared to the standard LSTM baseline, while also outperforming CNN-LSTM and multilayer perceptron (MLP) models by wide margins. The inclusion of physical constraints enhances the model's generalization across diverse operating conditions and eliminates non-physical temperature oscillations. These results confirm that physics-informed deep learning offers a viable pathway toward interpretable, accurate, and real-time thermal management in next-generation battery systems.",
+      "summary_cn": "该工作提出物理增强PI-LSTM，将热传导控制方程以正则项形式嵌入时序网络，联合荷电状态、电压、电流、应力与表面温度预测锂电池温升和热失控演化。在13个数据集上，相比标准LSTM的RMSE和MAE分别下降81.9%与81.3%，同时显著抑制非物理温度振荡。",
+      "pdf_filename": "2604.20175.pdf",
+      "crawled_date": "2026-04-23",
+      "notes": "将热扩散方程嵌入LSTM预测电池热失控，属于物理约束深度学习解决能源材料安全问题，和组内AI for Physics方向高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2604.20175"
+    },
     {
       "arxiv_id": "2604.19443",
       "title": "Competing Constraints on Superconductivity in Thick FeSe films",
