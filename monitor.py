@@ -28,6 +28,8 @@ CRAWLED_IDS_FILE = BASE_DIR / "crawled_ids.txt"
 PENDING_LLM_IDS_FILE = BASE_DIR / "pending_llm_ids.txt"
 KEYWORDS_FILE = BASE_DIR / "search_keywords.txt"
 OUTPUT_JSON = BASE_DIR / "new_papers.json"   # 输出给 hermes agent 的中间文件
+PRELIM_CANDIDATES_FILE = BASE_DIR / "prelim_candidates.json"
+PRELIM_KEEP_IDS_FILE = BASE_DIR / "prelim_keep_ids.txt"
 
 # arxiv API 配置
 ARXIV_API = "https://export.arxiv.org/api/query"
@@ -102,6 +104,41 @@ def save_crawled_ids_batch(new_ids: list[str]):
     with open(CRAWLED_IDS_FILE, "a", encoding="utf-8") as f:
         for arxiv_id in new_ids:
             f.write(arxiv_id + "\n")
+
+
+def load_prelim_keep_ids() -> set[str]:
+    if not PRELIM_KEEP_IDS_FILE.exists():
+        return set()
+    with open(PRELIM_KEEP_IDS_FILE, "r", encoding="utf-8") as f:
+        return {line.strip() for line in f if line.strip()}
+
+
+def save_prelim_candidates(papers: list[dict]):
+    with open(PRELIM_CANDIDATES_FILE, "w", encoding="utf-8") as f:
+        json.dump(papers, f, ensure_ascii=False, indent=2)
+
+
+def load_prelim_candidates() -> list[dict]:
+    if not PRELIM_CANDIDATES_FILE.exists():
+        return []
+    with open(PRELIM_CANDIDATES_FILE, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data if isinstance(data, list) else []
+
+
+def clear_prelim_state():
+    for path in (PRELIM_CANDIDATES_FILE, PRELIM_KEEP_IDS_FILE):
+        if path.exists():
+            path.unlink()
+
+
+def build_no_keep_after_prelim_message(candidate_count: int) -> str:
+    return (
+        f"🧹 今日（{date.today().isoformat()}）共抓取到 {candidate_count} 篇候选论文，"
+        "但经 AI for Physics 两阶段筛选后暂无建议保留的论文。\n"
+        "🔗 历史论文与完整列表：\n"
+        "https://dreamlufei.github.io/hermes-arxiv-agent/"
+    )
 
 
 def load_search_keywords() -> str:
@@ -585,6 +622,78 @@ def write_llm_output_json(
         json.dump(output, f, ensure_ascii=False, indent=2)
 
 
+def process_prelim_approved_papers(
+    incomplete_excel_papers: dict[str, dict],
+    pending_ids: set[str],
+):
+    prelim_candidates = load_prelim_candidates()
+    approved_ids = load_prelim_keep_ids()
+    candidate_map = {paper["arxiv_id"]: paper for paper in prelim_candidates}
+    approved_papers = [candidate_map[arxiv_id] for arxiv_id in sorted(approved_ids) if arxiv_id in candidate_map]
+
+    if not approved_papers:
+        clear_prelim_state()
+        carryover = [incomplete_excel_papers[arxiv_id] for arxiv_id in sorted(pending_ids) if arxiv_id in incomplete_excel_papers]
+        if carryover:
+            write_llm_output_json(
+                papers_to_process=carryover,
+                fresh_downloaded_count=0,
+                status="needs_llm",
+            )
+            print(f"[INFO] No newly approved papers, continuing with carry-over pending papers: {len(carryover)}")
+            return
+
+        write_llm_output_json(
+            papers_to_process=[],
+            fresh_downloaded_count=0,
+            status="no_keep_after_prelim",
+            feishu_msg=build_no_keep_after_prelim_message(len(prelim_candidates)),
+        )
+        export_viewer_json_from_excel()
+        print("[INFO] No papers survived preliminary LLM filtering.")
+        return
+
+    downloaded = []
+    for paper in approved_papers:
+        ok = download_pdf(paper)
+        if ok:
+            downloaded.append({**paper, "pdf_downloaded": ok})
+        time.sleep(REQUEST_INTERVAL)
+
+    if downloaded:
+        wb = load_or_create_excel()
+        ws = wb["Papers"]
+        header_index, row_index = build_excel_row_index(ws)
+        for paper in downloaded:
+            upsert_to_excel(ws, header_index, row_index, paper)
+        save_excel(wb)
+        save_crawled_ids_batch([p["arxiv_id"] for p in downloaded])
+        pending_ids |= {p["arxiv_id"] for p in downloaded}
+
+    clear_prelim_state()
+    refreshed_incomplete = load_incomplete_papers_from_excel()
+    papers_to_process = [refreshed_incomplete[arxiv_id] for arxiv_id in sorted(pending_ids) if arxiv_id in refreshed_incomplete]
+    save_pending_llm_ids({p["arxiv_id"] for p in papers_to_process})
+
+    if not papers_to_process:
+        write_llm_output_json(
+            papers_to_process=[],
+            fresh_downloaded_count=0,
+            status="no_keep_after_prelim",
+            feishu_msg=build_no_keep_after_prelim_message(len(prelim_candidates)),
+        )
+        export_viewer_json_from_excel()
+        print("[INFO] Approved papers did not leave any pending LLM work.")
+        return
+
+    write_llm_output_json(
+        papers_to_process=papers_to_process,
+        fresh_downloaded_count=len(downloaded),
+        status="needs_llm",
+    )
+    print(f"[INFO] Downloaded {len(downloaded)} prelim-approved papers. Awaiting final LLM review for {len(papers_to_process)} papers.")
+
+
 def sync_pending_state_from_excel(refresh_output_json: bool = True) -> list[dict]:
     """
     根据 Excel 当前状态重建 pending_llm_ids.txt。
@@ -643,6 +752,13 @@ def main():
         f"excel_incomplete={len(incomplete_excel_papers)} merged={len(pending_ids)}"
     )
 
+    if len(sys.argv) > 1 and sys.argv[1] == "--download-approved":
+        process_prelim_approved_papers(
+            incomplete_excel_papers=incomplete_excel_papers,
+            pending_ids=pending_ids,
+        )
+        return
+
     # 搜索
     keywords = load_search_keywords()
     try:
@@ -681,27 +797,31 @@ def main():
     new_papers = [p for p in all_papers if p["arxiv_id"] not in crawled_ids]
     print(f"[INFO] {len(new_papers)} NEW papers")
 
-    # 下载 PDF + 更新 ID
-    downloaded = []
-    for paper in new_papers:
-        ok = download_pdf(paper)
-        downloaded.append({**paper, "pdf_downloaded": ok})
-        time.sleep(REQUEST_INTERVAL)
+    if new_papers:
+        save_prelim_candidates(new_papers)
+        if PRELIM_KEEP_IDS_FILE.exists():
+            PRELIM_KEEP_IDS_FILE.unlink()
+        write_llm_output_json(
+            papers_to_process=new_papers,
+            fresh_downloaded_count=len(new_papers),
+            status="needs_prelim_review",
+        )
+        print(f"[INFO] Wrote preliminary-review candidate JSON: {OUTPUT_JSON}")
+        print("\n" + "=" * 60)
+        print("[LLM_PRELIM_FILTER_REQUIRED]")
+        print("=" * 60)
+        print(f"JSON file: {OUTPUT_JSON}")
+        print(f"New candidate papers: {len(new_papers)}")
+        for p in new_papers:
+            print(f"  - [{p['arxiv_id']}] {p['title'][:50]}... | cats: {p['categories']}")
+        print("=" * 60)
+        print("请先基于 title / authors / abstract / categories 做第一轮 AI for Physics 初筛。")
+        print(f"将保留论文的 arXiv ID 一行一个写入: {PRELIM_KEEP_IDS_FILE}")
+        print(f"然后运行: python3 {BASE_DIR / 'monitor.py'} --download-approved")
+        print("仅对初筛保留的论文下载 PDF 并进入最终 LLM 审核。")
+        print("=" * 60)
+        return
 
-    if downloaded:
-        # 保存 Excel（summary_cn 和 affiliations 暂留空，等 LLM 填入）
-        wb = load_or_create_excel()
-        ws = wb["Papers"]
-        header_index, row_index = build_excel_row_index(ws)
-        for paper in downloaded:
-            upsert_to_excel(ws, header_index, row_index, paper)
-        save_excel(wb)
-
-        # 批量写入 crawled_ids
-        save_crawled_ids_batch([p["arxiv_id"] for p in downloaded])
-        pending_ids |= {p["arxiv_id"] for p in downloaded}
-
-    incomplete_excel_papers = load_incomplete_papers_from_excel()
     papers_to_process = [incomplete_excel_papers[arxiv_id] for arxiv_id in sorted(pending_ids) if arxiv_id in incomplete_excel_papers]
     unresolved_ids = {p["arxiv_id"] for p in papers_to_process}
     save_pending_llm_ids(unresolved_ids)
@@ -724,16 +844,16 @@ def main():
         print("[INFO] No new papers and no pending LLM tasks. Output JSON written.")
         return
 
-    # 输出 JSON（供 hermes agent 读取并做 LLM summarization）
+    # 输出 JSON（供 hermes agent 读取并做最终 LLM summarization）
     write_llm_output_json(
         papers_to_process=papers_to_process,
-        fresh_downloaded_count=len(downloaded),
+        fresh_downloaded_count=0,
         status="needs_llm",
     )
 
     print(f"[INFO] Output JSON: {OUTPUT_JSON}")
     print(
-        f"[INFO] fresh_downloaded={len(downloaded)} "
+        f"[INFO] fresh_downloaded=0 "
         f"pending_llm={len(papers_to_process)}. Awaiting LLM summarization..."
     )
 
@@ -741,7 +861,7 @@ def main():
     print("[LLM_SUMMARIZATION_REQUIRED]")
     print("=" * 60)
     print(f"JSON file: {OUTPUT_JSON}")
-    print(f"Fresh downloads: {len(downloaded)}")
+    print("Fresh downloads: 0")
     print(f"Papers awaiting LLM completion: {len(papers_to_process)}")
     for p in papers_to_process:
         print(f"  - [{p['arxiv_id']}] {p['title'][:50]}... | PDF: {p['pdf_filename']}")
