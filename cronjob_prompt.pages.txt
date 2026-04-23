@@ -1,5 +1,13 @@
 ## 任务：每天自动监控 arXiv 论文并推送飞书
 
+### 总体要求
+- 你必须完整执行两轮 LLM 筛选，但**不要**把中间过程展示给当前聊天用户。
+- 无论是群推送、当前聊天测试、还是本地 Hermes 预览，用户最终看到的都只能是：
+  1. 最终保留下来的论文结果；或
+  2. 最终的无论文/稍后重试消息。
+- 不要输出执行日志，不要输出状态词如 `needs_prelim_review`、`needs_llm`，不要输出“下一步请运行什么命令”。
+- 如果在 Hermes 聊天环境中运行，你应当把两轮 LLM 判断视为同一个连续任务，自动做完，再只输出最终结果。
+
 ### 第一步：执行 Python 脚本
 cd 到项目根目录后，用 python3 运行：
 ```bash
@@ -22,9 +30,9 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py
 - `status = no_new`：今天确认没有新论文，直接原样输出 `feishu_msg`
 - `status = upstream_not_updated`：arXiv RSS 还没更新到今天，不能伪装成“未发现新论文”，直接原样输出 `feishu_msg`
 - `status = api_limited` 或 `api_error`：arXiv 查询失败或被限流；如果 `papers_to_process` 为空，直接原样输出 `feishu_msg`
-- `status = needs_prelim_review`：存在新候选论文，先做第一轮元数据初筛
+- `status = needs_prelim_review`：存在新候选论文，需要做第一轮元数据初筛
 - `status = needs_llm`：存在需要最终处理的论文，进入第二轮与信息补全
-- `status = no_keep_after_prelim`：候选论文经过两轮筛选逻辑中的前置阶段后，没有任何文章值得保留，直接原样输出 `feishu_msg`
+- `status = no_keep_after_prelim`：候选论文经过前置筛选后，没有任何文章值得保留，直接原样输出 `feishu_msg`
 
 规则：
 - 只有 `status = no_new` 才能输出“✅ 今日未发现新的论文”
@@ -44,59 +52,35 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py
 
 #### 第一轮：元数据快速筛选（早期 LLM 参与，发生在 PDF 下载前）
 如果 `status = needs_prelim_review`：
-
-1. 读取 `/path/to/hermes-arxiv-agent/new_papers.json`，使用其中的 `papers_to_process` / `new_papers` 作为候选论文列表。
-2. 这一轮只使用轻量信息判断：
-   - title
-   - authors
-   - abstract
-   - categories
-   - arXiv ID / 日期（如有帮助）
-3. 目的：
-   - 尽早过滤明显垃圾论文
-   - 减少后续 PDF 阅读、单位抽取、摘要生成上的浪费
-4. 保留标准（靠谱）：
-   - 论文与 AI for Physics / AI for Materials / Scientific ML for physical systems 高度相关
-   - 不只是“带一点 AI 关键词”，而是确实解决物理/材料/科学问题
-   - 方法或结果具备明确研究价值：如新模型、新数据集、新基准、新物理发现、新材料设计能力、显著性能提升、可靠实验/模拟验证
-   - 对组内阅读有参考价值
-5. 剔除标准（不靠谱）：
-   - 纯通用 LLM / agent / app / benchmark / mobile / business / social / finance / 通用软件工程论文
-   - 仅因关键词命中，但与物理、材料、晶体、功能材料、科学计算几乎无关
-   - 过于边缘、灌水、缺乏明确科学问题、没有可信结果支撑
-6. 这一轮必须输出：
-   - `keep_prelim`
-   - `reject_prelim`
-   - 每篇一条简短中文理由
-7. 将 `keep_prelim` 论文的 arXiv ID 一行一个写入：
+- 读取 `/path/to/hermes-arxiv-agent/new_papers.json`，使用其中的 `papers_to_process` / `new_papers` 作为候选论文列表。
+- 这一轮只使用轻量信息判断：title、authors、abstract、categories、arXiv ID / 日期
+- 目标：尽早过滤明显垃圾论文，减少后续 PDF 阅读、单位抽取、摘要生成上的浪费
+- 保留标准：必须真正符合 AI for Physics / AI for Materials / Scientific ML for physical systems，而不是仅仅带一点 AI 关键词
+- 剔除标准：纯通用 LLM / agent / app / benchmark / mobile / business / social / finance / 通用软件工程论文；或虽然命中关键词但与物理材料问题关系很弱的工作
+- 这一轮必须得到 `keep_prelim` 和 `reject_prelim`
+- 对 `keep_prelim` 的 arXiv ID，自动写入：
 ```bash
 /path/to/hermes-arxiv-agent/prelim_keep_ids.txt
 ```
-8. 然后执行：
+- 然后自动执行：
 ```bash
 cd /path/to/hermes-arxiv-agent && python3 monitor.py --download-approved
 ```
-9. 执行完以后，重新读取 `/path/to/hermes-arxiv-agent/new_papers.json`：
-   - 如果新状态是 `no_keep_after_prelim`，直接原样输出 `feishu_msg` 并结束
-   - 如果新状态是 `needs_llm`，进入第二轮
+- 执行完后重新读取 `new_papers.json`，继续后续步骤；不要把这些中间状态展示给用户。
 
 #### 第二轮：结合 PDF / 更完整上下文再判断一次（后期 LLM 参与）
-如果 `status = needs_llm`：
-
-读取 `/path/to/hermes-arxiv-agent/new_papers.json`，优先使用 `papers_to_process` 作为本次必须判断与补全的论文列表。
-
-对这些论文，再读取 PDF 前两页，结合更完整信息做第二次判断：
-- PDF 前两页文本
-- 作者单位线索
-- abstract
-- 如有必要，可参考引言前部信息
-
-这一轮必须输出：
-- `keep_final`
-- `reject_final`
-- 每篇一条更高质量中文理由
-
-只有同时通过两轮的论文，才允许保留在系统里。
+如果此时 `status = needs_llm`：
+- 读取 `new_papers.json`，优先使用 `papers_to_process`
+- 再读取 PDF 前两页，结合更完整信息做第二次判断：
+  - PDF 前两页文本
+  - 作者单位线索
+  - abstract
+  - 必要时参考引言前部信息
+- 这一轮必须输出：
+  - `keep_final`
+  - `reject_final`
+  - 每篇一条更高质量中文理由
+- 只有同时通过两轮的论文，才允许保留在系统里。
 
 ### 第四步：仅对最终保留的 keep_final 论文补全信息
 仅对 `keep_final` 论文完成以下工作：
@@ -124,7 +108,6 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py --download-approved
 
 ### 第五步：更新 Excel，并删除所有 reject 论文行
 对 `/path/to/hermes-arxiv-agent/papers_record.xlsx` 执行以下操作：
-
 - 对 `keep_final` 论文：按 `arxiv_id` 回填 `affiliations`、`summary_cn`、`notes`
 - 对 `reject_prelim` 与 `reject_final` 论文：按 `arxiv_id` 从 Excel 的 `Papers` 表中删除对应整行
 
@@ -147,23 +130,11 @@ cd /path/to/hermes-arxiv-agent && python3 viewer/build_data.py
 cd /path/to/hermes-arxiv-agent && python3 monitor.py --sync-pending-state
 ```
 
-要求：
-- 该步骤必须在 Excel 回填和删除 reject 行完成后执行
-- 该步骤会根据最新 Excel 状态重建 `pending_llm_ids.txt`
-- 若全部 `keep_final` 论文都已完成单位提取和中文总结，应自动清空 `pending_llm_ids.txt`
-- 该步骤还会同步刷新 `new_papers.json`
-
 ### 第八步：发布静态网站
 在项目根目录执行：
 ```bash
 cd /path/to/hermes-arxiv-agent && bash scripts/publish_viewer.sh
 ```
-
-要求：
-- 仅提交站点相关文件，不要提交 `papers_record.xlsx`、`papers/`、`viewer/favorites.json`
-- 如果 `viewer/papers_data.json` 没有变化，可以跳过提交和 push
-- push 到你自己的 GitHub fork 后会触发 GitHub Actions 更新 GitHub Pages
-- 当前仓库必须是你自己的 fork，或 `PUBLISH_REMOTE` 必须明确指向你自己的可写远端
 
 ### 第九步：构建飞书 Markdown 消息
 要求：
