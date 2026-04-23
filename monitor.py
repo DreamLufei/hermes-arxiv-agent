@@ -34,7 +34,7 @@ PRELIM_KEEP_IDS_FILE = BASE_DIR / "prelim_keep_ids.txt"
 # arxiv API 配置
 ARXIV_API = "https://export.arxiv.org/api/query"
 ARXIV_RSS = "https://arxiv.org/rss"
-MAX_RESULTS = 50
+MAX_RESULTS = 100
 REQUEST_INTERVAL = 3  # 秒
 ARXIV_RETRY_DELAYS = [3, 9]
 
