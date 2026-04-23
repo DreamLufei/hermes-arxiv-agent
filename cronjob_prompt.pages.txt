@@ -1,21 +1,21 @@
 ## 任务：每天自动监控 arXiv 论文并推送飞书
 
 ### 总体要求
-- 你必须完整执行两轮 LLM 筛选，但**不要**把中间过程展示给当前聊天用户。
+- 你必须完整执行两轮 LLM 筛选，并自己决定继续到最终结果，**不要**停在中间状态。
 - 无论是群推送、当前聊天测试、还是本地 Hermes 预览，用户最终看到的都只能是：
   1. 最终保留下来的论文结果；或
   2. 最终的无论文/稍后重试消息。
-- 不要输出执行日志，不要输出状态词如 `needs_prelim_review`、`needs_llm`，不要输出“下一步请运行什么命令”。
-- 如果在 Hermes 聊天环境中运行，你应当把两轮 LLM 判断视为同一个连续任务，自动做完，再只输出最终结果。
+- 不要输出执行日志，不要输出状态词如 `needs_prelim_review`、`needs_llm`，不要输出“下一步请运行什么命令”，不要输出“如果你要我可以继续”。
+- 如果用户说“不要发群”或“只回这个窗口”，这只表示 **不要投递到飞书群**，不表示可以停在中间。你仍然必须在当前聊天里把整条流程做完，再只输出最终结果。
 
 ### 第一步：执行 Python 脚本
 cd 到项目根目录后，用 python3 运行：
 ```bash
-cd /path/to/hermes-arxiv-agent && python3 monitor.py
+cd /home/ubuntu/hermes-arxiv-agent && python3 monitor.py
 ```
 
 ### 第二步：读取状态 JSON，而不是只看 stdout
-无论上一步 stdout 显示什么，都必须读取 `/path/to/hermes-arxiv-agent/new_papers.json`，并根据其中字段判断下一步。
+无论上一步 stdout 显示什么，都必须读取 `/home/ubuntu/hermes-arxiv-agent/new_papers.json`，并根据其中字段判断下一步。
 
 关键字段：
 - `status`
@@ -52,7 +52,7 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py
 
 #### 第一轮：元数据快速筛选（早期 LLM 参与，发生在 PDF 下载前）
 如果 `status = needs_prelim_review`：
-- 读取 `/path/to/hermes-arxiv-agent/new_papers.json`，使用其中的 `papers_to_process` / `new_papers` 作为候选论文列表。
+- 读取 `/home/ubuntu/hermes-arxiv-agent/new_papers.json`，使用其中的 `papers_to_process` / `new_papers` 作为候选论文列表。
 - 这一轮只使用轻量信息判断：title、authors、abstract、categories、arXiv ID / 日期
 - 目标：尽早过滤明显垃圾论文，减少后续 PDF 阅读、单位抽取、摘要生成上的浪费
 - 保留标准：必须真正符合 AI for Physics / AI for Materials / Scientific ML for physical systems，而不是仅仅带一点 AI 关键词
@@ -60,11 +60,11 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py
 - 这一轮必须得到 `keep_prelim` 和 `reject_prelim`
 - 对 `keep_prelim` 的 arXiv ID，自动写入：
 ```bash
-/path/to/hermes-arxiv-agent/prelim_keep_ids.txt
+/home/ubuntu/hermes-arxiv-agent/prelim_keep_ids.txt
 ```
-- 然后自动执行：
+- 然后**立即自动执行**：
 ```bash
-cd /path/to/hermes-arxiv-agent && python3 monitor.py --download-approved
+cd /home/ubuntu/hermes-arxiv-agent && python3 monitor.py --download-approved
 ```
 - 执行完后重新读取 `new_papers.json`，继续后续步骤；不要把这些中间状态展示给用户。
 
@@ -107,7 +107,7 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py --download-approved
 - 不要写成空泛套话
 
 ### 第五步：更新 Excel，并删除所有 reject 论文行
-对 `/path/to/hermes-arxiv-agent/papers_record.xlsx` 执行以下操作：
+对 `/home/ubuntu/hermes-arxiv-agent/papers_record.xlsx` 执行以下操作：
 - 对 `keep_final` 论文：按 `arxiv_id` 回填 `affiliations`、`summary_cn`、`notes`
 - 对 `reject_prelim` 与 `reject_final` 论文：按 `arxiv_id` 从 Excel 的 `Papers` 表中删除对应整行
 
@@ -119,7 +119,7 @@ cd /path/to/hermes-arxiv-agent && python3 monitor.py --download-approved
 ### 第六步：更新网站数据
 在项目根目录执行：
 ```bash
-cd /path/to/hermes-arxiv-agent && python3 viewer/build_data.py
+cd /home/ubuntu/hermes-arxiv-agent && python3 viewer/build_data.py
 ```
 
 确认 `viewer/papers_data.json` 已根据最新 Excel 重建，仅包含保留下来的 `keep_final` 论文，并带有 `notes` 字段。
@@ -127,13 +127,13 @@ cd /path/to/hermes-arxiv-agent && python3 viewer/build_data.py
 ### 第七步：同步待处理队列
 在项目根目录执行：
 ```bash
-cd /path/to/hermes-arxiv-agent && python3 monitor.py --sync-pending-state
+cd /home/ubuntu/hermes-arxiv-agent && python3 monitor.py --sync-pending-state
 ```
 
 ### 第八步：发布静态网站
 在项目根目录执行：
 ```bash
-cd /path/to/hermes-arxiv-agent && bash scripts/publish_viewer.sh
+cd /home/ubuntu/hermes-arxiv-agent && bash scripts/publish_viewer.sh
 ```
 
 ### 第九步：构建飞书 Markdown 消息
