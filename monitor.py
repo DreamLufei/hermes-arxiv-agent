@@ -846,16 +846,48 @@ def main():
     save_pending_llm_ids(unresolved_ids)
 
     if not papers_to_process:
-        # 无新论文，且无待补全论文
+        # 无新论文，且无待补全论文。先确认上游 RSS 是否已经更新到今天；
+        # 如果定时任务跑得早于 arXiv 当日 issue 发布，不要误报为“未发现新论文”。
+        today = date.today().isoformat()
+        categories = extract_categories_from_keywords(keywords)
+        rss_checks = inspect_rss_feeds(categories) if categories else []
+        rss_advanced_today = any(
+            item.get("last_build_date_iso") and item["last_build_date_iso"] >= today
+            for item in rss_checks
+            if item.get("status") == "ok"
+        )
+
+        if rss_checks and not rss_advanced_today:
+            output = {
+                "date": today,
+                "status": "upstream_not_updated",
+                "new_count": 0,
+                "pending_count": 0,
+                "new_papers": [],
+                "papers_to_process": [],
+                "feishu_msg": (
+                    f"⏳ 今日（{today}）arXiv RSS 尚未更新到新一期，暂不判定为无新论文。\n"
+                    "🔁 机器人会在下一个计划时段继续检查。\n"
+                    "🔗 历史论文与完整列表：\n"
+                    "https://dreamlufei.github.io/hermes-arxiv-agent/"
+                ),
+                "diagnostics": {"rss_checks": rss_checks},
+            }
+            with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
+                json.dump(output, f, ensure_ascii=False, indent=2)
+            export_viewer_json_from_excel()
+            print("[INFO] arXiv RSS has not advanced to today; output upstream_not_updated instead of no_new.")
+            return
+
         output = {
-            "date": date.today().isoformat(),
+            "date": today,
             "status": "no_new",
             "new_count": 0,
             "pending_count": 0,
             "new_papers": [],
             "papers_to_process": [],
-            "feishu_msg": f"✅ 今日（{date.today().isoformat()}）未发现新的论文。",
-            "diagnostics": {},
+            "feishu_msg": f"✅ 今日（{today}）未发现新的论文。",
+            "diagnostics": {"rss_checks": rss_checks},
         }
         with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
