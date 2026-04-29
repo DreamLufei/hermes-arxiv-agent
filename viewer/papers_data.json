@@ -1,10 +1,24 @@
 {
-  "count": 8,
+  "count": 9,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-04-28",
+  "crawled_date_max": "2026-04-29",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-04-26",
+  "published_date_max": "2026-04-28",
   "papers": [
+    {
+      "arxiv_id": "2604.25568",
+      "title": "Benchmarking bandgap prediction in semiconductors under experimental and realistic evaluation settings",
+      "authors": "Haolin Wang, Xianyuan Liu, Anna Jungbluth, Alexandra J. Ramadan, Robert D. J. Oliver, Haiping Lu",
+      "affiliations": "Centre for Machine Intelligence, University of Sheffield, Sheffield, S1 3JD, UK; School of Computer Science, University of Sheffield, Sheffield, S1 4DP, UK; Climate Office, European Space Agency, Harwell, OX11 0FD, UK; School of Mathematical and Physical Sciences, University of Sheffield, Sheffield, S3 7RH, UK; School of Chemical, Materials and Biological Engineering, University of Sheffield, Sheffield, S1 3JD, UK",
+      "published_date": "2026-04-28",
+      "categories": "cond-mat.mtrl-sci, cs.AI",
+      "abstract": "Accurate bandgap prediction is crucial for semiconductor applications, yet machine learning models trained on computational data often struggle to generalize to experimental bandgap measurements. Challenges related to data fidelity, domain generalization, and model interpretability remain insufficiently addressed in existing evaluation frameworks. To bridge this gap, we introduce RealMat-BaG, a benchmark for assessing model reliability under experimentally relevant conditions. We curate an open-access dataset of experimental bandgaps with aligned crystal structures and compare graph neural networks as well as classical machine learning baselines. Our framework evaluates performance across statistical and domain-based splits, examines transfer from DFT-computed to experimental bandgaps, and analyzes interpretability at both elemental-property and structural levels. Our results reveal the fundamental generalization limitations of current bandgap prediction models and establish a benchmark aligned with experimental measurements for developing more reliable learning strategies for materials discovery.",
+      "summary_cn": "该文构建RealMat-BaG实验带隙基准，汇集带晶体结构的半导体实验数据，系统对比图神经网络与传统机器学习在统计划分、材料领域划分、DFT到实验迁移及可解释性分析中的表现，揭示现有带隙模型面对真实实验分布时泛化能力明显受限，为可靠材料发现模型提供评测依据。",
+      "pdf_filename": "2604.25568.pdf",
+      "crawled_date": "2026-04-29",
+      "notes": "围绕半导体带隙这一材料物性预测核心问题，建立面向实验测量的RealMat-BaG基准并检验GNN/传统模型的跨域泛化与可解释性，直接服务AI辅助功能材料发现与科学机器学习评测，符合组内AI for Materials方向。",
+      "pdf_url": "https://arxiv.org/pdf/2604.25568"
+    },
     {
       "arxiv_id": "2604.23811",
       "title": "Attention Is Not All You Need for Diffraction",
