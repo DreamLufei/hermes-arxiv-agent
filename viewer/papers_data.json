@@ -1,10 +1,38 @@
 {
-  "count": 13,
+  "count": 15,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-05-01",
+  "crawled_date_max": "2026-05-06",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-04-30",
+  "published_date_max": "2026-05-05",
   "papers": [
+    {
+      "arxiv_id": "2605.03778",
+      "title": "Neural-network reconstruction of THz transmission spectra using electrically tunable AlGaN/GaN plasmonic-crystal analyzer",
+      "authors": "A. Witkowska, M. Dub, P. Sai, P. Tiwari, M. Sakowicz, J. A. Majewski, W. Knap",
+      "affiliations": "Center for Terahertz Research and Applications – CENTERA 2, Centre for Advanced Materials and Technologies CEZAMAT, Warsaw University of Technology, ul. Poleczki 19, 02-822 Warsaw, Poland; Institute of High Pressure Physics, Polish Academy of Sciences, ul. Sokołowska 29/37, 01-142 Warsaw, Poland; Faculty of Physics, University of Warsaw, ul. Pasteura 5, 02-093 Warsaw, Poland",
+      "published_date": "2026-05-05",
+      "categories": "physics.optics, cond-mat.mtrl-sci",
+      "abstract": "We demonstrate machine learning (ML) based reconstruction of terahertz transmission spectra using an electrically tunable grating-gate AlGaN/GaN plasmonic-crystal analyzer. The analyzer encodes the transmission spectrum into a voltage-dependent intensity, which is then inverted by an ML algorithm. A feedforward neural network trained on a synthetic dataset is validated experimentally on four samples in standard Fourier Transform Infrared (FTIR) mode and in direct (fixed-mirror) acquisition mode. The network achieves a mean square error (MSE) of the reconstruction of 0.015 in FTIR mode and 0.038 in direct mode, correctly identifying six out of seven ground-truth resonances in each mode. Against a first-difference Tikhonov regularization baseline, the mean reconstruction error is reduced 3.6 times in FTIR mode and 1.55 times in direct mode, with fewer spurious peaks and lower peak-position errors. Voltage-tunable plasmonic filtering combined with neural-network inversion establishes an interferometer-free architecture for THz spectral reconstruction.",
+      "summary_cn": "该工作将电压可调AlGaN/GaN等离激元晶体分析器与前馈神经网络反演结合，用合成谱训练并在四个样品上实验验证太赫兹透射谱重建；相比Tikhonov正则化，FTIR模式误差降低3.6倍、直接模式降低1.55倍，为多场景紧凑无干涉仪THz光谱仪提供计算化方案。",
+      "pdf_filename": "2605.03778.pdf",
+      "crawled_date": "2026-05-06",
+      "notes": "把机器学习反演嵌入真实AlGaN/GaN太赫兹器件读出链路，兼具物理传感硬件、光谱重建和实验验证，契合AI for Physics中用可学习模型替代复杂测量系统的方向。",
+      "pdf_url": "https://arxiv.org/pdf/2605.03778"
+    },
+    {
+      "arxiv_id": "2605.03515",
+      "title": "Scale-Dependent Input Representation and Confidence Estimation for LLMs in Materials Property Prediction",
+      "authors": "Shuichiro Ozawa, Izumi Takahara, Teruyasu Mizoguchi",
+      "affiliations": "Institute of Industrial Science, The University of Tokyo, Tokyo 153-8505, Japan",
+      "published_date": "2026-05-05",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Large language models (LLMs) are increasingly applied to materials science. However, the relationship between prediction accuracy, input representation, and model scale remains unclear, and reliable methods for assessing prediction confidence have not yet been established. In this study, we fine-tune two Llama models of different scales (1B and 8B) using low-rank adaptation (LoRA) on an inorganic crystal structure dataset. We systematically evaluate five input representations, namely chemical composition, crystal summary, local environment description, full text description, and crystallographic information files (CIF), for formation energy and bandgap prediction. Our results show that the optimal input representation depends on model scale. The 1B model performs better with compact representations, whereas the 8B model maintains high accuracy even with longer natural-language descriptions and CIF inputs. Across both model scales, crystal summaries that include space-group information consistently outperform composition-only inputs, indicating that symmetry information serves as a robust and informative feature. We further analyze the relationship between prediction error and the mean negative log-likelihood (mean NLL) of tokens corresponding to predicted numerical values. While no clear correlation is observed in base models, fine-tuned models exhibit a consistent trend in which lower mean NLL corresponds to smaller prediction errors. This result suggests that mean NLL can serve as a practical confidence indicator without requiring additional training. These findings demonstrate that both input representation and model scale play critical roles in LLM-based materials property prediction, and that mean NLL provides an effective and computationally efficient measure of prediction confidence.",
+      "summary_cn": "该研究用LoRA微调1B与8B Llama，在无机晶体数据上比较成分、晶体摘要、局域环境、全文描述和CIF表示对形成能与带隙预测的影响，发现最优输入随模型规模变化，含空间群的晶体摘要最稳健，并证明微调后预测数值token的平均NLL可作为无需额外训练的置信度指标。",
+      "pdf_filename": "2605.03515.pdf",
+      "crawled_date": "2026-05-06",
+      "notes": "直接面向无机晶体形成能和带隙预测，系统比较LLM规模、材料结构表示与置信度估计，结果对组内开展AI辅助材料性质预测和轻量化/参数高效模型选择有明确参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2605.03515"
+    },
     {
       "arxiv_id": "2604.27879",
       "title": "Generation of magnetic metal-organic frameworks",
