@@ -1,10 +1,38 @@
 {
-  "count": 19,
+  "count": 21,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-05-08",
+  "crawled_date_max": "2026-05-13",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-05-07",
+  "published_date_max": "2026-05-12",
   "papers": [
+    {
+      "arxiv_id": "2605.12067",
+      "title": "Discovery of High-Voltage Magnesium-Ion Cathodes using Machine Learning and First-Principles Calculations",
+      "authors": "Jhon Rogelnor A. Florida, Edward Aris D. Fajardo",
+      "affiliations": "Department of Physics, Mindanao State University - Main Campus, Marawi City, Philippines",
+      "published_date": "2026-05-12",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Developing high-performance cathode materials for magnesium-ion batteries (MIBs) remains challenging because Mg$^{2+}$ ions move slowly, and conventional materials exhibit low voltage outputs. In this study, machine learning and first-principles calculations were combined to investigate topological quantum materials (TQMs) as a new class of cathode candidates. A modified crystal graph convolutional neural network (mCGCNN) was used to screen 917 Mg-containing TQMs, identifying a small subset of materials with predicted voltages above 3 V and high volumetric capacities. Among these, Mg$_2$VO$_4$ and Mg$_6$MnO$_8$ were selected for detailed density functional theory (DFT) analysis. Formation energy and convex-hull calculations indicate that Mg$_x$VO$_4$ exhibits a fully stable magnesiation pathway, whereas Mg$_x$MnO$_8$ demonstrates minor metastability at intermediate compositions. The calculated voltage profiles yield average voltages of 3.66 V for Mg$_2$VO$_4$ and 4.06 V for Mg$_6$MnO$_8$, in good agreement with machine learning predictions. Electronic structure analysis, supported by Wannier interpolation, confirms that both materials are semiconducting, with valence bands dominated by O $2p$ states and conduction bands by transition-metal $d$ states, indicating a charge-transfer redox mechanism. Compared to conventional Mg cathodes, these TQMs exhibit higher voltages and competitive capacities, underscoring their potential for next-generation multivalent batteries. This study demonstrates that integrating machine learning with first-principles calculations offers an efficient approach for discovering and understanding novel cathode materials.",
+      "summary_cn": "该研究结合改进CGCNN与第一性原理计算，从917种含镁拓扑量子材料中筛选高电压镁离子电池正极。Mg2VO4与Mg6MnO8经DFT验证具有稳定或近稳定镁化路径，平均电压达3.66和4.06伏，并揭示氧到过渡金属电荷转移机制，展示机器学习加速多价电池材料发现的价值。",
+      "pdf_filename": "2605.12067.pdf",
+      "crawled_date": "2026-05-13",
+      "notes": "该工作把改进晶体图神经网络筛选与DFT稳定性、电压和电子结构验证结合，用于发现高电压镁离子电池正极，并聚焦拓扑量子材料这一物理材料空间，符合AI辅助功能材料发现和计算物理结合的主线。",
+      "pdf_url": "https://arxiv.org/pdf/2605.12067"
+    },
+    {
+      "arxiv_id": "2605.11610",
+      "title": "Fast and Accurate Prediction of Lattice Thermal Conductivity via Machine Learning Surrogates",
+      "authors": "Zeyu Wang, Shuya Yamazaki, Martin Hoffmann Petersen, Masato Ohnishi, Tomiya Yamamoto, Wei Nong, Jianghai Wang, Ruiming Zhu, Masatoshi Hanai, Michimasa Morita, Toyotaro Suzumura, Zekun Ren, Junichiro Shiomi, Kedar Hippalgaonkar",
+      "affiliations": "Department of Mechanical Engineering, The University of Tokyo, Tokyo 113-8654, Japan; School of Materials Science and Engineering, Nanyang Technological University, Singapore 639798; Berkeley Education Alliance for Research in Singapore, CREATE Tower, Singapore 138602; Institute of Engineering Innovation, The University of Tokyo, Tokyo 113-0032, Japan; The Institute of Statistical Mathematics, Research Organization of Information and Systems, Tachikawa, Tokyo 190-8562, Japan; Division of Materials Science, Nara Institute of Science and Technology, Ikoma, Nara 630-0192, Japan; Information Technology Center, The University of Tokyo, Tokyo 113-0032, Japan; RIKEN Center for Advanced Intelligence Project, Tokyo 103-0027, Japan",
+      "published_date": "2026-05-12",
+      "categories": "cond-mat.mtrl-sci, physics.comp-ph",
+      "abstract": "The appearance of generative models has opened vast chemical spaces in the design of functional materials. Although machine learning interatomic potentials (MLIPs) have substantially accelerated phonon calculations, high-fidelity prediction of lattice thermal conductivity \\k{appa}lat still requires accurate treatment of anharmonic interactions, which remains a key challenge for existing potentials across novel chemical spaces. To address this challenge, we present a comprehensive benchmark of 15 surrogate models for predicting \\k{appa}lat using the Phonix database, which contains 6,966 entries with anharmonic phonon properties derived from first-principles calculations. Firstly, We categorize these surrogate models into three distinct groups: Physical-informed feature descriptors combined with ML models, end-to-end deep neural networks, and pre-trained MLIP-embeddings combined with ML models. By evaluating model performance across random, space-group disjoint (testing generalization to unseen crystal symmetries), and Out-Of-Distribution splits (OOD dataset that testing extrapolation to property regimes beyond the training range) based on \\k{appa}lat, we probe both interpolation and exploration capabilities. Our results reveal that MLIP-embedded models excel in interpolation within well-sampled regions, deep neural network models especially ALiEGNN demonstrate superior robustness in OOD regimes critical for discovering novel low-\\k{appa}lat. Additionally, we find a systematic degradation in performance when the structural representation is reduced. Although surrogate models exhibit lower accuracy than direct simulations using first-principles calculation, they reduce computational costs by orders of magnitude, enabling efficient high-throughput screening of thermoelectric materials with minimal loss in generative design workflows.",
+      "summary_cn": "该研究基于含6966个第一性原理非谐声子条目的Phonix数据库，系统比较物理特征、端到端图网络与预训练MLIP嵌入等15类晶格热导率代理模型。结果显示MLIP嵌入擅长插值，ALiEGNN在分布外低热导筛选中更稳健，可用数量级更低成本支撑热电材料生成设计。",
+      "pdf_filename": "2605.11610.pdf",
+      "crawled_date": "2026-05-13",
+      "notes": "该工作围绕晶格热导率这一关键物性，比较物理描述符、深度图网络与预训练势能模型嵌入在跨晶体空间和分布外筛选中的表现，直接服务于热电功能材料的高通量发现，契合组内AI for Materials与科学机器学习方向。",
+      "pdf_url": "https://arxiv.org/pdf/2605.11610"
+    },
     {
       "arxiv_id": "2605.05914",
       "title": "Quantum-enhanced Large Language Models on Quantum Hardware via Cayley Unitary Adapters",
