@@ -1,10 +1,24 @@
 {
-  "count": 21,
+  "count": 22,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-05-13",
+  "crawled_date_max": "2026-05-14",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-05-12",
+  "published_date_max": "2026-05-13",
   "papers": [
+    {
+      "arxiv_id": "2605.13618",
+      "title": "OpenAaaS: An Open Agent-as-a-Service Framework for Distributed Materials-Informatics Research",
+      "authors": "Peng Kang, Bixuan Li, Xiaoya Huang, Shuo Shi, Weiqiao Zhou, Zhen Li, Yu Liu, Lei Zheng",
+      "affiliations": "National Key Laboratory of AI for Materials Science, Beihang University, Beijing, China; Tianmushan Laboratory, Beihang University, Beijing, China",
+      "published_date": "2026-05-13",
+      "categories": "cond-mat.mtrl-sci, cs.AI",
+      "abstract": "The Materials Genome Initiative catalyzed the proliferation of centralized platforms--SaaS, PaaS, and IaaS--that aggregate computational and experimental resources for accelerated materials discovery. In parallel, breakthroughs in large language models (LLMs) and autonomous agents have created powerful new reasoning capabilities for scientific research. Yet a critical \"last mile\" problem remains: while we possess world-class models and vast repositories of materials data, we lack the organizational infrastructure to compose these capabilities securely across institutional boundaries. The development of structural and functional materials for harsh service environments--high-temperature alloys, radiation resistant steels, corrosion-resistant coatings--remains characterized by long-term iteration, mechanistic complexity, and high domain expertise--demands that exceed both monolithic agent systems and traditional centralized platforms. To address this gap we propose OpenAaaS, an open-source hierarchical and distributed Agent-as-a-Service framework that enables organized multi-agent collaboration for intelligent materials design. OpenAaaS is built on a single foundational principle: code flows, data stays still. A Master Agent plans and decomposes complex research tasks without requiring direct access to subordinate agents' managed data and computational resources. Sub-agents, deployed as near-data execution nodes, retain full sovereignty over local datasets, proprietary algorithms, and specialized hardware. This architecture guarantees that raw data never leaves its domain of origin while enabling cross-scale, cross-domain secure integration of previously isolated materials intelligence silos. We validate the framework through two representative case studies: (i) AlphaAgent, an evidence-grounded materials literature analysis executor that achieves 4.66/5.0 on deep analytical questions against single-pass RAG baselines; and (ii) an ultra-large-scale hexa-high-entropy alloy descriptor database service that demonstrates secure near-data execution and domain-specific scientific workflows under strict data-sovereignty constraints. OpenAaaS establishes a principled pathway toward \"organized research\" via agent collectives, offering a scalable foundation for next-generation materials intelligent design platforms. All source code is available at https://github.com/Wolido/OpenAaaS.",
+      "summary_cn": "OpenAaaS面向材料信息学提出分层分布式Agent-as-a-Service框架，以“代码流动、数据静止”实现跨机构多智能体协作。案例显示其在材料文献深度分析中得分4.66/5，并能支撑超大规模高熵合金描述符库的安全近数据执行，为数据主权约束下的智能材料设计平台提供可复用基础。",
+      "pdf_filename": "2605.13618.pdf",
+      "crawled_date": "2026-05-14",
+      "notes": "论文把LLM多智能体框架具体落到材料信息学基础设施，解决跨机构数据不出域时的智能材料设计协作问题，并用材料文献分析和高熵合金描述符库验证，契合组内AI驱动功能材料发现方向。",
+      "pdf_url": "https://arxiv.org/pdf/2605.13618"
+    },
     {
       "arxiv_id": "2605.12067",
       "title": "Discovery of High-Voltage Magnesium-Ion Cathodes using Machine Learning and First-Principles Calculations",
