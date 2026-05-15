@@ -1,10 +1,24 @@
 {
-  "count": 22,
+  "count": 23,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-05-14",
+  "crawled_date_max": "2026-05-15",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-05-13",
+  "published_date_max": "2026-05-14",
   "papers": [
+    {
+      "arxiv_id": "2605.14471",
+      "title": "High-Pressure Crystal Structure Database",
+      "authors": "Zhenyu Wang, Qingchang Wang, Junwen Duan, Heng Ge, Xiaoshan Luo, Pengyue Gao, Wei Zhang, Jian Lv, Yanchao Wang, Yanming Ma",
+      "affiliations": "Key Laboratory of Material Simulation Methods and Software of Ministry of Education, College of Physics, Jilin University, Changchun, 130012, China; State Key Laboratory of High Pressure and Superhard Materials, College of Physics, Jilin University, Changchun, 130012, China; Changbaishan Laboratory and International Center of Future Science, Jilin University, Changchun, 130012, China; Center for High-Pressure Science and Technology, Zhejiang University, Hangzhou, 310027, China; School of Physics and Institute of Fundamental and Transdisciplinary Research, Zhejiang University, Hangzhou, 310027, China",
+      "published_date": "2026-05-14",
+      "categories": "cond-mat.mtrl-sci, physics.comp-ph",
+      "abstract": "High-pressure research is a productive route to new structures and emergent properties. However, crucial high-pressure structural information remains highly fragmented across individual publications and heterogeneous computational repositories. This fragmentation creates a major bottleneck for data-driven materials design. To bridge this gap, we introduce the High-Pressure Crystal Structure Database (HPCSD), a traceable, pressure-resolved repository that integrates experimental and theoretical high-pressure structures. HPCSD is constructed from two complementary data streams: elemental high-pressure phases and a searchable configuration space of stable and metastable phases generated via CALYPSO crystal structure prediction. To ensure rigorous comparability, all retained structures underwent re-optimization under a unified density functional theory (DFT) framework , with continuous enthalpy curves systematically generated specifically for the elemental phases across their stability fields. The initial release encompasses 77,346 consistently evaluated structural entries spanning 89 elements. An analysis reveals that pressure-induced polymorphism is ubiquitous and exhibits pronounced family-dependent trends. Structural diversity is strongly influenced by an element's electronic adaptability , with the greatest structural complexity emerging at intermediate rather than highest pressures. By providing standardized, reusable, and rigorously evaluated high-pressure structural data, HPCSD establishes a robust infrastructure to accelerate experimental phase identification, facilitate cross-study thermodynamic comparisons, and support the development of machine-learning interatomic potentials and generative models for high-pressure systems.",
+      "summary_cn": "论文构建高压晶体结构数据库HPCSD，整合实验相与CALYPSO预测结构，并在统一DFT框架下重新优化和生成连续焓曲线。首版包含89种元素的77346条标准化条目，揭示压力诱导多形性的族类规律，可支撑高压相识别、热力学比较以及机器学习势和生成模型训练。",
+      "pdf_filename": "2605.14471.pdf",
+      "crawled_date": "2026-05-15",
+      "notes": "HPCSD把高压结构预测、实验相和统一DFT重算组织成可检索数据库，直接服务机器学习势、生成模型和极端条件材料设计，是AI for Materials/科学机器学习所需的高价值数据基础设施。",
+      "pdf_url": "https://arxiv.org/pdf/2605.14471"
+    },
     {
       "arxiv_id": "2605.13618",
       "title": "OpenAaaS: An Open Agent-as-a-Service Framework for Distributed Materials-Informatics Research",
