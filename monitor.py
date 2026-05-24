@@ -37,7 +37,13 @@ ARXIV_RSS = "https://arxiv.org/rss"
 MAX_RESULTS = 100
 PUBLISHED_LOOKBACK_DAYS = 2
 REQUEST_INTERVAL = 3  # 秒
-ARXIV_RETRY_DELAYS = [3, 9]
+# arXiv occasionally returns HTTP 429 during the daily issue window. Use
+# conservative backoff and honor Retry-After when present rather than retrying
+# several near-immediate requests that just extend the rate limit.
+ARXIV_RETRY_DELAYS = [15, 60, 180]
+ARXIV_HEADERS = {
+    "User-Agent": "hermes-arxiv-agent/1.0 (+https://dreamlufei.github.io/hermes-arxiv-agent/)",
+}
 
 # ==================== 工具函数 ====================
 
@@ -146,6 +152,22 @@ def get_published_cutoff_date() -> date:
     return date.today() - timedelta(days=PUBLISHED_LOOKBACK_DAYS - 1)
 
 
+def retry_delay_from_response(response: requests.Response | None, fallback: int) -> int:
+    """Return retry delay in seconds, honoring arXiv/HTTP Retry-After if present."""
+    retry_after = response.headers.get("Retry-After") if response is not None else None
+    if retry_after:
+        retry_after = retry_after.strip()
+        if retry_after.isdigit():
+            return max(int(retry_after), fallback)
+        try:
+            retry_at = parsedate_to_datetime(retry_after)
+            delay = int((retry_at - datetime.now(retry_at.tzinfo)).total_seconds())
+            return max(delay, fallback)
+        except Exception:
+            pass
+    return fallback
+
+
 def is_recent_published(paper: dict, cutoff: date) -> bool:
     published_raw = str(paper.get("published_date", "")).strip()
     if not published_raw:
@@ -183,7 +205,7 @@ def inspect_rss_feeds(categories: list[str]) -> list[dict]:
             "item_count": 0,
         }
         try:
-            response = requests.get(url, timeout=30)
+            response = requests.get(url, timeout=30, headers=ARXIV_HEADERS)
             response.raise_for_status()
             root = ET.fromstring(response.content)
             channel = root.find("channel")
@@ -262,13 +284,13 @@ def search_arxiv_papers(keywords: str, max_results: int = MAX_RESULTS) -> list[d
     response = None
     for attempt in range(len(ARXIV_RETRY_DELAYS) + 1):
         try:
-            response = requests.get(url, timeout=30)
+            response = requests.get(url, timeout=30, headers=ARXIV_HEADERS)
             response.raise_for_status()
             break
         except requests.HTTPError as e:
             status_code = e.response.status_code if e.response is not None else None
             if status_code == 429 and attempt < len(ARXIV_RETRY_DELAYS):
-                delay = ARXIV_RETRY_DELAYS[attempt]
+                delay = retry_delay_from_response(e.response, ARXIV_RETRY_DELAYS[attempt])
                 print(f"[WARN] arXiv API rate limited (HTTP 429). Retrying in {delay}s...")
                 time.sleep(delay)
                 continue
