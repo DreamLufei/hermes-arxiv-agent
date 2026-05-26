@@ -1,10 +1,24 @@
 {
-  "count": 25,
+  "count": 26,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-05-19",
+  "crawled_date_max": "2026-05-26",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-05-18",
+  "published_date_max": "2026-05-25",
   "papers": [
+    {
+      "arxiv_id": "2605.25351",
+      "title": "Anomalous Subsurface Vacancy Stabilization Dictated by Geometry-Electronic Decoupling on Metal Surfaces",
+      "authors": "Yiming Tan, Pai Li",
+      "affiliations": "State Key Laboratory of Materials for Integrated Circuits, Shanghai Institute of Microsystem and Information Technology, Chinese Academy of Sciences, Shanghai 200050, China",
+      "published_date": "2026-05-25",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Vacancy formation energetics fundamentally govern the structural integrity and catalytic behavior of metal surfaces. Contrary to conventional coordination-dependent broken-bond models, we identify an anomalous thermodynamic inversion on close-packed surfaces across Ir, Pt, Au with face-centered cubic (FCC) lattice and Be, Zn, Cd with hexagonal close-packed (HCP) lattice, where subsurface vacancies are intrinsically more stable than surface ones. Using high-throughput DFT calculations and machine learning force fields, we demonstrate that the physical origins of this anomaly are fundamentally decoupled between the two crystal systems. For the FCC trio, pronounced surface relaxation and a profound real-space electronic localization induce directional, covalent-like intralayer bonding, materializing a \"geometry-electronic decoupling\" mechanism. Crucially, this unconventional thermodynamic hierarchy enables a dynamic \"self-healing\" mechanism on Pt(111) that preserves an intact topmost layer and prevents catalytic degradation during hydrogen evolution and oxygen reduction reactions. It also successfully decoding the critical defect threshold (~8%) for lifting the Au(100) surface reconstruction. Our work challenges classical scalar defect models and provides a fresh paradigm for engineering catalyst surface integrity.",
+      "summary_cn": "该研究结合高通量DFT与机器学习力场，揭示多种金属表面亚表层空位反常稳定的几何—电子解耦机制，并解释Pt(111)自修复与Au(100)重构阈值。",
+      "pdf_filename": "2605.25351.pdf",
+      "crawled_date": "2026-05-26",
+      "notes": "该工作将高通量DFT与机器学习力场用于金属表面缺陷能学和催化稳定性研究，直接服务于功能材料表面结构预测与AI辅助机理发现，契合AI for Physics/Materials方向。",
+      "pdf_url": "https://arxiv.org/pdf/2605.25351"
+    },
     {
       "arxiv_id": "2605.18037",
       "title": "Combinatorial Survey of Structural Phase Distribution and Magnetism in Fe-Ge-Te Composition-spread Thin Film Libraries",
