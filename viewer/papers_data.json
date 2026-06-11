@@ -1,10 +1,24 @@
 {
-  "count": 33,
+  "count": 34,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-06-02",
+  "crawled_date_max": "2026-06-11",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-06-01",
+  "published_date_max": "2026-06-10",
   "papers": [
+    {
+      "arxiv_id": "2606.12083",
+      "title": "Multilayer Screening of Double and Conventional Perovskite Solar Cells Using SCAPS-1D and Machine Learning: Optimization of ETL, HTL, and Absorber for High-Efficiency Architectures",
+      "authors": "Neda Nasiri, Seyed Mahdi Mastoor, Amirhosein Ahmadkhan Kordbacheh",
+      "affiliations": "Department of Physics, Iran University of Science and Technology, Tehran, Iran",
+      "published_date": "2026-06-10",
+      "categories": "cond-mat.mtrl-sci, physics.app-ph, physics.comp-ph, physics.optics",
+      "abstract": "The combinatorial design space of multilayer perovskite solar cells is vast, yet exhaustive experimental or computational screening of all possible material combinations remains impractical. Here, we integrate SCAPS-1D device simulations with machine learning to systematically explore 125 device architectures constructed from five electron transport layers (ETL), five absorbers (including lead-free double perovskites), and five hole transport layers (HTL). A representative subset of configurations is used to train a machine learning (ML) model, which predicts the power conversion efficiency (PCE) of the remaining unexplored structures. Leave-One-Group-Out cross-validation yields a Spearman rank correlation, demonstrating reliable ranking capability. SHAP (SHapley Additive exPlanations) analysis reveals that the HTL band gap, absorber band gap, and ETL electron affinity are the most influential descriptors, providing physical insights into interfacial recombination and charge extraction. The machine learning model identifies several high-performance configurations that are subsequently verified by full SCAPS-1D simulations. Among them, the device FTO/TiO$_2$/Cs$_2$AgBiBr$_6$/NiO/Ag achieves a PCE of 28.85%, and the ML-suggested structure FTO/SnO$_2$/Cs$_2$AgInBr$_6$/NiO/Ag exhibits 28.62%, outperforming a closely related literature architecture by approximately 4% absolute. Notably, eight of the top-11 structures employ the lead-free double perovskite Cs$_2$AgInBr$_6$. This work demonstrates that a physics-based, data-driven workflow combining SCAPS-1D, ML, and SHAP can accelerate the discovery of high-efficiency, environmentally friendly perovskite solar cells while providing transparent design rules. The approach is generalizable to other multilayer optoelectronic systems.",
+      "summary_cn": "该研究结合SCAPS一维器件模拟、机器学习排序与SHAP解释，在一百二十五种钙钛矿太阳能电池结构中筛选高效组合，指出带隙和电子亲和能等关键描述符，并验证含无铅双钙钛矿的结构可达约百分之二十八点八五效率，为环保光伏材料逆向设计提供可解释流程。",
+      "pdf_filename": "2606.12083.pdf",
+      "crawled_date": "2026-06-11",
+      "notes": "保留：论文把机器学习与SCAPS物理模拟结合，用于无铅双钙钛矿太阳能电池结构筛选和机理解释，属于明确的AI for materials/physics应用；有具体候选结构、效率验证和SHAP物理解释，和课题组AI辅助材料发现方向匹配。",
+      "pdf_url": "https://arxiv.org/pdf/2606.12083"
+    },
     {
       "arxiv_id": "2606.01566",
       "title": "RobustModelMaker: Coupling Bootstrap Stability Selection with Leakage-Safe Nested Cross-Validation for Scientific Machine Learning",
