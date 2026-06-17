@@ -1,10 +1,38 @@
 {
-  "count": 40,
+  "count": 42,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-06-16",
+  "crawled_date_max": "2026-06-17",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-06-15",
+  "published_date_max": "2026-06-16",
   "papers": [
+    {
+      "arxiv_id": "2606.17954",
+      "title": "Revisiting quantum effects on dislocation glide in bcc metals from DFT calculations and machine-learning potentials",
+      "authors": "Arnaud Allera, Lisa Ventelon, Mihai-Cosmin Marinica, David Rodney, Laurent Proville",
+      "affiliations": "ASNR/PSN-RES/SEMIA/LSMA Centre d’études de Cadarache, F-13115 Saint Paul-lez-Durance, France; Université Paris-Saclay, CEA, Service de recherche en Corrosion et Comportement des Matériaux, SRMP, 91191 Gif Sur Yvette, France; Univ. Lyon, UCBL, Institut Lumière Matière, UMR CNRS 5306, F-69622 Villeurbanne, France",
+      "published_date": "2026-06-16",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Quantum zero-point effects have been long proposed to explain a well-known discrepancy between the low-temperature flow stresses of body-centered cubic metals and corresponding atomistic models of plastic flow. Previous investigations on quantum effects relied on empirical interatomic potentials, which poorly reproduce dislocation energy landscapes compared to density functional theory (DFT) calculations. Here, we revisit this problem using DFT and machine-learning interatomic potentials (MLIPs). We show that while quantum effects do contribute to dislocation glide at low temperature, their magnitude is much lower than previously reported, and insufficient to reconcile atomistic predictions with experiments. Our results thus reopen a long-standing question and challenge for predictive atomistic modeling, on a fundamental property of crystals.",
+      "summary_cn": "论文用DFT与DFT训练的机器学习势重新评估bcc金属位错滑移中的零点量子效应，发现其贡献远小于经验势预测，不能解释实验与原子模拟的Peierls应力差异，提示需改进晶体塑性建模。",
+      "pdf_filename": "2606.17954.pdf",
+      "crawled_date": "2026-06-17",
+      "notes": "该研究以DFT和机器学习原子间势解决bcc金属位错滑移的核心物理争议，展示MLIP在高精度计算材料物理中的作用，契合组内AI for Physics与计算物理建模主线。",
+      "pdf_url": "https://arxiv.org/pdf/2606.17954"
+    },
+    {
+      "arxiv_id": "2606.17445",
+      "title": "Toward Controllable Catalyst Inverse Design via Large-Scale Autoregressive Pretraining",
+      "authors": "Dong Hyeon Mok, Jonggeol Na, Seoin Back",
+      "affiliations": "Department of Chemical and Biomolecular Engineering, Institute of Emergent Materials, Sogang University, Seoul 04107, Republic of Korea; Department of Chemical Engineering and Materials Science, Ewha Womans University, Seoul 03760, Republic of Korea; Department of Chemical Engineering, Graduate Program in System Health Science and Engineering, Ewha Womans University, Seoul 03760, Republic of Korea; Institute for Multiscale Matter and Systems (IMMS), Ewha Womans University, Seoul 03760, Republic of Korea; KU-KIST Graduate School of Converging Science and Technology, Korea University, Seoul 02841, Republic of Korea; Department of Integrated Energy Engineering, Korea University, Seoul 02841, Republic of Korea; Center for Hydrogen and Fuel Cells, Korea Institute of Science and Technology (KIST), Seoul 02792, Republic of Korea",
+      "published_date": "2026-06-16",
+      "categories": "cs.LG, cond-mat.mtrl-sci, physics.chem-ph",
+      "abstract": "Inverse design of heterogeneous catalysts remains challenging because catalyst surfaces exhibit substantial structural complexity with coupled surface-adsorbate interactions across a vast chemical space that is difficult to explore efficiently through conventional screening alone. Although machine learning-based high-throughput screening has accelerated catalyst discovery, its efficiency inevitably declines as the search space grows, motivating the development of generative models that can directly construct catalysts with target properties. Here, we present a conditional catalyst generative model based on the Generative Pretrained Transformer architecture with a numerical embedding layer that enables the generation of catalyst structures conditioned on both categorical and continuous properties within a single autoregressive framework. The model was pretrained on 133 million catalyst structures and subsequently fine-tuned on approximately 460,000 optimized structures with associated categorical properties and binding energies for conditional generation. The resulting model achieved 98% structural validity, 95% optimization validity, and high categorical condition fidelity, with a 93 % joint match rate for adsorbate type and composition. For binding energy conditioning, the match rate of approximately 20% represents a four-fold improvement over the baseline training distribution, and the generated distributions shift systematically toward the target values, enabling a 1.5 to 4-fold improvement in screening efficiency for reaction-targeted catalyst discovery without additional fine-tuning. These results show that large-scale autoregressive pre-training, combined with explicit property conditioning, provides a practical route toward controllable catalyst generation and accelerated catalysts discovery.",
+      "summary_cn": "论文提出带数值嵌入的条件GPT催化剂生成模型，先在1.33亿结构上预训练再用46万优化样本微调，可按吸附物、组成和结合能生成结构，结构有效率98%，筛选效率提升1.5–4倍。",
+      "pdf_filename": "2606.17445.pdf",
+      "crawled_date": "2026-06-17",
+      "notes": "该工作将大规模自回归预训练直接用于异相催化剂逆向设计，并用结构有效性、条件匹配和筛选效率验证可控生成能力，和组内AI驱动材料发现、功能材料逆向设计方向高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2606.17445"
+    },
     {
       "arxiv_id": "2606.16434",
       "title": "Autonomous End-to-End SOH Prediction Services for Battery Systems via Temporal-Contrastive Representation Learning",
