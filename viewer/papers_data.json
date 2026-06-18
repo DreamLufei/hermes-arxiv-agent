@@ -1,10 +1,24 @@
 {
-  "count": 42,
+  "count": 43,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-06-17",
+  "crawled_date_max": "2026-06-18",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-06-16",
+  "published_date_max": "2026-06-17",
   "papers": [
+    {
+      "arxiv_id": "2606.19130",
+      "title": "Generalized deformation potential and machine-learning approaches for electron-phonon coupling and thermoelectric transport in semiconductors",
+      "authors": "Ransell D'Souza, Ivana Savic",
+      "affiliations": "Scuola Internazionale Superiore di Studi Avanzati (SISSA), I-34136 Trieste, Italy; Department of Physics, King’s College London, The Strand, London WC2R 2LS, United Kingdom",
+      "published_date": "2026-06-17",
+      "categories": "cond-mat.mtrl-sci, cond-mat.mes-hall",
+      "abstract": "The ability to compute electron-phonon coupling from first principles, using density functional perturbation theory and interpolation techniques, has enabled predictive calculations of electronic transport coefficients in crystalline materials. However, these methods are still computationally expensive. Here we present two inexpensive methods to obtain thermoelectric transport properties of semiconductors using a small number of electron-phonon matrix elements calculated from first principles. The first method combines models for coupling of electrons with different phonon modes whose parameters are obtained from $\\sim 10$ matrix elements per electronic band and phonon mode calculated from first principles. Within this method, we formulate the acoustic deformation potential model for arbitrary crystal symmetries and band extrema locations. The second method uses machine learning to interpolate $\\sim 100$ electron-phonon matrix elements per electronic band and phonon mode on dense reciprocal space grids in the parts of the Brillouin zone relevant for transport. We apply both methods to two-dimensional MoS$_2$ and show very good agreement with the state-of-the-art method. The calculated thermoelectric properties also agree well with experiments. We find that the machine-learning method is more accurate and straightforward to implement compared to the model approach.",
+      "summary_cn": "本文提出两种低成本电子-声子耦合计算方案：广义形变势模型和机器学习插值，用少量第一性原理矩阵元预测致密网格输运性质。在二维MoS2上与DFPT+Wannier和实验吻合，机器学习方法更准确易用。",
+      "pdf_filename": "2606.19130.pdf",
+      "crawled_date": "2026-06-18",
+      "notes": "该工作将机器学习直接用于第一性原理电子-声子矩阵元插值，服务于半导体热电输运快速预测，兼具计算物理深度和AI for Materials应用价值。",
+      "pdf_url": "https://arxiv.org/pdf/2606.19130"
+    },
     {
       "arxiv_id": "2606.17954",
       "title": "Revisiting quantum effects on dislocation glide in bcc metals from DFT calculations and machine-learning potentials",
