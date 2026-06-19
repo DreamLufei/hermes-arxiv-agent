@@ -1,10 +1,38 @@
 {
-  "count": 43,
+  "count": 45,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-06-18",
+  "crawled_date_max": "2026-06-19",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-06-17",
+  "published_date_max": "2026-06-18",
   "papers": [
+    {
+      "arxiv_id": "2606.20053",
+      "title": "Comparative Study of Neural Surrogate Architectures for Autoregressive Prediction of Internal Battery States",
+      "authors": "Gihyun Lee, Thorben Menne, Simon Olma, Jakob Hilgert, Sangyoung Park",
+      "affiliations": "Technische Universität Berlin, Berlin, Germany; IAV GmbH, Berlin, Germany",
+      "published_date": "2026-06-18",
+      "categories": "cs.LG",
+      "abstract": "The Doyle-Fuller-Newman (DFN) model resolves internal electrochemical states in lithium-ion batteries with high fidelity. However, the numerical solution of its governing equations is computationally prohibitive for real-time deployment, limiting scalability from individual cells to pack and fleet-scale applications. While machine learning surrogates can substantially reduce inference latency through GPU acceleration, most existing approaches learn solution approximations tied to specific operating conditions rather than learning generalizable state-evolution dynamics. This work presents a systematic comparison of four neural network architectures (MLP, ResNet, U-Net, FNO) formulated as autoregressive state-transition operators that predict full DFN internal states across a wide range of operating conditions. To ensure a controlled architectural comparison, all models are trained under a unified framework using multi-step unrolling and current-conditioning, isolating the impact of spatial inductive bias. Results demonstrate that the U-Net's multi-scale feature hierarchy achieves a mean final-step nRMSE of 3% averaged across all internal state variables after 300-step autoregressive rollouts, while providing a 5.38x speed-up over the numerical solver. These findings highlight spatial inductive bias as a critical determinant of surrogate performance, advancing the development of surrogates for internal state observability for next-generation battery management systems and digital twins.",
+      "summary_cn": "论文比较MLP、ResNet、U-Net与FNO作为DFN锂电池模型的自回归状态转移代理，预测完整内部电化学状态。统一训练表明U-Net长程滚动nRMSE约3%，并相对数值求解器加速5.38倍。",
+      "pdf_filename": "2606.20053.pdf",
+      "crawled_date": "2026-06-19",
+      "notes": "该工作把神经网络代理建模用于DFN电化学方程的全状态自回归预测，面向电池数字孪生和状态观测，是典型的科学机器学习服务物理系统建模。",
+      "pdf_url": "https://arxiv.org/pdf/2606.20053"
+    },
+    {
+      "arxiv_id": "2606.19798",
+      "title": "MinSurf: resolving the atomic-scale stability landscape of mineral surfaces",
+      "authors": "Fengzijun Pan, Zhoulin Liu, Pingyang Zhang, Jiaqiu Xu, Zepeng Fan, Dawei Wang, Jianzhong Pei",
+      "affiliations": "School of Transportation Science and Engineering, Harbin Institute of Technology, Harbin, China; Chongqing Research Institute of HIT, Chongqing, China; School of Science, Harbin Institute of Technology, Shenzhen, China; National Engineering Laboratory for Reducing Emissions from Coal Combustion, Shandong University, Jinan, China; Department of Civil and Environmental Engineering, The Hong Kong Polytechnic University, Hong Kong, China; School of Highway, Chang’an University, Xi’an, China",
+      "published_date": "2026-06-18",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Mineral surfaces govern interfacial reactivity in carbon mineralization, geo-energy storage, contaminant immobilization, heterogeneous catalysis and electrochemical interface engineering. Yet atomistic simulations often rely on commonly used facets or facet-level stability criteria, while distinct atomic terminations of the same crystallographic orientation are rarely resolved systematically because experimental characterization and density functional theory (DFT) calculations remain costly across large surface spaces. Here we present MinSurf, a high-throughput framework that resolves mineral surface selection as a surface-energy and morphology problem. MinSurf integrates surface enumeration, DFT labelling, machine-learning interatomic potentials and Wulff construction to predict stable terminations, surface-energy landscapes and equilibrium crystal morphologies. Applied to ten representative minerals, MinSurfSet comprises 764 surface slabs, with 90 corresponding oriented unit cells constructed as bulk references for surface-energy evaluation. The resulting MinNEP model predicts DFT surface energies with a mean absolute error of 0.0119 eV per Angstrom squared and achieves an overall acceleration of 1.14 x 10^4 relative to DFT. MinNEP preserves the DFT-derived morphology-determining surface-energy hierarchy and reproduces the dominant Wulff-exposed facets, while X-ray diffraction provides an independent crystallographic consistency check for alpha-quartz benchmark. By linking atomic terminations, surface energies and equilibrium morphologies, MinSurf provides reproducible and physically representative surface models for high-throughput simulations of mineral interfaces across energy, environmental and advanced inorganic materials.",
+      "summary_cn": "论文提出MinSurf高通量框架，将表面枚举、DFT标注、机器学习原子间势和Wulff构型结合，解析矿物表面终端稳定性。MinNEP在十种矿物上以0.0119 eV/Å²误差预测表面能，并较DFT加速约1.14万倍。",
+      "pdf_filename": "2606.19798.pdf",
+      "crawled_date": "2026-06-19",
+      "notes": "该工作用机器学习势和高通量DFT系统解析矿物表面稳定性与形貌，直接服务能源、环境和无机材料界面建模，兼具计算物理深度与AI for Materials价值。",
+      "pdf_url": "https://arxiv.org/pdf/2606.19798"
+    },
     {
       "arxiv_id": "2606.19130",
       "title": "Generalized deformation potential and machine-learning approaches for electron-phonon coupling and thermoelectric transport in semiconductors",
