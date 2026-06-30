@@ -1,10 +1,38 @@
 {
-  "count": 53,
+  "count": 55,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-06-25",
+  "crawled_date_max": "2026-06-30",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-06-24",
+  "published_date_max": "2026-06-29",
   "papers": [
+    {
+      "arxiv_id": "2606.29919",
+      "title": "High-order tensor neural network for iteration-free structure relaxation",
+      "authors": "Shaobo Yu, Haoting Zhang, Yu Han, Zhennan Zhang, Zhiyue Guo, Junjie Wang, Hao Gao, Jian Sun",
+      "affiliations": "National Laboratory of Solid State Microstructures, School of Physics and Collaborative Innovation Center of Advanced Microstructures, Nanjing University, Nanjing 210093, China; School of Physics, South China Normal University, Guangzhou 510006, China",
+      "published_date": "2026-06-29",
+      "categories": "physics.comp-ph",
+      "abstract": "Structure relaxation is important for the discovery of new materials, yet conventional ab initio optimization remains a major bottleneck in high-throughput screening workflows. Machine learning potentials have accelerated relaxation by orders of magnitude, but they still rely on iterative optimization and high-quality DFT force labels. Here, we present HotRelax, a high-order tensor message-passing neural network for one-shot, end-to-end prediction of relaxed structures. Trained directly on paired unrelaxed and relaxed structures, HotRelax requires no DFT force labels and predicts relaxed structures in a single forward pass, without iterative inference or post-processing. Across five diverse datasets spanning 3D bulk crystals, 2D layered materials and catalysts, HotRelax shows strong performance relative to state-of-the-art end-to-end relaxation models, achieving lower prediction errors on several benchmarks while maintaining a compact model size and efficient inference. Extensive DFT calculations further show that the predicted structures are close in energy to their DFT-relaxed counterparts. When integrated into catalytic workflows, HotRelax also improves the accuracy and generalization of relaxed-state energy prediction models. Together, these results support HotRelax as an efficient and widely applicable framework for end-to-end structure relaxation, with strong potential to accelerate high-throughput materials discovery.",
+      "summary_cn": "论文提出HotRelax高阶张量消息传递网络，直接从未弛豫到弛豫结构做一次前向预测，无需DFT力标签和迭代优化；在体相晶体、二维材料与催化数据上降低结构误差，并经DFT验证能量接近真实弛豫结果。",
+      "pdf_filename": "2606.29919.pdf",
+      "crawled_date": "2026-06-30",
+      "notes": "HotRelax直接针对材料结构弛豫这一高通量发现瓶颈，用高阶张量GNN替代传统DFT/MLP迭代流程并包含DFT能量验证，和组内AI辅助功能材料发现、计算物理加速高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2606.29919"
+    },
+    {
+      "arxiv_id": "2606.29717",
+      "title": "Optimizing Expert-Designed Crystal Graph Networks for Band-Gap Prediction with an Autonomous LLM Research Loop",
+      "authors": "Chenmu Zhang, Boris I. Yakobson",
+      "affiliations": "Department of Materials Science and NanoEngineering, Rice University, Houston, TX 77005, USA",
+      "published_date": "2026-06-29",
+      "categories": "cond-mat.mtrl-sci, cs.AI, cs.LG",
+      "abstract": "Predicting a material's properties from its structure is a central, fast-advancing problem in computational materials science. A decade of work has produced standard public benchmarks and many published machine-learning models for the task (Dunn et al., 2020). The task's fixed metric and these baselines make it a natural setting for autonomous agent research (Karpathy, 2026). On the MatBench band-gap benchmark ($>$100k crystals), a general-purpose coding agent autonomously built the most accurate model trained without external pretraining, ahead of all seventeen expert-designed models reported for the task. A closer analysis shows it reached this by implementing known methods: either already standard in crystal neural-network models, or borrowed from other areas of machine learning. The contributing implementations include element-pair features on each message-passing edge and a crystal space-group embedding. The work not only demonstrates that LLM-agent autonomous research can optimize an expert-designed machine learning model for material property prediction, but also investigates the limitations of such autonomous research.",
+      "summary_cn": "论文让通用LLM编码代理在MatBench带隙任务中自主改写晶体图网络，组合元素对边特征与空间群嵌入；无外部预训练即超过17个从头训练基线，并用剪切模量任务展示拥挤度驱动探索可缓解局部停滞。",
+      "pdf_filename": "2606.29717.pdf",
+      "crawled_date": "2026-06-30",
+      "notes": "这篇论文不是泛泛讨论LLM代理，而是把自主研究闭环落到晶体带隙与剪切模量预测，优化专家设计的晶体图网络并分析方法来源和局限，对组内AI for Materials与科学智能体评估有直接参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2606.29717"
+    },
     {
       "arxiv_id": "2606.25853",
       "title": "A Combined Tight Binding with Machine Learning Potential Model for Magnesium Compounds",
