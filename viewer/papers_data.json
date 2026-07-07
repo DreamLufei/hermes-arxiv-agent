@@ -1,10 +1,38 @@
 {
-  "count": 58,
+  "count": 60,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-02",
+  "crawled_date_max": "2026-07-07",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-01",
+  "published_date_max": "2026-07-06",
   "papers": [
+    {
+      "arxiv_id": "2607.05321",
+      "title": "Data-driven atomistic modelling of hybrid halide perovskite passivation",
+      "authors": "Laura-Bianca Paşca, Henry J. Snaith, Volker L. Deringer",
+      "affiliations": "Inorganic Chemistry Laboratory, Department of Chemistry, University of Oxford, Oxford, UK; Department of Physics, University of Oxford, Oxford, UK",
+      "published_date": "2026-07-06",
+      "categories": "cond-mat.mtrl-sci, physics.comp-ph",
+      "abstract": "Molecular passivation of surface defects is key to improving the optoelectronic performance of hybrid halide perovskite materials, but the underlying atomistic mechanisms are incompletely understood. While machine-learned interatomic potentials are now widely used to simulate complex molecular and crystalline systems, their application to experimentally-realistic scenarios - such as molecules coordinating to perovskite surfaces - is still far from trivial. Here, we describe a multistep training pipeline, resembling continuous fine-tuning used for large language models, to underpin atomistic modelling and computational experiments in this domain. Our protocol involves two components: (i) a large, curated, and open dataset of diverse metal and hybrid halide perovskite structures ('hyP-26'); and (ii) a small, specialised dataset for an amino-silane molecule passivating the surface, providing highly specific information for fine-tuning. We apply this approach to explore collective behaviour at a mixed-composition halide perovskite surface passivated with a varying coverage of amino-silane molecules, revealing an evolution of interactions with increasing molecular surface coverage.",
+      "summary_cn": "论文构建面向卤化物钙钛矿的hyP-26开放数据集，并用类似持续微调的流程训练机器学习原子间势。该势能模型进一步适配氨基硅烷表面钝化场景，揭示覆盖度变化下分子相互作用和表面集体行为的演化。",
+      "pdf_filename": "2607.05321.pdf",
+      "crawled_date": "2026-07-07",
+      "notes": "这篇工作把机器学习原子间势和材料专用持续微调直接用于卤化物钙钛矿表面钝化这一光电材料难题，既有开放数据集又有实际界面模拟结果，和组内AI辅助功能晶体材料发现、计算物理模拟加速方向高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2607.05321"
+    },
+    {
+      "arxiv_id": "2607.04633",
+      "title": "Differentiable OPLS Force Field Parameterization for Ionic Electrolytes and High-Throughput Application to Lithium-ion Batteries",
+      "authors": "Haichao Huang, Zilin Chen, Qi Liu, Tianqi Zhao, Yunpei Liu, Guotao Qiu, Jianhui Chen, Zhen Li, Wenshuo Liang, Minsung Cho, Manxue Zhang, Feiyu Kang, Xiaolong Zou, Yidan Cao, Xushan Zhao, Ziqi Cheng, Ye Mei",
+      "affiliations": "Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen, 518055 China; Shanghai Smart Logic Technology, Shanghai 200443 China; Shanghai Smart Logic Technology Ltd., Shanghai 200443 China; CATL 21C Innovation Laboratory, Contemporary Amperex Technology Ltd., Ningde, 352100 China; Department of Physics, Institute of Quantum Science and Technology, Shanghai University, Shanghai, 200444, China; Shenzhen All-Solid-State Lithium Battery Electrolyte Engineering Research Center, Institute of Materials Research (IMR), Tsinghua Shenzhen International Graduate School, Tsinghua University, Shenzhen, 518055 China",
+      "published_date": "2026-07-06",
+      "categories": "physics.chem-ph, physics.comp-ph",
+      "abstract": "The rational design of ionic electrolytes for lithium-ion batteries (LIBs) is severely constrained by the vast solvent-salt combinatorial space and low efficiency of empirical trial-and-error. While molecular dynamics (MD) bridges microscopic solvation structures and macroscopic physicochemical properties, classical force fields often lack sufficient accuracy for multicomponent systems. To address these challenges, we develop an automated differentiable OPLS-AA force field parameterization workflow tailored for general ionic electrolytes. It employs topology-guided atom typification to reduce parameter redundancy and optimizes Lennard-Jones parameters via the DMFF framework, with experimental density as the fitting target and ionic conductivity as an independent validation metric. Rigorous convergence tests yield a standardized simulation protocol with $\\sim$100,000-atom systems and 35-40 ns NVT runs to ensure reliable transport property quantification. High-throughput MD simulations of over 10,000 formulations spanning 67 solvents and 15 lithium salts are conducted on the Tianqiong platform, generating a comprehensive dataset covering five core properties: density, dielectric constant, viscosity, diffusion coefficient, and ionic conductivity. t-SNE visualization reveals partial clustering of distinct salt chemistries, continuous property gradients with concentration and temperature, and internal physical self-consistency, with solvent composition identified as another key performance regulator. Together, the accurate transferable force field and large-scale dataset provide a solid foundation for data-driven rational design of ionic electrolytes.",
+      "summary_cn": "论文提出面向离子电解液的可微分OPLS-AA力场参数化流程，用拓扑引导原子类型和DMFF优化LJ参数。结合约十万原子MD与一万余种配方高通量模拟，生成电池电解液关键性质数据集并验证传输性质可靠性。",
+      "pdf_filename": "2607.04633.pdf",
+      "crawled_date": "2026-07-07",
+      "notes": "该研究用可微分力场参数化和高通量分子动力学连接微观溶剂化结构与锂电电解液宏观性质，数据规模和物理自洽验证都较扎实，对AI驱动材料性质预测与电池材料理性设计有直接参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2607.04633"
+    },
     {
       "arxiv_id": "2607.01004",
       "title": "Complex crystal structure prediction using ML-enhanced multi-minima iterative genetic algorithm",
