@@ -1,10 +1,24 @@
 {
-  "count": 60,
+  "count": 61,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-07",
+  "crawled_date_max": "2026-07-08",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-06",
+  "published_date_max": "2026-07-07",
   "papers": [
+    {
+      "arxiv_id": "2607.06470",
+      "title": "Phonon-Mediated Thermal Transport in Nanocrystalline Silicon Using Machine-Learning Interatomic Potentials",
+      "authors": "Houssem Rezgui, Catalina Coll Benejam, Miguel Pruneda, Clivia M. Sotomayor Torres",
+      "affiliations": "International Iberian Nanotechnology Laboratory (INL), Av. Mte. José Veiga s/n, 4715-330 Braga, Portugal; Departament de Física Aplicada, Universitat de Barcelona (UB), 08028 Barcelona, Spain; LENS-MIND, Institute of Nanoscience and Nanotechnology (IN2UB), 08028 Barcelona, Spain; Catalan Institute of Nanoscience and Nanotechnology (ICN2), CSIC and BIST, Campus UAB, 08193 Bellaterra, Spain; Nanomaterials and Nanotechnology Research Center (CINN-CSIC), Universidad de Oviedo (UO), Principado de Asturias, 33940 El Entrego, Spain",
+      "published_date": "2026-07-07",
+      "categories": "cond-mat.mtrl-sci, cond-mat.mes-hall",
+      "abstract": "Understanding phonon-mediated heat transport in structurally complex materials remains a central challenge for next-generation electronic and nanomechanical devices, where grain boundaries and interfacial disorder strongly limit thermal dissipation. Although classical interatomic potentials enable large-scale simulations, their limited transferability can lead to inaccuracies in vibrational properties and interfacial phonon scattering. In this work, we develop a machine-learning based framework for modeling thermal transport in bulk and nanocrystalline silicon by combining Gaussian approximation potential (GAP) and multi-atomic cluster expansion (MACE) models with lattice-dynamical calculations and non-equilibrium molecular dynamics (NEMD). Harmonic and anharmonic force constants derived from machine-learning interatomic potentials (MLIPs) are used within a unified Phonopy/Phono3py workflow to compute phonon dispersions, lifetimes, and lattice thermal conductivity, providing an internally consistent description of vibrational properties. In nanocrystalline silicon, NEMD simulations directly quantify the thermal boundary resistance associated with grain boundaries and reveal its sensitivity to interfacial roughness and the underlying interatomic description. Compared with the Stillinger-Weber and Tersoff potentials, the MLIPs provide a more accurate and internally consistent description of bulk and interfacial phonon transport, enabling more predictive modeling of nanoscale thermal transport in low-dimensional materials.",
+      "summary_cn": "该文结合GAP与MACE机器学习原子势、晶格动力学和非平衡分子动力学，统一计算硅的声子色散、寿命与热导率，并量化纳米晶晶界热阻，显示MLIP较传统势能更准确地描述体相和界面声子传热。",
+      "pdf_filename": "2607.06470.pdf",
+      "crawled_date": "2026-07-08",
+      "notes": "该工作将机器学习原子势直接用于硅纳米晶声子输运建模，连接材料势能学习、Phonopy/Phono3py晶格动力学与NEMD热导计算，主题高度贴合AI for Physics中的科学机器学习和功能材料计算方向。",
+      "pdf_url": "https://arxiv.org/pdf/2607.06470"
+    },
     {
       "arxiv_id": "2607.05321",
       "title": "Data-driven atomistic modelling of hybrid halide perovskite passivation",
