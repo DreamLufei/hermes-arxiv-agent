@@ -1,10 +1,38 @@
 {
-  "count": 65,
+  "count": 67,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-09",
+  "crawled_date_max": "2026-07-10",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-08",
+  "published_date_max": "2026-07-09",
   "papers": [
+    {
+      "arxiv_id": "2607.08351",
+      "title": "Bond, orbital and spin order in d4/d6/d7 perovskite oxides: successes and limitations of foundation interatomic potentials",
+      "authors": "Swagata Acharya, Dimitar Pashov, Mark van Schilfgaarde, Alin M. Elena",
+      "affiliations": "National Laboratory of the Rockies, Golden, Colorado 80401, USA; Theory and Simulation of Condensed Matter, King’s College London, The Strand, London WC2R 2LS, United Kingdom; Scientific Computing Department, Science and Technology Facilities Council, Keckwick Lane, Daresbury, Cheshire, United Kingdom",
+      "published_date": "2026-07-09",
+      "categories": "cond-mat.mtrl-sci, physics.comp-ph",
+      "abstract": "Foundation machine-learning interatomic potentials (MLIPs) are rapidly replacing density-functional theory (DFT) for modeling structure and nuclear dynamics, making their fidelity in strongly correlated systems an urgent question. We test three foundation potentials on the low-temperature order of three correlated, isostructural ABO3 perovskite oxides: LaMnO3 (d4), LaCoO3 (d6), and NdNiO3 (d7). We run molecular dynamics for 1 ns on 80- and 160-atom supercells from 50 to 300 K with no system-specific training. These oxides expose three distinct classes of low-temperature order that define a hierarchy of difficulty for the potentials. The scalar class, represented by NdNiO3, has a simple geometric fingerprint and is captured. The vector class, represented by LaMnO3, requires identifying which Cartesian axis carries the long bond at each site, and is captured in magnitude but not in symmetry. The on-site class, represented by the low-spin to high-spin crossover in LaCoO3, is a purely local multiplet population shift with no spatial order parameter and remains inaccessible to present-day MLIPs.",
+      "summary_cn": "论文评估三种基础机器学习原子间势在强关联钙钛矿氧化物中的保真度，比较LaMnO3、LaCoO3和NdNiO3低温有序模拟，发现其能捕获几何呼吸畸变，却难以正确描述轨道对称性和局域自旋跨越。",
+      "pdf_filename": "2607.08351.pdf",
+      "crawled_date": "2026-07-10",
+      "notes": "该研究系统检验基础ML原子间势在强关联钙钛矿氧化物中的适用边界，揭示结构指纹可捕获而局域自旋/轨道自由度失效，对组内科学机器学习和量子/计算物理模型评价很有参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2607.08351"
+    },
+    {
+      "arxiv_id": "2607.08003",
+      "title": "Reaction-network reasoning with frontier models for experimentally confirmed catalyst-selectivity hypotheses",
+      "authors": "Sutanay Choudhury, Anwesha Banerjee, Udishnu Sanyal, Jorin Dawidowicz, Chiezugolum Ijeoma Odilinye, Jesun Firoz, Liney Arnadottir, Simone Raugei, Johannes Lercher, Arnab Dutta",
+      "affiliations": "Pacific Northwest National Laboratory, USA; Indian Institute of Technology, Bombay, India; Oregon State University, USA; Technical University of Munich, Germany",
+      "published_date": "2026-07-09",
+      "categories": "physics.chem-ph, cs.AI",
+      "abstract": "Catalysts are essential for sustainable chemical manufacturing, yet discovering novel architectures remains a bottleneck dominated by trial-and-error experimentation and computationally intensive screening. In complex reactions such as electrochemical carbon dioxide reduction, product selectivity is governed by dynamic interfacial, electrolyte, and potential factors as well as kinetic pathway competition. Conventional descriptor-based machine learning and computational potentials struggle to resolve these mechanistic branch points, primarily relying on static ground-state descriptors or bulk structural correlations rather than end-to-end topological pathway analysis. Here, we show that frontier language models, when strictly constrained to reason over explicit reaction networks, can discover novel catalysts by identifying the physical levers that govern pathway competition. We developed a human-AI co-thinking framework that enforces network invariance to extract testable hypotheses from complex chemical graphs. Applied to CO2 electroreduction, the framework identified ketene desorption and hydroxide capture as the acetate-forming pathway, and predicted a distinct adsorbed CO and CH2 coupling route to ketene. By isolating actionable control levers, specifically local alkalinity, controlled iron incorporation, and restricted interfacial proton-donor accessibility, the framework guided the prospective synthesis of a copper-iron oxide catalyst demonstrating a threefold increase in acetate selectivity over matched Cu-rich baselines. This mechanism-guided reasoning architecture shifts the computational paradigm from retrospective statistical prediction to forward-looking hypothesis generation, providing a broadly applicable blueprint for mechanism-guided materials discovery.",
+      "summary_cn": "论文将前沿语言模型约束在显式反应网络上推理，提出人机共思框架识别CO2电还原选择性的关键分支机制，并指导合成铜铁氧化物催化剂；理论计算与实验共同验证后，乙酸盐选择性较富铜基线提升约三倍。",
+      "pdf_filename": "2607.08003.pdf",
+      "crawled_date": "2026-07-10",
+      "notes": "该工作把LLM限制在显式反应网络上进行机制推理，并用第一性原理与前瞻实验验证Cu–Fe氧化物催化剂选择性提升，不是泛化LLM演示，而是面向催化材料发现的可检验AI for Physics范式。",
+      "pdf_url": "https://arxiv.org/pdf/2607.08003"
+    },
     {
       "arxiv_id": "2607.07708",
       "title": "Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep Native Structural Reasoning",
