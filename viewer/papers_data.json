@@ -1,10 +1,38 @@
 {
-  "count": 71,
+  "count": 73,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-16",
+  "crawled_date_max": "2026-07-21",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-15",
+  "published_date_max": "2026-07-20",
   "papers": [
+    {
+      "arxiv_id": "2607.18092",
+      "title": "Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning",
+      "authors": "Timo Reents, Marnik Bercx, Giovanni Pizzi",
+      "affiliations": "PSI Center for Scientific Computing, Theory and Data, Paul Scherrer Institute, 5232 Villigen PSI, Switzerland; National Centre for Computational Design and Discovery of Novel Materials (MARVEL), Paul Scherrer Institut, 5232 Villigen PSI, Switzerland",
+      "published_date": "2026-07-20",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Crystal structure databases curated by high-throughput density functional theory calculations typically serve as the starting point for computational materials discovery efforts. Thermodynamic stability data, such as formation energies and the energy above the convex hull, are important quantities to guide the search for novel materials, enabling filtering for (meta)stable structures. Here, we present the thermodynamic stability of the fully open-source, reproducible, and experimentally focused Materials Cloud three-dimensional crystals database (MC3D). We compare against two other DFT databases, the Open Quantum Materials Database (OQMD) and the Materials Project (MP), as well as against experimental formation enthalpies. We then demonstrate how recent foundational machine learning interatomic potentials (MLIPs) trained at the r$^2$SCAN level (specifically, we test PET-OMATPES here) can be leveraged to improve the agreement of formation energies with experiment, reducing the mean absolute error by more than 40% relative to GGA without requiring any additional DFT calculation. Our results validate and extend the established practice of combining PBEsol geometries with meta-GGA energies to the era of foundational MLIPs. Finally, we train classical machine learning models to further correct the formation energies in a delta-learning framework, where we use the information-rich latent features of the foundational MLIP. These models further reduce the mean absolute error below 50 meV/atom, bringing it down to values comparable with the experimental uncertainty itself. Notably, compared to purely compositional features, the latent features (combined with carefully tuned regularization) simultaneously reduce the prediction error and limit the impact of the learned corrections on the relative phase stability.",
+      "summary_cn": "构建并比较 MC3D 晶体数据库的热稳定性数据，利用 r2SCAN 级基础机器学习原子间势修正 DFT 形成能，使相对 GGA 的误差降低超 40%；再用其潜在特征进行 delta-learning，将误差压至 50 meV/atom 以下且较少扰动相稳定性。",
+      "pdf_filename": "2607.18092.pdf",
+      "crawled_date": "2026-07-21",
+      "notes": "围绕高通量晶体数据库和 DFT 形成能误差校正，利用基础机器学习原子间势的潜在特征做 delta-learning，将误差降到接近实验不确定度，兼具计算物理和科学机器学习价值，贴合 AI for Physics 主线。",
+      "pdf_url": "https://arxiv.org/pdf/2607.18092"
+    },
+    {
+      "arxiv_id": "2607.17910",
+      "title": "Chemical filters for ultra-high-throughput materials screening and generation",
+      "authors": "Kinga O. Mastej, Panyalak Detrattanawichai, Hyunsoo Park, Anthony Onwuli, Masahiro Negishi, Aron Walsh",
+      "affiliations": "Department of Materials, Imperial College London, London SW7 2AZ, United Kingdom",
+      "published_date": "2026-07-20",
+      "categories": "cond-mat.mtrl-sci, cs.AI, cs.LG",
+      "abstract": "Generative artificial intelligence is rapidly transforming materials design by enabling de novo exploration of immense chemical spaces. Yet a large proportion of AI-generated compositions remain implausible, violating established chemical principles, which limits the reliability and interpretability of generative materials design. Here, we introduce a chemical validity operator that recasts heuristic chemical rules as a configurable algorithmic prior for evaluating and guiding generative materials discovery. Built on the open-source SMACT package, a data-informed oxidation-state model exposes tunable thresholds, allowing users to interpolate continuously between permissive and conservative chemical constraints, while supporting both exploratory and conservative materials-design workflows. Benchmarking six state-of-the-art generative models for inorganic crystals shows that most reproduce stoichiometry but under-represent realistic oxidation-state combinations, and that filtering removes compositions reliant on rarely observed oxidation states while preserving low-energy compounds near the convex hull. Beyond screening, the same operator can also serve as a reinforcement-learning reward, steering a latent diffusion model towards chemically grounded compositions. By encoding chemical heuristics and observations, this work establishes a foundation for oxidation-state-aware generative models.",
+      "summary_cn": "提出基于 SMACT 的化学有效性算子，将氧化态规则转化为可调算法先验，用于筛选和约束无机晶体生成模型。对六类生成模型评测显示，该过滤器能剔除不现实价态组合并保留低能候选，还可作为强化学习奖励引导扩散模型生成更可信组成。",
+      "pdf_filename": "2607.17910.pdf",
+      "crawled_date": "2026-07-21",
+      "notes": "面向无机晶体生成模型中候选组成化学可行性不足的痛点，把氧化态启发式规则做成可调算法先验并可作为强化学习奖励，直接服务 AI 材料生成与高通量筛选，适合组内 AI for Materials 方向参考。",
+      "pdf_url": "https://arxiv.org/pdf/2607.17910"
+    },
     {
       "arxiv_id": "2607.14025",
       "title": "The WEST code for large-scale excited-state materials simulations",
