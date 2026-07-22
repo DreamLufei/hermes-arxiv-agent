@@ -1,10 +1,38 @@
 {
-  "count": 73,
+  "count": 75,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-21",
+  "crawled_date_max": "2026-07-22",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-20",
+  "published_date_max": "2026-07-21",
   "papers": [
+    {
+      "arxiv_id": "2607.19198",
+      "title": "ATLAS: A Foundation Neural Sampler for Amorphous Materials",
+      "authors": "Mouyang Cheng, Denis Blessing, Botao Yu, Gerhard Neumann, Mingda Li, Carles Domingo-Enrich, Yuanqi Du",
+      "affiliations": "Microsoft Research New England, Cambridge, MA 02142, USA; Center for Computational Science and Engineering, MIT, Cambridge, MA 02139, USA; Department of Materials Science and Engineering, MIT, Cambridge, MA 02139, USA; Karlsruhe Institute of Technology, 76131 Karlsruhe, Germany; Department of Computer Science and Engineering, OSU, Columbus, OH 43210, USA; Department of Nuclear Science and Engineering, MIT, Cambridge, MA 02139, USA",
+      "published_date": "2026-07-21",
+      "categories": "cond-mat.mtrl-sci, cs.LG, physics.comp-ph",
+      "abstract": "Amorphous materials exhibit exceptional mechanical and functional properties, yet their rugged energy landscapes are notoriously difficult to sample. Below the glass-transition temperature, conventional molecular dynamics and Monte Carlo become inefficient because equilibration relies on rare barrier-crossing events, while data-driven generative models are constrained by scarce and biased reference ensembles. Here, we introduce ATLAS, an efficient sampler that learns a diffusion process to generate Boltzmann-distributed amorphous structures directly from a target energy function. Parameterized by an equivariant graph neural network, ATLAS generalizes across system size, temperature, and composition. By exploiting the time reversal of the diffusion process, it enables efficient estimation of thermodynamic quantities and steering toward target observables. In two-dimensional Kob-Andersen systems, ATLAS reproduces parallel tempering Markov chain Monte Carlo structural distributions, free energies and entropies, achieving below 0.2% free energy error in the low-temperature glass regime with over 500-fold fewer energy evaluations. In Cu-Zr and Cr-Co-Ni metallic glasses, ATLAS recovers experimentally observed short-range-order trends and steers structures toward prescribed order parameters and optimized bulk moduli. Moreover, composition-amortized pretraining outperforms composition-specific training from scratch, reduces inverse-design costs by several hundred-fold, and enables sampling with expensive universal machine learning interatomic potentials. Coupled to a large language model agent, ATLAS searches an eight-element space for high-entropy metallic glasses balancing stiffness and ductility, identifying a converged Pareto frontier within 480 oracle evaluations. Together, these results establish ATLAS as a foundation model for sampling, steering and designing amorphous materials.",
+      "summary_cn": "提出ATLAS扩散神经采样器，直接由目标能量函数生成玻尔兹曼分布的非晶结构，并用等变图网络实现跨尺寸、温度和成分泛化；在低温玻璃中自由能误差低于0.2%，能量评估减少500倍以上，还显著加速高熵金属玻璃逆向设计。",
+      "pdf_filename": "2607.19198.pdf",
+      "crawled_date": "2026-07-22",
+      "notes": "该工作把扩散神经采样、等变GNN与机器学习势/LLM代理结合，直接解决非晶材料玻尔兹曼采样和高熵金属玻璃逆向设计问题，和AI for Physics中的计算物理与材料生成主线高度吻合。",
+      "pdf_url": "https://arxiv.org/pdf/2607.19198"
+    },
+    {
+      "arxiv_id": "2607.18594",
+      "title": "Data-driven Design of Metal-Organic Frameworks with Tunable Negative Thermal Expansion",
+      "authors": "Prathami Divakar Kamath, Francesco Tavani, Alin Marin Elena, Théo Jaffrelot Inizan, Yen-hsu Lin, Jian Yin, Wenqian Xu, Omar M. Yaghi, Kristin A. Persson",
+      "affiliations": "Department of Materials Science & Engineering, University of California, Berkeley, CA, USA; Materials Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, CA, USA; Department of Chemistry, University of California, Berkeley, CA, USA; Bakar Institute of Digital Materials for the Planet, Division of Computing, Data Science, and Society, University of California, Berkeley, CA, USA; Dipartimento di Chimica, Università degli Studi di Roma La Sapienza, P.le A. Moro 5, I-00185, Rome, Italy; Scientific Computing Department, Science and Technology Facilities Council, Daresbury Laboratory, UK; X-ray Science Division, Advanced Photon Source, Argonne National Laboratory, Lemont, IL, USA",
+      "published_date": "2026-07-21",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Materials with negative thermal expansion (NTE) are essential for applications requiring precise control of thermal expansion. Owing to their exceptional chemical tunability, flexible architectures, and low-energy lattice vibrations, metal-organic frameworks (MOFs) represent a rich platform for exploring NTE. However, uncovering the structural motifs that govern NTE across the enormous MOF design space remains experimentally challenging, and large-scale first-principles phonon calculations are computationally prohibitive. Here, we comprehensively evaluate the factors influencing NTE in MOFs by utilizing a high-throughput workflow based on MACE-MP-MOF0, a machine learning interatomic potential fine-tuned for MOFs with near-ab initio accuracy, to construct PhononMOFdb, a database of phonons, inelastic neutron scattering spectra, bulk moduli, and heat capacities for over 12,000 MOFs. High-throughput screening of this database reveals that highly porous cubic topology frameworks with heavier, lower-valent metal nodes favor strong NTE, while linker functionalization provides a practical handle for tuning NTE magnitude and sign without compromising mechanical stability. Experimental validation via high-resolution temperature-dependent synchrotron powder X-ray diffraction on the Ce-UiO-66 MOF and its brominated variants confirms the design recipe and yields volumetric NTE coefficients surpassing current records. This work establishes a data-driven strategy for engineering NTE in MOFs, showing how machine learning-accelerated discovery and targeted experimental validation together unlock predictive materials design.",
+      "summary_cn": "利用面向MOF微调的MACE机器学习势开展高通量声子计算，构建含1.2万种MOF的PhononMOFdb，筛出重金属节点和高孔隙立方拓扑等NTE设计规则，并通过Ce-UiO-66衍生物同步辐射实验验证，获得创纪录负热膨胀。",
+      "pdf_filename": "2607.18594.pdf",
+      "crawled_date": "2026-07-22",
+      "notes": "该工作以MACE机器学习势替代昂贵DFT声子计算，构建大规模MOF声子数据库并提炼可实验验证的负热膨胀设计规则，是AI加速功能材料性质预测与逆向设计的代表性案例。",
+      "pdf_url": "https://arxiv.org/pdf/2607.18594"
+    },
     {
       "arxiv_id": "2607.18092",
       "title": "Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning",
