@@ -1,10 +1,24 @@
 {
-  "count": 77,
+  "count": 78,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-29",
+  "crawled_date_max": "2026-07-30",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-28",
+  "published_date_max": "2026-07-29",
   "papers": [
+    {
+      "arxiv_id": "2607.26597",
+      "title": "Transient Detour and Cooperative Oxygen Exchange in the Polarization Switching of Ferroelectric Hf0.5Zr0.5O2",
+      "authors": "Ryotaro Sahashi, Po-Yen Chen, Teruyasu Mizoguchi",
+      "affiliations": "Department of Materials Engineering, The University of Tokyo, Tokyo, Japan; Institute of Industrial Science, The University of Tokyo, Tokyo, Japan",
+      "published_date": "2026-07-29",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Hafnium zirconium oxide (HZO) has attracted significant attention as a core material for next-generation non-volatile memories due to its excellent ferroelectricity in the ultra-thin film regime and its CMOS process compatibility. However, the exploration of its polarization switching mechanism has predominantly relied on static energy barrier analyses, leaving the transient bond formation and cooperative dynamic mechanisms under actual electric field driving unresolved. In this study, we performed Electric-Field-Induced MD simulations on a defect-free ideal HZO lattice using a fine-tuned machine learning force field (MACEField). As a result, we successfully reproduced the P-E hysteresis loop dynamically and demonstrated that the polarization switching in HZO is driven not by conventional simple displacement models (S:N/S:T models), but by the dynamic mutual exchange of 3-coordinated oxygen (O3c) and 4-coordinated oxygen (O4c). Analysis of the oxygen atom displacement trajectories revealed that this pathway is accompanied by a unique \"detour\" behavior originating from transient cation-oxygen bond formation. Furthermore, we identified an \"internal self-compensation mechanism\" in which the local volumetric expansion and contraction accompanying the coordination number changes are effectively offset within the cell. These findings provide, from a dynamic perspective, a microscopic physical origin of for HZO's exceptional ability to sustain stable polarization switching without macroscopic strain, a property that has long distinguished HZO from conventional perovskite ferroelectrics yet lacked atomistic explanation. These findings suggest that preserving the integrity of cooperative O3c/O4c exchange pathways, rather than minimizing individual atomic displacements, is the key design principle for endurance and scalability in next-generation ferroelectric memories.",
+      "summary_cn": "本文以面向 HZO 铁电体的微调 MACEField 力场开展电场诱导分子动力学，动态复现 P-E 滞回线，揭示极化翻转由 O3c/O4c 协同交换和瞬态阳离子-氧键“绕行”路径主导，并给出提升铁电存储耐久与缩放性的原子级设计准则。",
+      "pdf_filename": "2607.26597.pdf",
+      "crawled_date": "2026-07-30",
+      "notes": "该工作将机器学习力场与外电场分子动力学用于 HfZrO2 铁电材料，直接解析极化翻转的原子级动态机制，属于面向功能材料物理问题的高价值 AI for Physics 计算研究。",
+      "pdf_url": "https://arxiv.org/pdf/2607.26597"
+    },
     {
       "arxiv_id": "2607.25652",
       "title": "Transformer Atomic Cluster Expansion: TRACE",
