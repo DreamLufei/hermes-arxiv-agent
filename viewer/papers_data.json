@@ -1,10 +1,24 @@
 {
-  "count": 79,
+  "count": 80,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-07-31",
+  "crawled_date_max": "2026-08-04",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-07-30",
+  "published_date_max": "2026-08-03",
   "papers": [
+    {
+      "arxiv_id": "2608.01779",
+      "title": "Machine-Learning-Accelerated Metallene Stabilization from High-Throughput Sandwich Modeling",
+      "authors": "Mohammad Bagheri, Pekka Koskinen",
+      "affiliations": "Nanoscience Center, Department of Physics, University of Jyväskylä, 40014 Jyväskylä, Finland",
+      "published_date": "2026-08-03",
+      "categories": "cond-mat.mtrl-sci, physics.comp-ph",
+      "abstract": "Metallenes have appealing properties, but stabilizing them in a monolayer phase poses challenges for their synthesis. A recent experiment showed that the van der Waals squeezing method can stabilize certain metallenes in a MoS2 sandwich. This pioneering work motivates systematic studies, but such studies are experimentally impractical, while first-principles modeling remains prohibitive. Here, armed with universal machine-learning interatomic potentials, we constructed 1620 metallene sandwich heterostructures containing 6 different sandwich layers and 45 metals. We performed phonon calculations, which revealed 1208 dynamically stable structures. We found that transition-metal dichalcogenides, particularly MoSe2, are highly effective in stabilizing metallenes. Specifically, buckled hexagonal and honeycomb crystal lattices exhibit the greatest stability. We further evaluated the thermal stability of selected heterostructures with density-functional theory molecular dynamics simulations at room temperature. By uncovering the physical and chemical factors governing the stabilization of metallenes, our results provide systematic insights to guide and accelerate synthesis for future applications.",
+      "summary_cn": "本文利用通用机器学习原子间势构建1620种金属烯夹层异质结构并开展声子筛选，发现1208种动力学稳定结构，确认MoSe2等TMD夹层最能稳定金属烯，并用DFT分子动力学验证热稳定性。",
+      "pdf_filename": "2608.01779.pdf",
+      "crawled_date": "2026-08-04",
+      "notes": "该工作以机器学习原子间势替代高成本第一性原理计算，系统筛选金属烯夹层异质结构并结合声子与DFT验证，直接契合AI加速功能材料发现与计算物理方向。",
+      "pdf_url": "https://arxiv.org/pdf/2608.01779"
+    },
     {
       "arxiv_id": "2607.28461",
       "title": "Fast and Accurate Foundation Models for Equivariant Machine-Learned Interatomic Potentials",
