@@ -1,10 +1,24 @@
 {
-  "count": 86,
+  "count": 87,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-08-06",
+  "crawled_date_max": "2026-08-07",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-08-05",
+  "published_date_max": "2026-08-06",
   "papers": [
+    {
+      "arxiv_id": "2608.06118",
+      "title": "Calculations of the Krypton Phase Diagram and Novel Plasticity",
+      "authors": "Marcin Kirsz, Asuka Iwasaki, Graeme John Ackland",
+      "affiliations": "Centre for Science at Extreme Conditions, School of Physics and Astronomy, The University of Edinburgh, Edinburgh EH9 3FD, United Kingdom",
+      "published_date": "2026-08-06",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "The phase diagram for Kr, as represented by the Tadah! two-body potential is shown to have face-centred cubic (fcc), hexahonal close packed (hcp), and body centred cubic (bcc) regions. It has been assembled by combining several methods: direct liquid--solid coexistence for the melt lines, Gibbs--Helmholtz integration and Clapeyron slopes for the bcc--fcc line, slab coexistence for the liquid--gas line, static zero-temperature relaxations for the crystals, and the quasiharmonic approximation for the low-temperature fcc--hcp windows. The bcc phase contains highly mobile ``greedy snake\" defects, which suggests a reinterpretation of the melt-curve data: the anomaly observed may be due to the speckle method detecting the bcc-fcc boundary, not the melt curve. While pair potentials have limitations, comparison with a foundation MACE model shows that a more flexible machine-learned model does not necessarily improve matters if inappropriately trained.",
+      "summary_cn": "论文用Tadah!势结合共存模拟、热力学积分和准谐近似重建氪相图，并与MACE基础模型对比；结果发现bcc区和高迁移“greedy snake”缺陷，指出训练不当的机器学习势未必提升相稳定性预测。",
+      "pdf_filename": "2608.06118.pdf",
+      "crawled_date": "2026-08-07",
+      "notes": "该文围绕稀有气体固体相图这一典型计算物理问题，系统检验机器学习原子势在相稳定性预测中的可靠性，特别指出MACE类灵活模型若训练不当会误导相图判断，对组内AI for Physics中的机器学习势与物理可验证性研究有参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2608.06118"
+    },
     {
       "arxiv_id": "2608.04806",
       "title": "An Exchange-Correlation Functional for Fast and Accurate Modeling of Ferroelectric Perovskites",
