@@ -1,10 +1,24 @@
 {
-  "count": 91,
+  "count": 92,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-08-12",
+  "crawled_date_max": "2026-08-13",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-08-11",
+  "published_date_max": "2026-08-12",
   "papers": [
+    {
+      "arxiv_id": "2608.11860",
+      "title": "Two-Stage Deformable-Convolutional Inverse Design of Nanophotonic Absorbers from Optical Spectra",
+      "authors": "Waleed Waseer, Muhammad Shahid Jabbar, Muhammad Sohail Ibrahim, Shujaat Khan",
+      "affiliations": "School of Physics and State Key Laboratory of Electronic Thin Films and Integrated Devices, University of Electronic Science and Technology of China, Chengdu, 610054, China; SDAIA-KFUPM Joint Research Center for Artificial Intelligence, King Fahd University of Petroleum & Minerals, Dhahran, 31261, Saudi Arabia; Interdisciplinary Research Center for Intelligent Secure Systems (IRC-ISS), King Fahd University of Petroleum & Minerals, Dhahran, 31261, Saudi Arabia; Department of Computer Engineering, College of Computing and Mathematics, King Fahd University of Petroleum & Minerals, Dhahran, 31261, Saudi Arabia",
+      "published_date": "2026-08-12",
+      "categories": "physics.optics, cs.AI, cs.CV",
+      "abstract": "Data-driven inverse design enables efficient generation of nanophotonic structures with prescribed optical responses, but spectrum-to-geometry mapping remains challenging due to non-uniqueness and fine geometric features. This work presents a two-stage deformable-convolutional framework for reconstructing metal--insulator--metal resonator geometries from 80-dimensional absorption spectra. The spectrum is projected to a $150\\times4\\times4$ latent representation and decoded into a $64\\times64$ resonator mask. Training combines supervised reconstruction with least-squares adversarial refinement initialized from the best supervised checkpoint. A three-run ablation compares deformable convolution with plain convolution, involution, Dynamic Conv, and ODConv under the same architecture. The proposed model achieves $20.79\\pm0.31$~dB PSNR and $0.8501\\pm0.0082$ SSIM, improving over plain convolution by 2.16~dB and 0.0831, respectively. It further achieves Dice $0.9623\\pm0.0027$, IoU $0.9342\\pm0.0038$, and boundary F-score $0.9550\\pm0.0027$. Spectral consistency evaluated using a frozen forward surrogate yields RMSE $0.0805\\pm0.0013$ and $R^2=0.7923\\pm0.0065$. Learned offsets show stronger adaptive sampling at coarse and intermediate decoder stages. Overall, deformable sampling with supervised initialization and adversarial refinement improves spectrum-conditioned geometry reconstruction.",
+      "summary_cn": "论文提出两阶段可变形卷积逆向设计框架，将80维吸收光谱映射为64×64金属-绝缘体-金属纳米谐振器结构。通过监督预训练与LSGAN细化提升边界和细节重构，PSNR、SSIM及谱一致性均优于普通卷积等基线。",
+      "pdf_filename": "2608.11860.pdf",
+      "crawled_date": "2026-08-13",
+      "notes": "该工作将可变形卷积与对抗细化用于纳米光子吸收器的光谱到几何逆向设计，直接服务于功能光学材料/器件设计，方法评估含消融与谱一致性验证，和组内 AI for Physics、材料逆向设计方向高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2608.11860"
+    },
     {
       "arxiv_id": "2608.11019",
       "title": "DEFT: Data-Efficient Frequency-domain Top-k Sampling via Inverse Discrete Fourier Transform for Spatiotemporal Dynamical Systems Modeling",
