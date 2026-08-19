@@ -1,10 +1,24 @@
 {
-  "count": 94,
+  "count": 95,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-08-18",
+  "crawled_date_max": "2026-08-19",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-08-17",
+  "published_date_max": "2026-08-18",
   "papers": [
+    {
+      "arxiv_id": "2608.17716",
+      "title": "Atomistic Structure Generation and Neural-Network Screening of Hard Carbons to Identify High-Capacity Sodium Storage",
+      "authors": "Harry Mclean, Aiden Daniel Emery, Theodore Thomas Walton, Ned Thaddeus Taylor, Steven Paul Hepplestone",
+      "affiliations": "Department of Physics, University of Exeter, Stocker Road, Exeter, EX4 4QL, United Kingdom",
+      "published_date": "2026-08-18",
+      "categories": "cond-mat.mtrl-sci, cond-mat.dis-nn, physics.comp-ph",
+      "abstract": "Hard carbons are established anodes for lithium-ion batteries and leading candidates for sodium-ion batteries, yet their electrochemical performance is governed by a heterogeneous network of graphitic domains, defects, and nanopores that conventional atomistic methods cannot model at the required length scales. We combine universal machine-learned interatomic potentials with the RAFFLE structure-generation framework to construct 13,096 realistic hard carbon models containing up to 4,378 atoms, matching experimentally measured densities, porosities, and sp$^2$/sp$^3$ bonding fractions. Explicit sodium intercalation of representative structures reproduces the characteristic sloping-to-plateau voltage profiles, revealing that capacity increases with decreasing carbon density and increasing porosity. To screen the full library, we train a lightweight neural-network surrogate that predicts capacity directly from the host using frozen universal-potential descriptors augmented by geometric void features. The surrogate identifies high-capacity candidates exceeding 800 mAh g$^{-1}$, which are validated by full intercalation calculations. This scalable framework links hard carbon microstructure to sodium-storage performance and provides atomistic design principles for high-capacity anodes. More broadly, the workflow enables systematic exploration of synthesis-dependent amorphous microstructures, including precursor chemistry, pyrolysis, heteroatom doping, and pore engineering, providing a route toward atomistically informed hard carbon design.",
+      "summary_cn": "论文结合通用机器学习原子间势与RAFFLE生成1.3万种硬碳模型，并用冻结势描述符和孔隙特征训练容量代理模型，发现低密度高孔隙结构可超过800 mAh g⁻¹，为钠离子电池硬碳负极提供原子级设计原则。",
+      "pdf_filename": "2608.17716.pdf",
+      "crawled_date": "2026-08-19",
+      "notes": "将通用机器学习原子间势、RAFFLE结构生成与轻量神经网络代理结合，直接面向硬碳钠离子电池的原子级结构—容量关系与高容量候选筛选，既有物理模拟验证又服务材料设计，契合 AI for Materials/计算物理方向。",
+      "pdf_url": "https://arxiv.org/pdf/2608.17716"
+    },
     {
       "arxiv_id": "2608.16644",
       "title": "Data-driven discovery and rapid, direct synthesis of MXenes",
