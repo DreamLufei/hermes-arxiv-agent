@@ -1,10 +1,24 @@
 {
-  "count": 99,
+  "count": 100,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-08-20",
+  "crawled_date_max": "2026-08-21",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-08-19",
+  "published_date_max": "2026-08-20",
   "papers": [
+    {
+      "arxiv_id": "2608.19933",
+      "title": "Building atomistic models of heterointerfaces with optimal transport",
+      "authors": "Yuxuan Tang, Keith T. Butler",
+      "affiliations": "Department of Chemistry, University College London, London, WC1E 6BT, United Kingdom",
+      "published_date": "2026-08-20",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Heterogeneous interfaces underpin technologies from microelectronics to energy conversion and storage, but their configurational complexity precludes exhaustive first-principles screening of interface registries. Although data-driven approaches can alleviate this burden, they remain limited by sparse interface datasets. Here, we introduce an energy-independent workflow that represents coherent interfaces as attributed graphs, quantifies their similarity to parent bulk environments using the fused Gromov-Wasserstein (FGW) distance, and couples this metric with Bayesian optimization over the in-plane registry space. We assess the approach for KI/NaCl, GaP/GaAs and GaN/$\\mathrm{Al_{2}O_{3}}$ interfaces spanning ionic, covalent and mixed-bonding regimes, using hierarchical validation with MACE and density functional theory (DFT). Comparison with single-point energy landscapes shows that the FGW distance captures registry-dependent periodicity, while interfaces exhibit deviations between structural and energetic extrema, reflecting additional chemistry-specific contributions. Furthermore, FGW distances show an overall association with relaxed energies. Under limited screening budgets, FGW-guided registry selection consistently outperforms random search and is more robust across interface systems than selection guided by pretrained MACE energies. The workflow converts the qualitative notion of bulk-like continuity into a quantitative prescreening criterion, enabling efficient registry exploration and providing physically informed candidate structures for materials discovery workflows.",
+      "summary_cn": "论文提出FGW最优传输图相似度结合贝叶斯优化的异质界面构型筛选流程，在KI/NaCl、GaP/GaAs和GaN/Al2O3上以MACE与DFT验证；有限预算下较随机和MACE能量引导更稳健地找到低能界面候选。",
+      "pdf_filename": "2608.19933.pdf",
+      "crawled_date": "2026-08-21",
+      "notes": "该文把原子界面表示为带属性图，用融合Gromov-Wasserstein距离和贝叶斯优化在稀缺数据下筛选异质界面配准，并用MACE/DFT验证，直接服务功能材料界面建模与AI辅助材料发现，契合AI for Physics主线。",
+      "pdf_url": "https://arxiv.org/pdf/2608.19933"
+    },
     {
       "arxiv_id": "2608.19117",
       "title": "Enhancing EBSD throughput of battery electrode materials using super-resolution generative adversarial networks",
