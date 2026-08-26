@@ -1,10 +1,24 @@
 {
-  "count": 104,
+  "count": 105,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-08-25",
+  "crawled_date_max": "2026-08-26",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-08-24",
+  "published_date_max": "2026-08-25",
   "papers": [
+    {
+      "arxiv_id": "2608.24513",
+      "title": "Structure-Agnostic Prediction of the Electronic Density of States with a Chemical Language Model",
+      "authors": "Ivan D. Rubtsov, Ivan V. Dudakov, Vadim V. Korolev",
+      "affiliations": "MSU Institute for Artificial Intelligence; Lomonosov Moscow State University; Moscow 119192, Russia",
+      "published_date": "2026-08-25",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "The electronic density of states (DOS) is conventionally computed from a relaxed crystal structure, which is unavailable for compounds that have been neither synthesized nor cataloged. Here we introduce DOSSIER ($\\textbf{D}$ensity $\\textbf{o}$f $\\textbf{S}$tates from $\\textbf{S}$to$\\textbf{i}$chiometry with $\\textbf{E}$ncoder $\\textbf{R}$epresentations), a chemical language model that maps elemental composition directly to this spectrum. The encoder is pretrained by cross-modal knowledge distillation from a universal machine-learning interatomic potential; the transfer lowers the error by 11% when only 1,000 training examples are available. On the Mat2Spec benchmark, DOSSIER reaches a mean absolute error of 3.76 states eV$^{-1}$ against 3.64 for the best structure-aware model; on an extended Materials Project dataset, the predicted spectra yield band gaps and $\\textit{d}$-band descriptors with useful accuracy. Screening 11,977 binary and 13,251 five-component high-entropy alloy compositions for a $\\textit{d}$-projected DOS resembling that of NiPt$_{3}$ places known oxygen reduction electrocatalysts near the top of the ranking.",
+      "summary_cn": "DOSSIER 将化学式作为序列输入 ModernBERT 编码器，经机器学习势能模型蒸馏后直接预测电子态密度；在 Mat2Spec 上接近结构感知模型精度，低数据场景误差降 11%，并能用于筛选氧还原电催化与高熵合金候选。",
+      "pdf_filename": "2608.24513.pdf",
+      "crawled_date": "2026-08-26",
+      "notes": "从化学组成直接预测电子态密度，结合化学语言模型与机器学习势能蒸馏，面向无已知晶体结构材料的快速电子结构筛选，契合 AI for Materials 与科学机器学习方向。",
+      "pdf_url": "https://arxiv.org/pdf/2608.24513"
+    },
     {
       "arxiv_id": "2608.23469",
       "title": "Machine Learning Assisted Inverse Design of Pixelated mmWave Patch Antennas",
