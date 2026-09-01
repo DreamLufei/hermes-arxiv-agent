@@ -1,10 +1,38 @@
 {
-  "count": 108,
+  "count": 110,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-08-27",
+  "crawled_date_max": "2026-09-01",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-08-26",
+  "published_date_max": "2026-08-31",
   "papers": [
+    {
+      "arxiv_id": "2608.30682",
+      "title": "Learning Materials Properties from Scarce Labels and Unlabeled Crystals",
+      "authors": "Wentao Li, Yizhe Chen, Jiangjie Qiu, Yijun Li, Leyi Zhao, Xiaonan Wang",
+      "affiliations": "Beijing Key Laboratory of Artificial Intelligence for Advanced Chemical Engineering Materials, State Key Laboratory of Chemical Engineering and Low-Carbon Technology, Department of Chemical Engineering, Tsinghua University",
+      "published_date": "2026-08-31",
+      "categories": "cs.LG, cs.AI",
+      "abstract": "Learning materials properties from scarce labels and unlabeled crystals is a central challenge for data-driven materials discovery. We present SemiMat, a controlled benchmark for semi-supervised materials property regression, and MatRank, a reliability-weighted objective for continuous pseudo-label uncertainty. SemiMat fixes labeled and unlabeled crystal inputs, graph-backbone interfaces, validation-only checkpoint selection, held-out test reporting, normalized MAE (NMAE), and method-rank summaries across six scarce-label tasks, four graph backbones, and five predefined split runs. MatRank builds pseudo-targets from labeled anchors, weights them by local reliability and weak-prediction agreement, trains weak and strong graph views consistently, and adds ranking signals so that unlabeled crystals shape both values and candidate order. Across the retained 24 backbone-task blocks, one fixed MatRank objective gives the lowest aggregate held-out test NMAE (0.896) and best average method rank (2.208). The component, OOD, and generated-pool diagnostics identify where the gain is reliable and where further screening evaluation remains necessary. Code is available at https://github.com/littlepeachs/SemiMat.",
+      "summary_cn": "提出SemiMat半监督材料性质回归基准和MatRank可靠性加权伪标签排序目标，在六个稀缺标签晶体任务、四类图骨干上统一评测，取得最低综合NMAE和最佳方法排名，并给出OOD与生成池诊断。",
+      "pdf_filename": "2608.30682.pdf",
+      "crawled_date": "2026-09-01",
+      "notes": "面向晶体材料性质预测中的稀缺标签问题，提出可复现实验协议和半监督排序目标，直接服务于AI辅助材料筛选与生成结构评估，和组内AI for Materials主线高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2608.30682"
+    },
+    {
+      "arxiv_id": "2608.30588",
+      "title": "Machine learning reveals common features of unconventional superconductors with high transition temperatures",
+      "authors": "Haosheng Xu, Dongheng Qian, Yijun Yu, Jing Wang",
+      "affiliations": "State Key Laboratory of Surface Physics and Department of Physics, Fudan University, Shanghai 200433, China; Shanghai Research Center for Quantum Sciences, Shanghai 201315, China; Institute for Nanoelectronic Devices and Quantum Computing, Fudan University, Shanghai 200433, China; Hefei National Laboratory, Hefei 230088, China",
+      "published_date": "2026-08-31",
+      "categories": "cond-mat.supr-con",
+      "abstract": "Superconductors with high critical temperatures that emerges beyond the phonon-mediated regime are usually considered unconventional in nature, yet unlike conventional superconductors, no broadly applicable predictive theory currently guides their discovery. Here, we use interpretable machine learning to uncover a common materials-space signature of high-$T_{\\mathrm{c}}$ unconventional superconductors and develop a data-driven strategy for materials discovery. We construct a unified feature representation for each material by integrating compositional statistics, structural information, and latent representations from trained property-prediction models, followed by structure-aware filtering of an experimentally established superconducting dataset. Without using transition-temperature information, unsupervised analysis shows that cuprate and iron-based superconductors occupy a common region of materials space, characterized primarily by large electronegativity deviation and intermediate mean valence-electron number. A supervised $T_{\\text{c}}$ model independently identifies the same descriptors as dominant features, providing complementary evidence for their relevance. Using this empirical materials-space prior together with the $T_{\\text{c}}$ model, we prioritize candidate materials, recover recently discovered nickelate superconductors, and identify chemically distinct candidates for future investigation.",
+      "summary_cn": "利用可解释机器学习融合成分、结构和ALIGNN潜表示，发现高Tc非常规超导体共享大电负性偏差与中等价电子数特征；结合Tc模型可找回镍酸盐超导体并筛出Sr2CoO4等新候选，为缺乏统一理论的探索提供数据先验。",
+      "pdf_filename": "2608.30588.pdf",
+      "crawled_date": "2026-09-01",
+      "notes": "将可解释机器学习用于高温非常规超导材料空间建模，不仅提取可物理解释的电负性/价电子判据，还能优先排序候选超导体，是AI驱动功能材料发现的典型高价值案例。",
+      "pdf_url": "https://arxiv.org/pdf/2608.30588"
+    },
     {
       "arxiv_id": "2608.26016",
       "title": "Bayesian Optimization for Self-Driving Materials Laboratories: From Algorithms to Physics-Informed Workflows",
