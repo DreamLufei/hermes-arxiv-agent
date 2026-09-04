@@ -1,10 +1,24 @@
 {
-  "count": 117,
+  "count": 118,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-03",
+  "crawled_date_max": "2026-09-04",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-02",
+  "published_date_max": "2026-09-03",
   "papers": [
+    {
+      "arxiv_id": "2609.03510",
+      "title": "Interplay of B-Site Off-Centering and Molecular Orientations in the Mixed Hybrid Perovskite MAGe1xSnxI3",
+      "authors": "Erik Fransson, Apinya Ngoipala, Oskar Öjstedt, Maths Karlsson, Paul Erhart, Julia Wiktor",
+      "affiliations": "Department of Physics and Astronomy, Chalmers University of Technology, SE-412 96 Gothenburg, Sweden; Department of Chemistry and Chemical Engineering, Chalmers University of Technology, SE-412 96 Gothenburg, Sweden",
+      "published_date": "2026-09-03",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "B-site mixing is a common strategy for tuning properties of halide perovskites. In the lead-free system MAGe1-xSn_xI3, it brings tilting and off-centering into competition. Using large-scale molecular dynamics driven by a machine-learned interatomic potential, we map the structural behavior across the full composition range. MAGeI3 exhibits strong polar B-site off-centering that remains nearly constant up to the cubic transition, together with methylammonium (MA) orientational order that weakens progressively on heating. By contrast, MASnI3 combines octahedral tilting with weaker, predominantly antipolar off-centering. Ge-like behavior persists upon alloying and gives way to Sn-like behavior only beyond roughly 65 % Sn. In the high-temperature phases, the B-site cations remain locally off-centered but directionally disordered. On the Ge-rich side, the distorted inorganic framework biases the soft MA orientational landscape toward a restricted set of preferred directions. This coupling shows how the composition of the inorganic sublattice can tune molecular ordering in lead-free hybrid perovskites.",
+      "summary_cn": "该文用机器学习原子间势驱动的大规模分子动力学，绘制MAGe1−xSnxI3全组分有限温结构图谱，揭示Ge/Sn混合中B位偏心、八面体倾转与MA取向的耦合及约65% Sn处行为转变。",
+      "pdf_filename": "2609.03510.pdf",
+      "crawled_date": "2026-09-04",
+      "notes": "该工作以机器学习原子间势支撑大规模分子动力学，直接研究无铅混合卤化物钙钛矿的有限温相行为，解析B位偏心、八面体倾转和分子取向之间的竞争耦合，既是典型AI for Materials应用，也对功能晶体结构设计有参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2609.03510"
+    },
     {
       "arxiv_id": "2609.02824",
       "title": "Low-Temperature Transport in Li-Ion Battery EC/EMC/FEC Electrolytes: Molecular Dynamics and Machine-Learning Modeling",
