@@ -1,10 +1,24 @@
 {
-  "count": 118,
+  "count": 119,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-04",
+  "crawled_date_max": "2026-09-10",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-03",
+  "published_date_max": "2026-09-09",
   "papers": [
+    {
+      "arxiv_id": "2609.09956",
+      "title": "Strong Impact of Halide Ordering on Structural Phase Transitions in Mixed Perovskites",
+      "authors": "Felix Uddén, Erik Fransson, Julia Wiktor, Benjamin M. Gallant, Dominik J. Kubicki, Paul Erhart",
+      "affiliations": "Department of Physics and Astronomy, Chalmers University of Technology, SE-412 96 Gothenburg, Sweden; School of Chemistry, University of Birmingham, B15 2TT, Birmingham, UK",
+      "published_date": "2026-09-09",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Mixed halide perovskites are highly versatile semiconductors with applications in photovoltaics, light-emitting diodes, and photodetectors. Understanding their thermodynamic phase behavior is central to guiding compositional design and improving device stability. Here, we train machine-learned interatomic potentials (MLIPs) on density functional theory reference data for CsxRb1-xPbBr3yI3-3y, CsxRb1-xPbBr3yCl3-3y, and CsxRb1-xPbCl3yI3-3y halide perovskites, enabling large-scale hybrid Monte Carlo-molecular dynamics simulations that sample both configurational and vibrational degrees of freedom. All three binary halide systems exhibit a miscibility gap, the extent of which correlates with halide ion size mismatch. The gaps in Br-Cl and Br-I close at low temperatures, while the Cl-I gap extends above room temperature. At temperatures above the miscibility gap (200 K to 500 K), all systems show a tendency toward layered halide ordering, with halide species preferentially occupying apical or equatorial octahedral sites. In CsPbBr3yI3-3y, this ordering occurs in a device-relevant temperature regime and is linked to the structural phase transitions, shifting transition temperatures by up to 100 K relative to randomly mixed structures. We attribute the strongly non-linear composition dependence of the orthorhombic-tetragonal phase boundary observed experimentally (a linear decrease followed by a plateau) to halide ordering. Introducing Rb on the A-site weakens halide ordering and eliminates the non-linear behavior, while narrowing the miscibility gap in both the Br-I and Br-Cl systems. These results establish halide ordering as a key determinant of structural phase stability in mixed-halide perovskites.",
+      "summary_cn": "论文用DFT数据训练NEP机器学习势，并以MACE验证，开展大规模MC/MD模拟混卤钙钛矿；发现卤素层状有序主导相稳定性，可使正交-四方相变温度相对随机混合结构偏移最高100 K，为光电钙钛矿组分设计提供依据。",
+      "pdf_filename": "2609.09956.pdf",
+      "crawled_date": "2026-09-10",
+      "notes": "该研究以DFT数据训练NEP/MACE机器学习原子间势，并结合MC/MD采样混卤钙钛矿的构型与振动自由度，定量揭示卤素有序对相变温度可达100 K的影响，直接服务功能材料稳定性设计，和组内AI for Physics/材料计算方向高度契合。",
+      "pdf_url": "https://arxiv.org/pdf/2609.09956"
+    },
     {
       "arxiv_id": "2609.03510",
       "title": "Interplay of B-Site Off-Centering and Molecular Orientations in the Mixed Hybrid Perovskite MAGe1xSnxI3",
