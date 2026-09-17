@@ -1,10 +1,24 @@
 {
-  "count": 122,
+  "count": 123,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-16",
+  "crawled_date_max": "2026-09-17",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-15",
+  "published_date_max": "2026-09-16",
   "papers": [
+    {
+      "arxiv_id": "2609.18598",
+      "title": "Hypothesis-Driven Autonomous Materials Synthesis with Multimodal LLM Agents",
+      "authors": "Izumi Takahara, Kazunori Nishio, Akira Aiba, Shigeru Kobayashi, Takao Nakajima, Taro Hitosugi, Teruyasu Mizoguchi",
+      "affiliations": "Institute of Industrial Science, The University of Tokyo, Tokyo 153-8505, Japan; Department of Chemistry, The University of Tokyo, Tokyo 113-0033, Japan; Rigaku Corporation, Tokyo 196-8666, Japan; MITSUI KNOWLEDGE INDUSTRY CO., LTD., Tokyo 107-0062, Japan",
+      "published_date": "2026-09-16",
+      "categories": "cond-mat.mtrl-sci, cs.AI",
+      "abstract": "Self-driving laboratories can explore synthesis conditions autonomously, but their decision-making layer is typically a black-box optimizer, and the output is a set of optimized samples, with the measurements reduced to predefined scalar objectives and the reasons behind success left unarticulated. Here we present SynAgent, a framework in which large language model agents operate an automated experimental system and maintain an explicit, revisable understanding of the synthesis process as the campaign's primary output. Starting with no predefined analysis pipeline, SynAgent adaptively generates analysis skills for newly acquired data and evolves this understanding through multimodal reasoning over experimental data such as X-ray diffraction patterns and electron micrographs. The evolution is guided by a verify-falsify scheme, in which the agent deliberately challenges its own hypotheses by testing conditions predicted to fail as well as those predicted to succeed. In a single campaign of 18 autonomous experiments using LiCoO2 (001) thin-film deposition as a testbed, SynAgent synthesized highly crystalline films and evolved an understanding of how the substrate temperature governs crystallization, discovering an abrupt threshold and a narrow optimal growth window at 650-690 °C. These results extend autonomous experimentation beyond optimized samples to testable, human-readable understanding.",
+      "summary_cn": "SynAgent让多模态LLM智能体直接操控自驱实验室，按需生成数据分析技能并以验证—证伪循环修正假设；在18次LiCoO2薄膜沉积实验中获得高结晶样品，识别650–690 °C最优窗口与突变结晶阈值。",
+      "pdf_filename": "2609.18598.pdf",
+      "crawled_date": "2026-09-17",
+      "notes": "将多模态LLM智能体接入真实自驱材料合成闭环，并用XRD和电镜数据持续生成分析技能、验证和证伪假设；LiCoO2薄膜实验给出可解释温度窗口，正契合AI驱动材料发现与科学智能体方向。",
+      "pdf_url": "https://arxiv.org/pdf/2609.18598"
+    },
     {
       "arxiv_id": "2609.17063",
       "title": "Development of a Physics-Informed Neural Framework, MEOWN, for Rapid Prediction of Muon Stopping Sites in Crystalline Materials, for understanding Quantum Magnet employing Muon Spectroscopy",
