@@ -1,10 +1,38 @@
 {
-  "count": 123,
+  "count": 125,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-17",
+  "crawled_date_max": "2026-09-18",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-16",
+  "published_date_max": "2026-09-17",
   "papers": [
+    {
+      "arxiv_id": "2609.19833",
+      "title": "The Roadmap of Inorganic Computational Materials Databases: Capabilities, Credibility, Coverage, and the Open Frontier",
+      "authors": "Miao Liu, Jianghao Jin, Tenglong Lu, Jianguo Si, Yin Shi, Sheng Meng, Weihua Wang",
+      "affiliations": "Institute of Physics, Chinese Academy of Sciences, Beijing 100190, China; Dongguan Institute of Materials Science and Technology, Dongguan, Guangdong 523808, China",
+      "published_date": "2026-09-17",
+      "categories": "cond-mat.mtrl-sci, cs.CE, physics.comp-ph",
+      "abstract": "Computational materials databases have become central infrastructure for data-driven discovery of inorganic materials, yet their growth remains strikingly uneven across property families. This perspective synthesizes a systematic survey of mainstream density functional theory (DFT) software, the computational cost and credibility of nineteen material-property families, and the coverage of existing computational databases, into a coherent picture of where the field stands and where it should go. We show that the ecosystem of first-principles codes is methodologically mature: for nearly every property of technological interest, at least one production-grade code can compute it.The binding constraint is no longer methodological capability but the economics of trust - which properties can be computed cheaply enough, and accurately enough, to be harvested at database scale. Mapping database coverage onto a Gartner-style readiness cycle reveals a sharp divide: ground-state structure, energetics, elasticity, and topology have reached routine production, while nine property families - including NMR/EPR parameters, core-level spectra, electron-phonon properties, thermal conductivity, and quantum transport - remain without any systematic computational database. We argue that these blank zones define the scientific opportunity of the next decade, and we propose a three-horizon roadmap: consolidating coverage and interoperability in the near term, industrializing mid-cost properties through surrogate-accelerated workflows in the medium term, and conquering the high-cost frontier through machine-learned interatomic potentials, autonomous computing infrastructure, and community governance in the long term.",
+      "summary_cn": "该综述系统梳理DFT软件、十九类材料性质计算成本与现有数据库覆盖，指出声子、热输运、量子输运等空白，并提出以代理模型、机器学习势和自治计算扩展高可信材料数据基础设施。",
+      "pdf_filename": "2609.19833.pdf",
+      "crawled_date": "2026-09-18",
+      "notes": "聚焦无机计算材料数据库的可信覆盖与高通量基础设施，明确声子、电子-声子和量子输运等组内关心物性的数据空白，并把代理加速、机器学习势和自治计算列为下一阶段路径，对AI材料平台建设有直接参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2609.19833"
+    },
+    {
+      "arxiv_id": "2609.19550",
+      "title": "Portfolio-Based Constrained Multi-Objective Bayesian Optimization for Materials Design",
+      "authors": "Sushant Sinha, Christofer Hardcastle, Robert Robinson, Shakti Prasad Padhy, Brent Vela, Douglas Allaire, Raymundo Arroyave",
+      "affiliations": "Department of Materials Science and Engineering, Texas A&M University, College Station, TX, USA; J. Mike Walker ’66 Department of Mechanical Engineering, Texas A&M University, College Station, TX, USA; Wm Michael Barnes ’64 Department of Industrial and Systems Engineering, Texas A&M University, College Station, TX, USA",
+      "published_date": "2026-09-17",
+      "categories": "cond-mat.mtrl-sci, stat.ML",
+      "abstract": "Materials discovery and design campaigns can be formulated as constrained multi-objective Bayesian optimization (CMOBO) problems, within which each experimental decision negotiates between two coupled but competing goals: discovering feasible candidates and refining the underlying Pareto front. Here we recast acquisition-function choice as an adaptive policy-selection problem over a portfolio of conventional and feasibility-focused acquisition functions. This was done using two controllers: UCB-Bandit, a modified UCB multi-armed bandit, and Agentic-Switch, a multi-agent decision system driven by a large language model (LLM). Both were evaluated against fixed-policy baselines in silico across five synthetic benchmark functions and two materials design case studies. The adaptive policies performed competitively in terms of both cumulative feasibility count and feasible hypervolume improvement, while each individual acquisition function performed well for only one metric, suggesting that adaptive policies are better suited for constrained materials science problems.",
+      "summary_cn": "该文将受约束多目标材料设计中的采集函数选择建模为自适应策略问题，提出UCB-Bandit与LLM多智能体Agentic-Switch，在合成基准及热电、高熵合金案例中兼顾可行样本发现与Pareto超体积提升。",
+      "pdf_filename": "2609.19550.pdf",
+      "crawled_date": "2026-09-18",
+      "notes": "采用贝叶斯优化、多臂老虎机与LLM智能体来提升材料逆向设计中的约束多目标搜索，直接服务AI驱动材料设计与闭环发现，且含热电材料和高熵合金案例验证。",
+      "pdf_url": "https://arxiv.org/pdf/2609.19550"
+    },
     {
       "arxiv_id": "2609.18598",
       "title": "Hypothesis-Driven Autonomous Materials Synthesis with Multimodal LLM Agents",
