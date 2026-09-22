@@ -1,10 +1,24 @@
 {
-  "count": 125,
+  "count": 126,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-18",
+  "crawled_date_max": "2026-09-22",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-17",
+  "published_date_max": "2026-09-21",
   "papers": [
+    {
+      "arxiv_id": "2609.24336",
+      "title": "Axial thermal expansion from free-energy minimization with temperature-dependent force constants in phonopy: a technical report, with $α$- and $ω$-Ti as the worked example",
+      "authors": "Atsushi Togo",
+      "affiliations": "Center for Basic Research on Materials, National Institute for Materials Science, Tsukuba, Ibaraki 305-0047, Japan",
+      "published_date": "2026-09-21",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "In a hexagonal crystal the $a$ and $c$ axes change their lengths at different rates with increasing temperature, and the thermal expansion is described by two coefficients, one for each axis. The equilibrium lattice parameters at each temperature are found by minimizing the Helmholtz free energy over the lattice parameters, and the coefficients are their logarithmic derivatives with respect to temperature. This report describes a procedure for this minimization as implemented in phonopy. The free energy is computed with harmonic force constants at a finite set of values of $a$ and $c$, and a free-energy surface over $a$ and $c$ is fitted to these values. In a variant, the harmonic force constants are replaced by temperature-dependent force constants from a self-consistent harmonic approximation, with the forces computed by a machine-learning potential fitted at each of these values. The $α$ and $ω$ phases of titanium are the worked example. Both calculations give negative thermal expansion of the $c$ axis of $α$-Ti at low temperature and none in $ω$-Ti, and they differ most for the $c$ axis of $α$-Ti. The axial coefficients are harder to compute than the volumetric one, because the two axes are coupled in the free energy. In both phases of titanium the thermal effect that lengthens $a$ also shortens $c$. The coefficient of the $c$ axis is then the sum of two terms of opposite sign that partly cancel, and a small error in either term gives a large relative error in the coefficient. The report measures how much each setting of the procedure changes the thermal expansion coefficients, with the $c$ axis of $α$-Ti as the most sensitive case.",
+      "summary_cn": "该技术报告在 phonopy 中实现对六方晶格 a、c 轴自由能曲面的联合最小化，并引入逐应变拟合的机器学习势支持 SSCHA 温度依赖力常数。以 α/ω-Ti 为例，复现 α-Ti 低温 c 轴负热膨胀并量化设置误差对轴向热膨胀系数的影响。",
+      "pdf_filename": "2609.24336.pdf",
+      "crawled_date": "2026-09-22",
+      "notes": "该文把 phonopy 的轴向自由能最小化与 SSCHA 温度依赖力常数、逐应变机器学习势结合，面向钛相热膨胀给出可复现的误差分析，契合组内材料声子计算与 AI 辅助物理建模方向。",
+      "pdf_url": "https://arxiv.org/pdf/2609.24336"
+    },
     {
       "arxiv_id": "2609.19833",
       "title": "The Roadmap of Inorganic Computational Materials Databases: Capabilities, Credibility, Coverage, and the Open Frontier",
