@@ -14,6 +14,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, date, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
+from urllib.parse import unquote_plus
 
 import requests
 import openpyxl
@@ -34,8 +35,10 @@ PRELIM_KEEP_IDS_FILE = BASE_DIR / "prelim_keep_ids.txt"
 # arxiv API 配置
 ARXIV_API = "https://export.arxiv.org/api/query"
 ARXIV_RSS = "https://arxiv.org/rss"
+ARXIV_OAI = "https://oaipmh.arxiv.org/oai"
 MAX_RESULTS = 100
 PUBLISHED_LOOKBACK_DAYS = 2
+OAI_LOOKBACK_DAYS = 7
 REQUEST_INTERVAL = 3  # 秒
 # arXiv occasionally returns HTTP 429 during the daily issue window. Use
 # conservative backoff and honor Retry-After when present rather than retrying
@@ -148,8 +151,8 @@ def build_no_keep_after_prelim_message(candidate_count: int) -> str:
     )
 
 
-def get_published_cutoff_date() -> date:
-    return date.today() - timedelta(days=PUBLISHED_LOOKBACK_DAYS - 1)
+def get_published_cutoff_date(lookback_days: int = PUBLISHED_LOOKBACK_DAYS) -> date:
+    return date.today() - timedelta(days=lookback_days - 1)
 
 
 def retry_delay_from_response(response: requests.Response | None, fallback: int) -> int:
@@ -345,6 +348,93 @@ def search_arxiv_papers(keywords: str, max_results: int = MAX_RESULTS) -> list[d
             continue
 
     return papers
+
+
+def search_arxiv_oai(keywords: str, cutoff: date) -> list[dict]:
+    """Harvest recent metadata when the search API is unavailable."""
+    categories = extract_categories_from_keywords(keywords)
+    groups = re.findall(r"\(([^()]*)\)", unquote_plus(keywords))
+    abstract_groups = [
+        [quoted or plain for quoted, plain in re.findall(r'abs:(?:"([^"]+)"|([^\s)]+))', group)]
+        for group in groups
+        if "abs:" in group
+    ]
+    if not categories or not abstract_groups:
+        raise ArxivQueryError("OAI fallback cannot parse the configured category/abstract search query.")
+
+    namespace = {
+        "o": "http://www.openarchives.org/OAI/2.0/",
+        "a": "http://arxiv.org/OAI/arXiv/",
+    }
+    papers: dict[str, dict] = {}
+    request_count = 0
+    for category in categories:
+        archive, subject = category.rsplit(".", 1)
+        group = "physics" if archive in {"cond-mat", "physics"} else archive
+        set_spec = f"{group}:{archive}:{subject}"
+        token = None
+        for page in range(50):
+            if request_count:
+                time.sleep(REQUEST_INTERVAL)
+            params = (
+                {"verb": "ListRecords", "resumptionToken": token}
+                if token else
+                {"verb": "ListRecords", "metadataPrefix": "arXiv", "from": cutoff.isoformat(), "set": set_spec}
+            )
+            try:
+                response = requests.get(ARXIV_OAI, params=params, timeout=60, headers=ARXIV_HEADERS)
+                response.raise_for_status()
+                root = ET.fromstring(response.content)
+            except (requests.RequestException, ET.ParseError) as exc:
+                raise ArxivQueryError(f"arXiv OAI request failed for {set_spec}: {exc}") from exc
+            request_count += 1
+            error = root.find("o:error", namespace)
+            if error is not None:
+                if error.get("code") == "noRecordsMatch":
+                    break
+                raise ArxivQueryError(f"arXiv OAI error for {set_spec}: {error.get('code')}: {error.text}")
+            records = root.findall(".//o:ListRecords/o:record", namespace)
+            for record in records:
+                metadata = record.find("o:metadata/a:arXiv", namespace)
+                if metadata is None:
+                    continue
+                arxiv_id = metadata.findtext("a:id", default="", namespaces=namespace).strip()
+                published = metadata.findtext("a:created", default="", namespaces=namespace).strip()
+                abstract = " ".join(metadata.findtext("a:abstract", default="", namespaces=namespace).split())
+                if not arxiv_id or not published or published < cutoff.isoformat():
+                    continue
+                abstract_lower = abstract.lower()
+                if not all(
+                    any(abstract_lower.find(term.lower().rstrip("*")) >= 0 for term in terms)
+                    for terms in abstract_groups
+                ):
+                    continue
+                authors = []
+                for author in metadata.findall("a:authors/a:author", namespace):
+                    forenames = author.findtext("a:forenames", default="", namespaces=namespace).strip()
+                    keyname = author.findtext("a:keyname", default="", namespaces=namespace).strip()
+                    authors.append(" ".join(part for part in (forenames, keyname) if part))
+                paper_categories = metadata.findtext("a:categories", default="", namespaces=namespace)
+                papers[arxiv_id] = {
+                    "arxiv_id": arxiv_id,
+                    "title": " ".join(metadata.findtext("a:title", default="", namespaces=namespace).split()),
+                    "authors": ", ".join(authors),
+                    "summary": abstract,
+                    "published_date": published,
+                    "categories": ", ".join(paper_categories.split()),
+                    "pdf_url": f"https://arxiv.org/pdf/{arxiv_id}",
+                    "pdf_filename": f"{arxiv_id}.pdf",
+                    "pdf_local_path": str(PAPERS_DIR / f"{arxiv_id}.pdf"),
+                    "affiliations": "",
+                    "summary_cn": "",
+                }
+            token_node = root.find(".//o:ListRecords/o:resumptionToken", namespace)
+            token = token_node.text.strip() if token_node is not None and token_node.text else None
+            if not token:
+                break
+        else:
+            raise ArxivQueryError(f"arXiv OAI pagination limit reached for {set_spec}.")
+    return sorted(papers.values(), key=lambda paper: (paper["published_date"], paper["arxiv_id"]), reverse=True)
 
 
 def download_pdf(paper: dict) -> bool:
@@ -668,8 +758,11 @@ def process_prelim_approved_papers(
     approved_ids = load_prelim_keep_ids()
     candidate_map = {paper["arxiv_id"]: paper for paper in prelim_candidates}
     approved_papers = [candidate_map[arxiv_id] for arxiv_id in sorted(approved_ids) if arxiv_id in candidate_map]
+    rejected_ids = sorted(candidate_map.keys() - approved_ids)
 
     if not approved_papers:
+        if rejected_ids:
+            save_crawled_ids_batch(rejected_ids)
         clear_prelim_state()
         carryover = [incomplete_excel_papers[arxiv_id] for arxiv_id in sorted(pending_ids) if arxiv_id in incomplete_excel_papers]
         if carryover:
@@ -708,6 +801,8 @@ def process_prelim_approved_papers(
         save_crawled_ids_batch([p["arxiv_id"] for p in downloaded])
         pending_ids |= {p["arxiv_id"] for p in downloaded}
 
+    if rejected_ids:
+        save_crawled_ids_batch(rejected_ids)
     clear_prelim_state()
     refreshed_incomplete = load_incomplete_papers_from_excel()
     papers_to_process = [refreshed_incomplete[arxiv_id] for arxiv_id in sorted(pending_ids) if arxiv_id in refreshed_incomplete]
@@ -799,40 +894,52 @@ def main():
 
     # 搜索
     keywords = load_search_keywords()
+    lookback_days = PUBLISHED_LOOKBACK_DAYS
     try:
         all_papers = search_arxiv_papers(keywords)
     except ArxivQueryError as e:
-        print(f"[ERROR] {e}")
-        status, feishu_msg, diagnostics = classify_query_failure(keywords, e)
-        papers_to_process = [
-            incomplete_excel_papers[arxiv_id]
-            for arxiv_id in sorted(pending_ids)
-            if arxiv_id in incomplete_excel_papers
-        ]
-        save_pending_llm_ids({p["arxiv_id"] for p in papers_to_process})
-        write_llm_output_json(
-            papers_to_process=papers_to_process,
-            fresh_downloaded_count=0,
-            feishu_msg=feishu_msg,
-            status=status if not papers_to_process else "needs_llm",
-            diagnostics=diagnostics,
-        )
-        if papers_to_process:
-            print(
-                f"[WARN] arXiv query failed, but {len(papers_to_process)} pending papers still need LLM completion."
+        print(f"[WARN] {e}")
+        if e.status_code != 429:
+            try:
+                lookback_days = OAI_LOOKBACK_DAYS
+                all_papers = search_arxiv_oai(keywords, get_published_cutoff_date(lookback_days))
+                print(f"[INFO] OAI fallback retrieved {len(all_papers)} matching papers over {lookback_days} days")
+            except ArxivQueryError as fallback_error:
+                e = ArxivQueryError(f"{e}; OAI fallback: {fallback_error}", status_code=e.status_code)
+            else:
+                e = None
+        if e is not None:
+            print(f"[ERROR] {e}")
+            status, feishu_msg, diagnostics = classify_query_failure(keywords, e)
+            papers_to_process = [
+                incomplete_excel_papers[arxiv_id]
+                for arxiv_id in sorted(pending_ids)
+                if arxiv_id in incomplete_excel_papers
+            ]
+            save_pending_llm_ids({p["arxiv_id"] for p in papers_to_process})
+            write_llm_output_json(
+                papers_to_process=papers_to_process,
+                fresh_downloaded_count=0,
+                feishu_msg=feishu_msg,
+                status=status if not papers_to_process else "needs_llm",
+                diagnostics=diagnostics,
             )
-            print("[INFO] Proceed with pending papers from Excel/new_papers.json.")
-            print("[LLM_SUMMARIZATION_REQUIRED]")
-            print(f"JSON file: {OUTPUT_JSON}")
-            print(f"Papers awaiting LLM completion: {len(papers_to_process)}")
-        else:
-            print(f"[INFO] Wrote graceful status output: {status}")
-            print(f"[INFO] JSON file: {OUTPUT_JSON}")
-        return
+            if papers_to_process:
+                print(
+                    f"[WARN] arXiv query failed, but {len(papers_to_process)} pending papers still need LLM completion."
+                )
+                print("[INFO] Proceed with pending papers from Excel/new_papers.json.")
+                print("[LLM_SUMMARIZATION_REQUIRED]")
+                print(f"JSON file: {OUTPUT_JSON}")
+                print(f"Papers awaiting LLM completion: {len(papers_to_process)}")
+            else:
+                print(f"[INFO] Wrote graceful status output: {status}")
+                print(f"[INFO] JSON file: {OUTPUT_JSON}")
+            return
     print(f"[INFO] Retrieved {len(all_papers)} papers from arxiv")
 
     # 查重 + 发表日期时间窗过滤
-    published_cutoff = get_published_cutoff_date()
+    published_cutoff = get_published_cutoff_date(lookback_days)
     recency_filtered = [p for p in all_papers if is_recent_published(p, published_cutoff)]
     print(f"[INFO] {len(recency_filtered)} papers within published_date >= {published_cutoff.isoformat()}")
     new_papers = [p for p in recency_filtered if p["arxiv_id"] not in crawled_ids]
