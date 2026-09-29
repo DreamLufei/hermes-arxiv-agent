@@ -1,10 +1,24 @@
 {
-  "count": 131,
+  "count": 132,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-28",
+  "crawled_date_max": "2026-09-29",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-25",
+  "published_date_max": "2026-09-28",
   "papers": [
+    {
+      "arxiv_id": "2609.35510",
+      "title": "High-Throughput Imaging of Degradation-Inducing Microscopic Impurities in Perovskite Solar Cells",
+      "authors": "Sofiia Kosar, Anil R. Pininti, Vladyslav Hnapovskyi, José P. Jurado, Subhashri Mannar, Lorenzo Mardegan, Anand S. Subbiah, Frédéric Laquai, Stefaan De Wolf",
+      "affiliations": "Center for Renewable Energy and Storage Technologies (CREST), Physical Science and Engineering Division (PSE), King Abdullah University of Science and Technology (KAUST), Thuwal 23955-6900, Saudi Arabia; Chair of Physical Chemistry and Spectroscopy of Energy Materials (SPECTRE), Department of Chemistry, Ludwig-Maximilians-University (LMU) Munich, Butenandtstraße 5-13, Munich 81377, Germany; Department of Chemistry and Center for Nanoscience (CeNS), Ludwig-Maximilians-University (LMU) Munich, Butenandtstraße 5-13, Munich 81377, Germany",
+      "published_date": "2026-09-28",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "The scalable fabrication of high-quality, large-area perovskite thin films is hindered by microscopic inhomogeneities, particularly residual compositional impurities formed during processing. Identifying these impurities, understanding their impact on device operation, and enabling their rapid detection are essential for upscaling perovskite solar cells (PSCs). Here, nano-Fourier transform infrared spectroscopy combined with high-resolution optical and scanning probe techniques was used to identify detrimental impurities in wide-bandgap perovskite films relevant to tandem solar cells. Photo-stress experiments revealed that degradation of the perovskite layer initiates at impurity-perovskite interfaces, demonstrating that impurities act as failure nucleation sites. Leveraging these insights, a rapid, non-invasive, and high-throughput framework based on high-resolution reflected light microscopy and machine learning-supported image analysis was developed, enabling detection and quantification of harmful impurities in as-prepared films within seconds. Films with higher impurity density show accelerated early degradation, establishing this parameter as an early-warning metric for stability screening. Extending this framework to degradation tracking further reveals coupled photo- and thermo-chemical contributions to impurity-mediated instability. Overall, this work establishes a practical chemically-validated diagnostic imaging framework for rapid pre-screening of perovskite films to enable stable and scalable PSCs.",
+      "summary_cn": "该工作以nano-FTIR等手段确认宽带隙钙钛矿薄膜中的PbI2与4H多型杂质会诱发降解，并将化学验证结果转化为反射光显微成像+CNN的秒级高通量检测框架；杂质密度可作为稳定性早期预警指标，支撑钙钛矿/硅叠层电池规模化质控。",
+      "pdf_filename": "2609.35510.pdf",
+      "crawled_date": "2026-09-29",
+      "notes": "契合AI for Materials和功能材料可靠性方向：论文把钙钛矿太阳能材料中的微观失效机理与CNN图像分析结合，形成可用于规模化制备质控的高通量诊断流程，不是泛泛的图像分类应用。",
+      "pdf_url": "https://arxiv.org/pdf/2609.35510"
+    },
     {
       "arxiv_id": "2606.24983",
       "title": "ConSolv: Solvent-Conditional Machine Learning Implicit Solvent Potential",
