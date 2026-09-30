@@ -1,10 +1,24 @@
 {
-  "count": 132,
+  "count": 133,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-29",
+  "crawled_date_max": "2026-09-30",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-28",
+  "published_date_max": "2026-09-29",
   "papers": [
+    {
+      "arxiv_id": "2609.36469",
+      "title": "From Automated Simulation to Autonomous Discovery: A Hierarchical Framework for Agentic Computational Materials Science",
+      "authors": "Linggang Zhu, Jian Zhou, Zhimei Sun",
+      "affiliations": "School of Materials Science and Engineering, Beihang University, Beijing 100191, China",
+      "published_date": "2026-09-29",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "The convergence of large language models, materials-specific foundation models, and agentic artificial intelligence is reshaping the paradigm of computational materials discovery. While high-throughput computation, automated workflows, and data-driven modeling have greatly expanded the scale of materials exploration, the core scientific decision-making loop remains largely human-directed. Agentic AI introduces the possibility of systems that can autonomously reason about materials objectives, execute simulations, and refine strategies. However, the rapid emergence of such systems has created a critical need for a unified and operational framework to define, evaluate, and guide scientific autonomy in computational materials discovery. In this Perspective, we propose the Computational Materials Agent Autonomy Level (CMA-AL) framework, a hierarchical taxonomy defining six levels of autonomous agency in computational materials science: scripted excecutor, LLM-assisted operator, adaptive explorer, experiment-ready modeler, agentic digital twin, and self-extending intelligence. We further map emerging agentic systems onto the framework and identify key scientific and technological challenges toward higher autonomy. CMA-AL provides a common language for characterizing agentic computational materials discovery, evaluating the maturity of emerging systems, and guiding their evolution toward increasingly autonomous materials discovery.",
+      "summary_cn": "提出计算材料智能体自主等级（CMA-AL）框架，将计算材料发现中的智能体从脚本执行到自扩展智能划分为六级，并映射已有系统、梳理关键挑战，为评估和构建自主材料发现流程提供统一路线图。",
+      "pdf_filename": "2609.36469.pdf",
+      "crawled_date": "2026-09-30",
+      "notes": "这是一篇面向计算材料发现的智能体自治框架观点文，直接讨论 LLM、材料基础模型和仿真工作流如何形成自主科学决策闭环；虽然不是新模型实验，但对组内布局 AI for Physics 智能体、可验证自动仿真与材料发现路线具有方法论参考价值。",
+      "pdf_url": "https://arxiv.org/pdf/2609.36469"
+    },
     {
       "arxiv_id": "2609.35510",
       "title": "High-Throughput Imaging of Degradation-Inducing Microscopic Impurities in Perovskite Solar Cells",
