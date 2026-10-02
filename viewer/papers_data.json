@@ -1,10 +1,24 @@
 {
-  "count": 133,
+  "count": 134,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-09-30",
+  "crawled_date_max": "2026-10-02",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-09-29",
+  "published_date_max": "2026-10-01",
   "papers": [
+    {
+      "arxiv_id": "2610.01119",
+      "title": "AbsorbEvo: An Agentic Framework for Autonomous Inverse Design of Microwave Absorbers",
+      "authors": "Zhicheng Feng, Yubo Zhao, Xuefeng Yao",
+      "affiliations": "Department of Engineering Mechanics, Applied Mechanics Lab, Tsinghua University, Beijing 100084, P. R. China",
+      "published_date": "2026-10-01",
+      "categories": "cs.AI",
+      "abstract": "Designing high-performance microwave absorbers requires specialized expertise in electromagnetic theory, materials science and simulation programming, and entails time-consuming optimization. Here, we present AbsorbEvo, an agentic framework for autonomous inverse design that translates natural-language performance objectives into designs verified by full-wave simulations. Its candidate evolution strategy integrates language reasoning, physics-based prediction and historical feedback. A large language model proposes the directions and magnitudes of parameter adjustments based on task objectives and computational history. The system combines directed increments with global sampling to generate candidates and uses a low-cost predictive model as a physics prior to rank them. Only high-ranking designs undergo full-wave simulation. Results passing physical validity checks are used to evaluate performance and guide subsequent search. Experience from training tasks is further distilled into textual skills, which are independently validated before use in new tasks. Under identical proposal budgets on held-out AbsorbBench-36 tasks, AbsorbEvo achieved a task success rate of 79.17%, versus 25.00% for a generic agent and 12.50% for random search. Its mean best coverage was 0.7816, compared with 0.6434 and 0.6448, respectively. By integrating language reasoning and physics-based feedback into design decisions, AbsorbEvo provides a methodological foundation for natural-language-driven autonomous inverse design of microwave absorbers.",
+      "summary_cn": "提出AbsorbEvo智能体框架，将自然语言目标转化为微波吸波器反向设计方案，结合LLM推理、物理先验预测、历史反馈与全波仿真验证；在AbsorbBench-36上成功率达79.17%，显著优于通用智能体和随机搜索。",
+      "pdf_filename": "2610.01119.pdf",
+      "crawled_date": "2026-10-02",
+      "notes": "契合AI for Physics与功能材料逆向设计：它把LLM智能体的自然语言规划、物理先验预测和全波电磁仿真闭环结合，用于微波吸波器材料-结构联合设计，且给出基准成功率提升，属于面向真实物理系统的可验证自主设计框架。",
+      "pdf_url": "https://arxiv.org/pdf/2610.01119"
+    },
     {
       "arxiv_id": "2609.36469",
       "title": "From Automated Simulation to Autonomous Discovery: A Hierarchical Framework for Agentic Computational Materials Science",
