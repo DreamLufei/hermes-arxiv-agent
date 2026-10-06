@@ -1,10 +1,24 @@
 {
-  "count": 134,
+  "count": 135,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-02",
+  "crawled_date_max": "2026-10-06",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-01",
+  "published_date_max": "2026-10-05",
   "papers": [
+    {
+      "arxiv_id": "2610.05714",
+      "title": "Current selects the helicity of a chiral phonon",
+      "authors": "Swagata Acharya, Jerome Jackson, Mark van Schilfgaarde",
+      "affiliations": "National Laboratory of the Rockies, Golden, Colorado, USA; Scientific Computing Department, STFC Daresbury Laboratory, Warrington WA4 4AD, United Kingdom",
+      "published_date": "2026-10-05",
+      "categories": "cond-mat.mes-hall, cond-mat.mtrl-sci",
+      "abstract": "The emergence of spin-polarized electrons from nonmagnetic chiral molecules and crystals is called Chirality-induced spin selectivity (CISS). A chiral phonon of definite wavevector $q$ can strongly enhance it, but near equilibrium the two helicities $+q$ and $-q$ are equally populated: they are time-reversal partners and their contributions cancel. We show that in a biased chiral conductor the current causes the phonon of one helicity to damp less than the other. The damping asymmetry is odd in the current, odd under $q\\rightarrow-q$, invariant under a mirror that reverses the structural handedness, and equal, mode for mode, to the current-induced nonconservative Berry force on the phonon coordinate. Closing the phonon kinetics with a rate equation turns the asymmetry into a net lattice helicity: at any finite bias one helicity is preferentially populated, with no threshold, growing linearly with the current as $V\\rightarrow0$; above a threshold that helicity becomes a self-sustained coherent travelling wave. We demonstrate this effect in elemental tellurium, treated as an open quantum system (electronic Hamiltonian, phonon bath, and electron-phonon coupling) within a quasi-ab initio framework. The electronic Hamiltonian is supplied by a vertex-corrected quasiparticle self-consistent $GW$ (QSGW) potential with spin-orbit coupling; nuclear displacements are modeled with a machine-learned interatomic potential, which yields chiral phonon modes at finite $\\pm q_z$ on the $Γ$-A line. The perturbation to the electronic Hamiltonian from a nuclear displacement is approximated by a frozen-phonon deformation potential. No optical pump is needed: a bias alone drives the current and selects the phonon helicity; reversing the current reverses the selection.",
+      "summary_cn": "该文建立偏置手性导体中电流选择手性声子螺旋度的开放量子体系模型，结合QSGW、电子-声子耦合和机器学习势研究碲，证明任意有限偏压可诱导净晶格螺旋度，并在阈值以上形成相干行波，为声子调控自旋选择性提供计算机制。",
+      "pdf_filename": "2610.05714.pdf",
+      "crawled_date": "2026-10-06",
+      "notes": "围绕手性声子、非平衡输运和功能晶体碲，论文把QSGW电子结构、开放量子体系动力学与机器学习原子间势结合，解释电流如何选择声子螺旋度；这与组内声子/晶体稳定性、量子材料计算和AI辅助材料建模方向高度相关。",
+      "pdf_url": "https://arxiv.org/pdf/2610.05714"
+    },
     {
       "arxiv_id": "2610.01119",
       "title": "AbsorbEvo: An Agentic Framework for Autonomous Inverse Design of Microwave Absorbers",
