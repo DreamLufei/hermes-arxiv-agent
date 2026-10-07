@@ -1,10 +1,24 @@
 {
-  "count": 135,
+  "count": 136,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-06",
+  "crawled_date_max": "2026-10-07",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-05",
+  "published_date_max": "2026-10-06",
   "papers": [
+    {
+      "arxiv_id": "2610.08013",
+      "title": "Defect-limited thermal transport in AlN using pretrained machine-learning interatomic potentials",
+      "authors": "Minseok Moon, Wonjun Choi, Seungwu Han, Youngho Kang",
+      "affiliations": "Department of Materials Science and Engineering, Seoul National University, Seoul, 08826, Republic of Korea; Research Institute of Advanced Materials, Seoul National University, Seoul, 08826, Republic of Korea; Center for AI and Natural Sciences, Korea Institute for Advanced Study, Seoul, 02455, Republic of Korea; Department of Materials Science and Engineering, Incheon National University, Incheon 22012, Republic of Korea",
+      "published_date": "2026-10-06",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Aluminum nitride (AlN) is an important thermal management material whose high lattice thermal conductivity is strongly suppressed by oxygen impurities. We investigate phonon scattering by oxygen-related defects using pretrained universal machine-learning interatomic potentials (MLIPs), molecular dynamics (MD), and phonon Boltzmann transport calculations. Several pretrained MLIPs are benchmarked against density functional theory for phonon dispersions and pristine thermal conductivity. To balance accuracy and computational speed, we use a fine-tuned version of the compact SevenNet-Nano model for MD simulations. Monte Carlo annealing supports the formation of bound $V_{\\mathrm{Al}}(\\mathrm{O_N})_3$ complexes, whose scattering differs from that of their isolated constituents. Defect scattering rates extracted from excess spectral energy density (SED) linewidths agree reasonably with harmonic $T$-matrix predictions at low oxygen contents, supporting the independent-scatterer approximation. Incorporating these rates into an iterative Boltzmann transport equation with Bose--Einstein statistics yields thermal conductivities comparable to experimental values and captures their observed decrease with oxygen content. At high concentrations, however, the scattering rate deviates from linear scaling with oxygen content, suggesting limitations of independent-defect and pristine-phonon descriptions. These results demonstrate an efficient approach using pretrained MLIPs to quantify defect-limited thermal transport and provide insights into impurity effects beyond the dilute-defect approximation.",
+      "summary_cn": "该文使用预训练通用机器学习原子间势、分子动力学和声子玻尔兹曼输运计算研究AlN中氧相关缺陷散射。通过微调SevenNet-Nano并与DFT基准对比，得到接近实验的热导率随氧含量下降趋势，同时揭示高浓度下独立缺陷近似失效。",
+      "pdf_filename": "2610.08013.pdf",
+      "crawled_date": "2026-10-07",
+      "notes": "该工作将预训练通用机器学习势能与声子输运/BTE结合，定量研究AlN中氧相关缺陷对热导率的影响，既服务功能材料热管理问题，也体现AI for Physics中用机器学习加速原子尺度物理建模的方向。",
+      "pdf_url": "https://arxiv.org/pdf/2610.08013"
+    },
     {
       "arxiv_id": "2610.05714",
       "title": "Current selects the helicity of a chiral phonon",
