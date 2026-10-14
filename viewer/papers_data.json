@@ -27,10 +27,10 @@
       "published_date": "2026-10-13",
       "categories": "cond-mat.mtrl-sci, physics.chem-ph, physics.comp-ph",
       "abstract": "The clean-energy transition is driving unprecedented demand for metals, whose extraction is among the largest industrial sources of carbon emissions. Molten-salt electrolysis offers a path toward carbon-free production of aluminum, iron, titanium, and critical metals. However, corrosive operating conditions and complex, multicomponent feedstocks make experimental development costly and challenging. Here, we introduce a first-principles framework for constructing electrochemical phase diagrams of multicomponent systems to accelerate electrode and electrolyte design and guide the selection of compatible materials and operating conditions for electrochemical cells. We derive a grand potential that generates these diagrams at scale, and supply free energies using first-principles data obtained through a fine-tuned foundation machine-learned interatomic potential. For silicon in molten CaCl$_2$, the construction not only recovers the experimental diagram when using the first-principles framework on a limited set of structures, but also predicts further domains when extended to a larger set of crystal structures. Finally, we demonstrate the predictive power of the approach by screening ten alkali and alkaline-earth halide electrolytes for aluminum electrowinning. Three thermodynamic criteria identify NaF, where cryolite emerges as the stable aluminum-bearing phase, recovering the chemistry that Hall and Héroult established empirically in 1886. The framework provides a first-principles basis for selecting compatible electrodes, electrolytes, and operating conditions toward low-carbon metal production from complex source materials.",
-      "summary_cn": "提出用于熔盐电化学相图的一阶原理 grand potential 框架，并用微调基础机器学习势提供自由能，在硅–CaCl2 体系复现实验相图、扩展预测稳定域，还筛选铝电解用卤化物电解质并找回 NaF/冰晶石体系。",
+      "summary_cn": "提出用于熔盐电化学相图的第一性原理 grand potential 框架，并用微调基础机器学习势提供自由能，在硅–CaCl2 体系复现实验相图、扩展预测稳定域，还筛选铝电解用卤化物电解质并找回 NaF/冰晶石体系。",
       "pdf_filename": "2610.17611.pdf",
       "crawled_date": "2026-10-14",
-      "notes": "论文把机器学习原子间势与一阶原理热力学相图结合，用于熔盐电解质和电极材料的可扩展筛选，面向低碳金属提取的真实材料设计问题，符合 AI 辅助材料发现与科学计算主线。",
+      "notes": "论文把机器学习原子间势与第一性原理热力学相图结合，用于熔盐电解质和电极材料的可扩展筛选，面向低碳金属提取的真实材料设计问题，符合 AI 辅助材料发现与科学计算主线。",
       "pdf_url": "https://arxiv.org/pdf/2610.17611"
     },
     {
