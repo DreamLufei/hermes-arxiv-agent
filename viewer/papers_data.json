@@ -1,10 +1,38 @@
 {
-  "count": 140,
+  "count": 142,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-09",
+  "crawled_date_max": "2026-10-14",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-08",
+  "published_date_max": "2026-10-13",
   "papers": [
+    {
+      "arxiv_id": "2610.17975",
+      "title": "All-electron machine-learned orbital-free density functional for periodic CHNO systems",
+      "authors": "Marc K. Ickler, Andreas Hermann, Fred A. Hamprecht",
+      "affiliations": "Interdisciplinary Center for Scientific Computing (IWR), Heidelberg University, Heidelberg, 69120, Germany; Centre for Science at Extreme Conditions and SUPA, School of Physics and Astronomy, University of Edinburgh, Edinburgh, EH9 3FD, United Kingdom",
+      "published_date": "2026-10-13",
+      "categories": "physics.chem-ph, cond-mat.mtrl-sci, cs.LG, physics.comp-ph",
+      "abstract": "We introduce STRUCTURES-P, a machine-learned all-electron orbital-free density functional for periodic CHNO systems. Electrostatics are evaluated analytically in an atom-centered Gaussian basis, while an equivariant network learns the kinetic and exchange-correlation energy from energies and gradients of non-ground-state densities. Minimizing the functional from a superposition of atomic densities recovers the Kohn-Sham ground state: on held-out crystals, the density error falls from 6.7% to 0.4% of the electron count and the energy error reaches 0.25 mHa per atom, half that of a same-architecture interatomic potential. A single functional can be trained for both isolated molecules and periodic systems, and the model generalizes to larger unit cells. It largely preserves relative-energy rankings and reproduces convex-hull vertices on the tested H-N composition slice. Together, these results demonstrate the viability of machine-learned all-electron orbital-free DFT for variational density optimization and energy evaluation in fixed-geometry solids.",
+      "summary_cn": "提出 STRUCTURES-P 机器学习全电子轨道自由 DFT，将周期静电解析项与等变网络学习的动能/交换关联能结合，可直接变分优化周期晶体电子密度；在 CHNO 晶体上把密度误差降至 0.4%、能量误差达 0.25 mHa/atom，并能泛化到更大晶胞。",
+      "pdf_filename": "2610.17975.pdf",
+      "crawled_date": "2026-10-14",
+      "notes": "这项工作把等变神经网络嵌入可变分优化的全电子轨道自由 DFT，直接服务周期固体电子结构计算，兼具方法创新和清晰误差指标，非常贴合 AI for Physics 中“用学习模型降低第一性原理计算成本”的方向。",
+      "pdf_url": "https://arxiv.org/pdf/2610.17975"
+    },
+    {
+      "arxiv_id": "2610.17611",
+      "title": "A grand potential for molten-salt electrochemical phase diagrams from first principles",
+      "authors": "Lorenzo Bastonero, Lucio Colombi Ciacchi, Nicola Marzari",
+      "affiliations": "U Bremen Excellence Chair, Bremen Center for Computational Materials Science, and MAPEX Center for Materials and Processes, Universität Bremen, 28359 Bremen, Germany; Hybrid Materials Interfaces Group, Faculty of Production Engineering, Universität Bremen, Bremen, Germany; Theory and Simulation of Materials (THEOS), and National Centre for Computational Design and Discovery of Novel Materials (MARVEL), École Polytechnique Fédérale de Lausanne, 1015 Lausanne, Switzerland; Laboratory for Materials Simulations, Paul Scherrer Institut (PSI), 5232 Villigen, Switzerland",
+      "published_date": "2026-10-13",
+      "categories": "cond-mat.mtrl-sci, physics.chem-ph, physics.comp-ph",
+      "abstract": "The clean-energy transition is driving unprecedented demand for metals, whose extraction is among the largest industrial sources of carbon emissions. Molten-salt electrolysis offers a path toward carbon-free production of aluminum, iron, titanium, and critical metals. However, corrosive operating conditions and complex, multicomponent feedstocks make experimental development costly and challenging. Here, we introduce a first-principles framework for constructing electrochemical phase diagrams of multicomponent systems to accelerate electrode and electrolyte design and guide the selection of compatible materials and operating conditions for electrochemical cells. We derive a grand potential that generates these diagrams at scale, and supply free energies using first-principles data obtained through a fine-tuned foundation machine-learned interatomic potential. For silicon in molten CaCl$_2$, the construction not only recovers the experimental diagram when using the first-principles framework on a limited set of structures, but also predicts further domains when extended to a larger set of crystal structures. Finally, we demonstrate the predictive power of the approach by screening ten alkali and alkaline-earth halide electrolytes for aluminum electrowinning. Three thermodynamic criteria identify NaF, where cryolite emerges as the stable aluminum-bearing phase, recovering the chemistry that Hall and Héroult established empirically in 1886. The framework provides a first-principles basis for selecting compatible electrodes, electrolytes, and operating conditions toward low-carbon metal production from complex source materials.",
+      "summary_cn": "提出用于熔盐电化学相图的一阶原理 grand potential 框架，并用微调基础机器学习势提供自由能，在硅–CaCl2 体系复现实验相图、扩展预测稳定域，还筛选铝电解用卤化物电解质并找回 NaF/冰晶石体系。",
+      "pdf_filename": "2610.17611.pdf",
+      "crawled_date": "2026-10-14",
+      "notes": "论文把机器学习原子间势与一阶原理热力学相图结合，用于熔盐电解质和电极材料的可扩展筛选，面向低碳金属提取的真实材料设计问题，符合 AI 辅助材料发现与科学计算主线。",
+      "pdf_url": "https://arxiv.org/pdf/2610.17611"
+    },
     {
       "arxiv_id": "2610.11689",
       "title": "Mode-selective electron-phonon coupling drives charge density waves in the kagome metals YRu$_3$Si$_2$ and LaRu$_3$Si$_2$",
