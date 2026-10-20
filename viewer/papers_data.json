@@ -1,10 +1,38 @@
 {
-  "count": 142,
+  "count": 144,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-14",
+  "crawled_date_max": "2026-10-20",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-13",
+  "published_date_max": "2026-10-19",
   "papers": [
+    {
+      "arxiv_id": "2610.26502",
+      "title": "Atomic-level study of dose-dependent lattice thermal conductivity degradation in irradiated tungsten",
+      "authors": "Mary K Chessey, José Julio Gutiérrez Moreno, Sajjan Singh Mehta, Paolo Settembri, Arda Erbasan, Dominik Freinberger, Marina García Romero, Mervi J Mantsinen",
+      "affiliations": "Barcelona Supercomputing Center (BSC), Barcelona, Spain; oloBion SL, Parc Científic de Barcelona, Barcelona, Spain; ICREA, Barcelona, Spain",
+      "published_date": "2026-10-19",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Plasma-facing components (PFCs) in future fusion reactors must withstand extreme environments, making tungsten (W) a prime candidate material due to its high thermal conductivity, high melting temperature, low sputtering yield, low tritium absorption. However, neutron irradiation introduces complex nanostructural defects that severely degrade these critical properties. In this work, we use Non-Equilibrium Molecular Dynamics (NEMD) simulations coupled with the Creation Relaxation Algorithm (CRA) to investigate the lattice thermal conductivity (kappa) of W across a wide range of irradiation doses. Systems treated with different doses up to 1.8 canonical displacements per atom (cdpa) were simulated to generate and study diverse defect structures, including vacancies and self-interstitial atom (SIA) clusters. By correlating spatially-resolved temperature gradients with local defect concentrations, we show that even small changes in defect type and distribution significantly affect thermal transport. We employ Machine Learning (ML) models to develop a quantitative relationship between the defect features and the resulting thermal conductivity degradation. The ML analysis identifies vacancy density as the dominant structural factor controlling thermal transport. We found a significant, nonlinear suppression of kappa with increasing defect density. Predictive multi-defect mapping built upon our ML model resolved a step-like degradation transition at a critical vacancy threshold of 0.05 at.%, beyond which phonon scattering completely saturated and capped the maximum relative lattice thermal conductivity degradation at approximately 30 at.%. This integrated simulation and ML approach provides a powerful, predictive framework for quantifying the complex relationship between structure and thermal conductivity in irradiated fusion materials.",
+      "summary_cn": "结合缺陷生成弛豫算法、非平衡分子动力学与机器学习，研究辐照钨中缺陷分布对晶格热导率的影响。模型识别空位密度为主导因素，并预测空位浓度约达0.05 at.%时出现阶跃式退化，随后声子散射趋于饱和、相对热导降幅约为30%，为聚变材料结构与热输运关联提供定量模型。",
+      "pdf_filename": "2610.26502.pdf",
+      "crawled_date": "2026-10-20",
+      "notes": "连接辐照缺陷生成、非平衡分子动力学与可解释树模型，识别空位主导的声子热输运退化，契合组内晶体性质预测与计算物理；结论限于所用势函数下的晶格热导，不宜外推为总热导衰减。",
+      "pdf_url": "https://arxiv.org/pdf/2610.26502"
+    },
+    {
+      "arxiv_id": "2610.25775",
+      "title": "Crystal Structure Based Graph Neural Network And LLM Multi-Modal Approach for Material Magnetic Ordering Prediction",
+      "authors": "Adam Zheng, April Zheng, Sheng Ran",
+      "affiliations": "Harvard University, Cambridge, Massachusetts, USA; Department of Physics, Washington University in St. Louis, St. Louis, Missouri, USA",
+      "published_date": "2026-10-19",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "AI/ML models are useful for the prediction of materials' properties. Recently, there has been great progress in developing Neural Network models to predict the properties of solids, molecules, and crystals, avoiding expensive and time-consuming laboratory testing. This study presents a novel AI/ML-based multi-modal approach to predict material magnetic ordering using material crystal structure information as input to a Graph Neural Network model (GNN) and semantic text descriptions of the material's properties and structure as input to a Large Language Model (LLM), before performing information fusion of the GNN and LLM outputs to predict material magnetic ordering in four classes (Non-magnetic, Ferromagnetic, Antiferromagnetic, Ferrimagnetic). The model is trained, validated, and tested on a dataset which is a combination of Materials Project dataset, Magndata dataset, and a set of uranium compounds with magnetic ordering determined in laboratory testing, with an 80/10/10 (training/validation/testing) data split. The proposed GNN and LLM multi-modal approach achieves better overall accuracy than both the standalone GNN and LLM approaches with three fusion strategies.",
+      "summary_cn": "将晶体结构图神经网络与材料语义描述语言模型联合训练，通过输入、特征及门控三种融合策略预测非磁、铁磁、反铁磁和亚铁磁四类有序。整合材料项目、磁结构数据库及实验测定铀化合物，按八比一比一划分训练、验证和测试集，三种融合策略的总体准确率均优于单模态基线。",
+      "pdf_filename": "2610.25775.pdf",
+      "crawled_date": "2026-10-20",
+      "notes": "融合ALIGNN晶体图与GPT-2结构文本预测磁有序，直接贴合组内AI磁性材料筛选；总体准确率优于单模态，但反铁磁类别未优于纯文本模型，值得借鉴融合策略并重点复核少数类泛化。",
+      "pdf_url": "https://arxiv.org/pdf/2610.25775"
+    },
     {
       "arxiv_id": "2610.17975",
       "title": "All-electron machine-learned orbital-free density functional for periodic CHNO systems",
