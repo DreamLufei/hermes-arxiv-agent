@@ -1,10 +1,24 @@
 {
-  "count": 144,
+  "count": 145,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-20",
+  "crawled_date_max": "2026-10-21",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-19",
+  "published_date_max": "2026-10-20",
   "papers": [
+    {
+      "arxiv_id": "2610.28629",
+      "title": "GBClaw: An agentic AI framework for atomistic grain boundary research and mechanistic discovery",
+      "authors": "Yazhuo Liu, Kunqing Ding, Xiaoguo Gong, Zifeng Wang, Yichen Yang, Yifeng Che, Wen Chen, Josh Kacher, Olivier Pierron, Shigenobu Ogata, Ting Zhu",
+      "affiliations": "Woodruff School of Mechanical Engineering, Georgia Institute of Technology, Atlanta, GA, USA; Department of Mechanical Science and Bioengineering, Graduate School of Engineering Science, The University of Osaka, Osaka, Japan; School of Materials Science and Engineering, Georgia Institute of Technology, Atlanta, GA, USA; Department of Aerospace and Mechanical Engineering, University of Southern California, Los Angeles, CA, USA; Mork Family Department of Chemical Engineering and Materials Science, University of Southern California, Los Angeles, CA, USA",
+      "published_date": "2026-10-20",
+      "categories": "cond-mat.mtrl-sci, cond-mat.mes-hall, cs.AI, cs.MA",
+      "abstract": "Agentic artificial intelligence (AI) systems hold immense potential for automating complex workflows in materials discovery and design, but extending them to domain-intensive mechanistic investigations remains challenging. Here, we present GBClaw, an agentic AI framework for investigating the structure and deformation of general grain boundaries (GBs). Although general GBs constitute the vast majority of real-world interfaces in polycrystalline materials, they remain understudied because their structural complexity and interfacial mismatch complicate experimental and modeling research. GBClaw integrates large language models (LLMs) into a modular architecture comprising an orchestrator, specialized agents, domain-specific tools, simulation interfaces, and hierarchical memory. Through dynamic replanning and iterative workflow refinement, the framework effectively connects systematic simulations with targeted mechanistic analysis. Applied to 14 general asymmetric tilt GBs in nickel, GBClaw characterized interfacial defect structures and identified diverse deformation modes across these incommensurate boundaries. Comparing boundary sliding with and without secondary GB misfit dislocations revealed substantial differences in shear strength, underscoring the critical role of defect hierarchies in sliding resistance. Furthermore, researcher-guided follow-up calculations traced an anomalously high shear resistance to metastable boundary structures. This work demonstrates that combining agentic AI with domain expertise bridges high-throughput computational screening with deep physical understanding of complex material interfaces.",
+      "summary_cn": "GBClaw将大语言模型、多智能体、专用工具与层级记忆结合，通过动态重规划衔接原子模拟与机理分析。在14种镍非对称倾转晶界中识别多样变形模式，发现次级失配位错显著改变剪切强度，并在研究者引导下将异常高剪切阻力追溯至亚稳晶界结构，展示从高通量筛选走向机理研究的路径。",
+      "pdf_filename": "2610.28629.pdf",
+      "crawled_date": "2026-10-21",
+      "notes": "将多智能体与LAMMPS原子模拟耦合，在14种镍晶界中追踪缺陷层级与剪切阻力，直接契合组内科学智能体及材料结构—性质研究；机理追问仍需研究者引导，适合作为人机协同闭环计算的参考。",
+      "pdf_url": "https://arxiv.org/pdf/2610.28629"
+    },
     {
       "arxiv_id": "2610.26502",
       "title": "Atomic-level study of dose-dependent lattice thermal conductivity degradation in irradiated tungsten",
