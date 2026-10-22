@@ -1,10 +1,38 @@
 {
-  "count": 145,
+  "count": 147,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-21",
+  "crawled_date_max": "2026-10-22",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-20",
+  "published_date_max": "2026-10-21",
   "papers": [
+    {
+      "arxiv_id": "2610.29895",
+      "title": "Automated Materials Data and Knowledge Extraction using Machine Learning and Large Language Models",
+      "authors": "Aravindan Kamatchi Sundaram, B. Pabitramohan Prusty, Rohit Batra",
+      "affiliations": "Department of Metallurgical and Materials Engineering, Indian Institute of Technology Madras, Chennai, India; Center for Atomistic Modelling and Materials Design, Indian Institute of Technology Madras, Chennai, India; Wadhwani School of Data Science & Artificial Intelligence, Indian Institute of Technology Madras, Chennai, India",
+      "published_date": "2026-10-21",
+      "categories": "cond-mat.mtrl-sci, cs.AI",
+      "abstract": "Over the past decade, substantial efforts have been devoted to developing machine learning (ML) methods for extracting materials data and, where possible, materials knowledge directly from the scientific literature. This review traces the evolution of these methods from heuristic, rule-based pipelines through natural language processing (NLP) models and transformer-based encoders to, lastly, large language models (LLMs) and agentic systems capable of extracting materials information across multiple modalities, including text, tables, and figures. Beside construction of large, queryable materials databases and knowledge graphs that support downstream materials discovery, we discuss how these advances have enabled new capabilities, such as, generic question answering across materials science, AI co-scientists and chatbots for research assistance, and closed-loop optimization and discovery when integrated with autonomous laboratories. We critically assess the datasets generated using these approaches, their extraction accuracy and computational costs, and the respective strengths and limitations of different methodologies, and even provide practical guidelines for developing more reliable and scalable materials data extraction pipelines. Finally, we identify key open challenges, including the extraction of full materials structure-property-processing-performance tetrahedron at the sample level, the scarcity of reliable benchmark datasets for systematic evaluation, and the resolution of non-standard materials terminology across different document modalities.",
+      "summary_cn": "系统梳理规则抽取、领域语言模型到大模型与智能体的材料文献挖掘路线，比较文本、表格和图像抽取的数据质量、准确率与计算成本，说明其如何支撑知识图谱和自主实验闭环，并指出样品级结构—性质—工艺—性能关联、可靠基准及跨模态术语统一仍是关键瓶颈。",
+      "pdf_filename": "2610.29895.pdf",
+      "crawled_date": "2026-10-22",
+      "notes": "聚焦材料结构—工艺—性质—性能的多模态文献抽取，系统比较数据质量与计算成本，可直接指导组内材料垂域大模型的数据建设、知识图谱及逆向设计闭环；其价值在于领域方法综述与瓶颈梳理，而非提出新的物性预测模型。",
+      "pdf_url": "https://arxiv.org/pdf/2610.29895"
+    },
+    {
+      "arxiv_id": "2610.29634",
+      "title": "Symmetry-Based Parameter Efficient Low-Rank Fine-Tuning for High-Throughput Calculation of Lattice Thermal Conductivity",
+      "authors": "Rustam Arabov, Konstantin Sozykin, Nikita Rybin, Alexander Shapeev",
+      "affiliations": "Skolkovo Institute of Science and Technology, Moscow, Russia; Digital Compounds LLC, Zarechye, Moscow Region, Russia",
+      "published_date": "2026-10-21",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Accurate and efficient prediction of lattice thermal conductivity (LTC) is essential for developing materials for thermoelectric, microelectronic, and photovoltaic applications. Here, we present a methodology for high-throughput calculation of LTC across large datasets of compounds sharing a common crystal symmetry. Our approach combines fine-tuning of the MatterSim 1M universal machine-learned interatomic potential with LTC calculations based on the solution of the Boltzmann transport equation. We introduce a symmetry-based few-shot fine-tuning strategy (SBFS-FT) based on low-rank adaptation. In this approach, MatterSim 1M is fine-tuned on a small, carefully selected set of compounds that share a common crystal symmetry. The resulting potential is then applicable for accurate LTC calculations for compounds with this crystal symmetry, even if they were not included in the fine-tuning set. We tested our methodology on datasets of half-Heusler compounds (space group 216), materials with space group 225, and spinels (space group 227). We demonstrated that LTC calculations with MatterSim 1M fine-tuned using SBFS-FT exhibited a mean absolute relative difference from the reference results (obtained using moment tensor potentials and polyMLPs) 2-3 times smaller than that achieved with the non-fine-tuned MatterSim 1M potential. Moreover, the accuracy of LTC calculations with MatterSim 1M after SBFS-FT was comparable to that achieved using the MatterSim 1M potentials individually fine-tuned for each compound. Importantly, SBFS-FT enabled generation of the potential suitable for accurate LTC calculations across large compound datasets substantially faster than fine-tuning of MatterSim 1M for each compound individually, reducing the computational time by approximately a factor of 5-7 for a dataset of 100 compounds.",
+      "summary_cn": "提出按晶体对称性分组的少样本低秩微调策略，将通用原子间势与玻尔兹曼输运方程结合，预测晶格热导率。在半赫斯勒和尖晶石等体系中，相对参考值的平均绝对相对差降至未微调模型的约三分之一至二分之一，精度接近逐材料微调；摘要估计百种材料规模的微调可加速约五至七倍。",
+      "pdf_filename": "2610.29634.pdf",
+      "crawled_date": "2026-10-22",
+      "notes": "以晶体空间群组织低秩少样本微调，将参数高效方法直接用于声子与晶格热输运计算，在三类晶体体系中兼顾跨材料泛化和预测精度，对组内声子评估及功能晶体高通量筛选具有直接借鉴价值；百种材料规模的加速收益为外推估计。",
+      "pdf_url": "https://arxiv.org/pdf/2610.29634"
+    },
     {
       "arxiv_id": "2610.28629",
       "title": "GBClaw: An agentic AI framework for atomistic grain boundary research and mechanistic discovery",
