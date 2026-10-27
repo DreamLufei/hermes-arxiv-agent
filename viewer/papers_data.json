@@ -1,10 +1,38 @@
 {
-  "count": 147,
+  "count": 149,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-22",
+  "crawled_date_max": "2026-10-27",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-21",
+  "published_date_max": "2026-10-26",
   "papers": [
+    {
+      "arxiv_id": "2610.35653",
+      "title": "Retention-constrained fine-tuning of a pre-trained aluminium MACE potential for non-equilibrium defect dynamics and plasticity",
+      "authors": "Yue Wu, Yuan Tian, Deng Pan, Mingwei Chen",
+      "affiliations": "Materials Genome Institute, Shanghai University, Shanghai, China; State Key Laboratory of Quantum Functional Materials, Department of Materials Science and Engineering, and Institute of Innovative Materials, Southern University of Science and Technology, Shenzhen, China",
+      "published_date": "2026-10-26",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Adapting a pre-trained machine-learning interatomic potential for non-equilibrium defect dynamics and plasticity requires improving defect accuracy without degrading the near-equilibrium elastic and vibrational response. Here we achieve this balance for the aluminium MACE potential QP17 by integrating conditional readout uncertainty, iterative full-parameter updates and protocol-compatible relative-energy anchoring. Sensitivities over 144 linear readout weights guide acquisition, with within-batch covariance updates and evolving neural representations. After four active-learning rounds (32 acquired configurations and 400 gradient updates), force-uncertainty acquisition reduces mean development force error from 22.43 to 21.52 meV/Angstrom, outperforming random sampling (22.70), geometry-diversity selection (22.46) and uniform training across all 104 candidate labels (22.71) under the same update budget. All three force-uncertainty runs satisfy bulk-mechanical retention criteria: historical relative-energy error decreases from 0.375 to 0.207 meV/atom, while harmonic phonon root-mean-square drift remains below 0.05 THz. Matched objective ablations reveal that relative-energy anchoring suppresses harmonic drift. Out-of-sample evaluations across planar faults, twin boundaries and grain boundaries demonstrate transferable gains in defect energies and deviatoric stresses, even though virial stresses are never fitted. A closed-loop molecular dynamics and density functional theory (MD-DFT) pilot confirms that automated acceptance gating intercepts updates that violate historical elastic-group energy or vibrational tolerances. Together, these components establish a retention-constrained fine-tuning protocol for improving plastic-deformation observables while preserving the tested bulk mechanical response.",
+      "summary_cn": "提出保留体相响应的MACE原子势微调方案，以不确定性主动选样和相对能量锚定兼顾缺陷精度与弹性、声子稳定性。四轮仅新增32个构型，力误差由22.43降至21.52 meV/Å，声子漂移低于0.05 THz，并在未拟合应力的多类缺陷外推测试中改善偏应力预测。",
+      "pdf_filename": "2610.35653.pdf",
+      "crawled_date": "2026-10-27",
+      "notes": "将缺陷学习与弹性、声子响应保留共同纳入微调验收，并以等预算基线、消融和MD–DFT闭环验证，为组内预训练物理模型适配与晶体动力学稳定性研究提供直接方法参考；目前证据限于铝体系，力误差改善幅度较小。",
+      "pdf_url": "https://arxiv.org/pdf/2610.35653"
+    },
+    {
+      "arxiv_id": "2610.35547",
+      "title": "High-efficiency solid-state electrochemical thermal switching through phonon engineering of 2D materials",
+      "authors": "Harry Mclean, Steven Paul Hepplestone",
+      "affiliations": "Department of Physics and Astronomy, University of Exeter, Exeter, United Kingdom",
+      "published_date": "2026-10-26",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Reversible solid-state thermal switches with large thermal contrasts remain rare, yet are essential for advanced thermal management. Using universal machine-learned interatomic potentials (uMLIPs) and density functional theory (DFT), we screen 57 transition metal dichalcogenides (TMDCs), spanning the 1T and 2H phases with Li and Mg intercalation. Among the candidates, Li$_a$ZrS$_2$ combines exceptional thermal conductivity switching with low heat capacity. Lithiation to Li$_{0.125}$ZrS$_2$ reduces the cross-plane thermal conductivity from approximately 3.7 to 0.05 W m$^{-1}$ K$^{-1}$. The switching behaviour exceeds that of previously reported solid-state electrochemical thermal switches. Device-level modelling further demonstrates the potential for waste-heat recovery, with a pulsed system capturing 86\\% of the energy recovered by an ideal switch. We attribute the switching behaviour to substantial softening of the Zr--Zr framework, with the mean force constant decreasing from approximately 4.2 to 1.2 eV $\\mathrm{\\mathring{A}}^{-2}$, alongside enhanced scattering of heat-carrying acoustic phonons. These findings establish electrochemical intercalation as a promising route to engineering thermal transport in layered materials.",
+      "summary_cn": "结合通用机器学习原子势与DFT筛选57种层状材料，发现少量锂插层可将ZrS₂跨面热导率由约3.7降至0.05 W/(m·K)。声子分析将其归因于骨架软化及声学声子散射增强，器件模拟达到理想热开关86%的回收能量，提供可用于功能热管理材料发现的筛选路径。",
+      "pdf_filename": "2610.35547.pdf",
+      "crawled_date": "2026-10-27",
+      "notes": "将机器学习原子势筛选、DFT复核和声子机制分析串联用于二维功能晶体热开关设计，贴合组内材料发现与声子研究；需注意高锂含量下原子势偏差及器件性能仍属模拟预测。",
+      "pdf_url": "https://arxiv.org/pdf/2610.35547"
+    },
     {
       "arxiv_id": "2610.29895",
       "title": "Automated Materials Data and Knowledge Extraction using Machine Learning and Large Language Models",
