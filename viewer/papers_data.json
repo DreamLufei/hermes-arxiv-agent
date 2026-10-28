@@ -1,10 +1,24 @@
 {
-  "count": 149,
+  "count": 150,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-10-27",
+  "crawled_date_max": "2026-10-28",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-10-26",
+  "published_date_max": "2026-10-27",
   "papers": [
+    {
+      "arxiv_id": "2610.37597",
+      "title": "The Acridine Polymorph Landscape: Characterization and Selective Control by Additives",
+      "authors": "Adam Lahouari, Hengyu Zhou, Nikolaos Galanakis, Michael Kilgour, Daisuke Kuroshima, Jihye Han, Bart Kahr, Mark E. Tuckerman, Alexander G. Shtukenberg, Jutta Rogal",
+      "affiliations": "Department of Chemistry, New York University, New York, NY 10003, USA; Simons Center for Theoretical Computational Chemistry, New York University, New York, NY 10003, USA; NYU-ECNU Center for Computational Chemistry at NYU Shanghai, Shanghai 200062, China; Initiative for Computational Catalysis, Flatiron Institute, New York, NY 10010, USA",
+      "published_date": "2026-10-27",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Polymorphism in molecular crystals presents a major challenge for controlling crystallization. Here, we combine experiment and theory to characterize the polymorph landscape of acridine and investigate its selective control by additives. Melt crystallization experiments resolve the previously unknown structure of form VIII, while topological crystal structure prediction recovers all seven known unsolvated polymorphs with determined crystal structures. Combining a fine-tuned machine-learned interatomic potential with anharmonic free energy calculations reproduces the experimentally observed stability relationships and reveals a shallow free energy landscape. Finally, experimentally observed additive-induced polymorph preferences correlate with mixed-crystal substitutional defect energies and topological similarities between additive and acridine crystal structures. Together, these results provide a comprehensive picture of acridine polymorphism, linking crystal structure, thermodynamic stability, and additive-controlled crystallization.",
+      "summary_cn": "研究结合实验、拓扑晶体结构预测与微调机器学习原子间势，借助非谐自由能计算解析吖啶多晶型。实验确定VIII型结构，预测恢复七种已知无溶剂晶型，并重现实验稳定性关系；添加剂诱导的晶型偏好与替位缺陷能及结构拓扑相似性相关，为选择性结晶提供依据。",
+      "pdf_filename": "2610.37597.pdf",
+      "crawled_date": "2026-10-28",
+      "notes": "通过微调机器学习原子间势与非谐自由能计算重现实验多晶型稳定性，并将添加剂选择性与缺陷能和结构相容性联系起来，可为组内晶体稳定性评估及AI辅助材料设计提供物理约束与实验交叉验证思路。",
+      "pdf_url": "https://arxiv.org/pdf/2610.37597"
+    },
     {
       "arxiv_id": "2610.35653",
       "title": "Retention-constrained fine-tuning of a pre-trained aluminium MACE potential for non-equilibrium defect dynamics and plasticity",
