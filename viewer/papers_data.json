@@ -1,10 +1,24 @@
 {
-  "count": 174,
+  "count": 175,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-11-11",
+  "crawled_date_max": "2026-11-13",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-11-10",
+  "published_date_max": "2026-11-12",
   "papers": [
+    {
+      "arxiv_id": "2611.16147",
+      "title": "Humidity-modulated Ostwald Step Rule in $\\rm FAPbI_3$ Martensitic Transitions",
+      "authors": "Ping Tuo, Ju Li",
+      "affiliations": "Bakar Institute of Digital Materials for the Planet, University of California, Berkeley, United States; Department of Nuclear Science and Engineering and Department of Materials Science and Engineering, Massachusetts Institute of Technology, Cambridge, United States",
+      "published_date": "2026-11-12",
+      "categories": "cond-mat.mtrl-sci, physics.chem-ph",
+      "abstract": "Experimental observations reveal a dual role of moisture in $\\rm FAPbI_3$ phase transitions. During fabrication at high temperatures, humidity improves the quality of the perovskite ($α$ phase) films, whereas at low service temperatures, humidity accelerates degradation of the photoactive $α$ phase into the photo-inactive hexagonal $δ$ phase. Despite extensive experimental evidence, the microscopic mechanisms by which moisture modulates phase stability and transition pathways remain unknown. Here, using large-scale atomistic simulations powered by an ab initio machine-learned potential, we reproduce the experimentally observed increase in the $δ$-to-$α$ transition temperature under increased humidity. Our simulations reveal a layered metastable intermediate along the Burgers transition pathway that exhibits a strong affinity for water. The competing water uptake of this intermediate and the $δ$ phase governs the humidity dependence of transition kinetics. These findings elucidate the dual role of moisture in perovskite phase transitions and demonstrate how environmental species can stabilize metastable intermediates and reshape transition pathways, providing an environment-dependent perspective on Ostwald's step rule.",
+      "summary_cn": "研究以第一性原理机器学习势驱动大规模原子模拟，重现实验中湿度升高导致FAPbI₃的δ→α相变温度上升，发现Burgers转变路径上的亲水层状亚稳中间态。中间态与δ相竞争吸水，改变相变动力学，解释水分在制膜与服役中作用相反的微观机制，并拓展环境依赖的奥斯特瓦尔德分步规则。",
+      "pdf_filename": "2611.16147.pdf",
+      "crawled_date": "2026-11-13",
+      "notes": "以机器学习原子间势结合自由能计算和水插入蒙特卡洛，揭示湿度通过亲水亚稳中间态重塑钙钛矿相变路径，与组内功能晶体动力学稳定性评估及钙钛矿材料设计直接相关，可为环境鲁棒性筛选提供机制依据。",
+      "pdf_url": "https://arxiv.org/pdf/2611.16147"
+    },
     {
       "arxiv_id": "2611.14462",
       "title": "Accurate predictions of properties of energetic materials with tabular foundation models",
