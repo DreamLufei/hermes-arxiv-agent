@@ -8,10 +8,12 @@ on:
     paths:
       - "viewer/**"
       - ".github/workflows/pages.yml"
+      - ".github/scripts/deploy_pages.py"
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: read
   pages: write
   id-token: write
 
@@ -33,10 +35,15 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        id: upload
         uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: viewer
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5.0.1
+        # Deploy the verified immutable ID returned by upload, not a flaky list.
+        run: python3 .github/scripts/deploy_pages.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PAGES_ARTIFACT_ID: ${{ steps.upload.outputs.artifact_id }}
