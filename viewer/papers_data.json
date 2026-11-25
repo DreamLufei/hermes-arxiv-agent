@@ -1,10 +1,24 @@
 {
-  "count": 193,
+  "count": 194,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-11-24",
+  "crawled_date_max": "2026-11-25",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-11-23",
+  "published_date_max": "2026-11-24",
   "papers": [
+    {
+      "arxiv_id": "2611.33089",
+      "title": "Anharmonic enhancement of thermal conductivity in amorphous Ge$_2$Sb$_2$Te$_5$: A consistent picture from molecular dynamics and Wigner transport",
+      "authors": "Luiz Felipe C. Pereira, Kamil Iwanowski, Michele Simoncelli, Omar Abou El Kheir, Marco Bernasconi, Riccardo Mazzarello, Francesco Mauri",
+      "affiliations": "Departamento de Física, Centro de Ciências Exatas e da Natureza, Universidade Federal de Pernambuco, Recife, Brazil; Dipartimento di Fisica, Sapienza Università di Roma, Roma, Italy; Department of Applied Physics and Applied Mathematics, Columbia University, New York, USA; Department of Materials Science, University of Milano-Bicocca, Milano, Italy",
+      "published_date": "2026-11-24",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Anharmonicity limits heat conduction in crystals, but its role in amorphous solids, where heat is carried mainly by tunneling between quasi-degenerate vibrations, remains unsettled. Here we disentangle the contributions of structural disorder, quantum statistics, and anharmonicity to the thermal conductivity of amorphous Ge$_2$Sb$_2$Te$_5$ (aGST), the prototypical phase-change memory material. Using a single machine-learned potential trained on first-principles data, we compare classical equilibrium and nonequilibrium molecular dynamics (MD), which include anharmonicity to all orders, with harmonic Allen-Feldman theory and the anharmonic Wigner transport equation, both of which include quantum statistics. Four MD approaches agree on a conductivity of 0.171-0.181 W m$^{-1}$ K$^{-1}$ at room temperature, about 16% above the harmonic Allen-Feldman value for the same model, and the Wigner formulation bridges the two: with classical statistics, it agrees with MD to within 5%. We trace this anharmonic enhancement to vibrational couplings that grow with the frequency difference between modes, so that anharmonic broadening opens additional channels for heat conduction. A comparison with silica, alumina, and disordered carbons reveals three regimes, in which anharmonicity reduces, barely affects, or enhances the conductivity. The predicted glass-like increase of the conductivity with temperature is consistent with thermoreflectance measurements. These results show that anharmonicity has no universal effect in disordered solids, and can promote rather than limit heat transport in strongly disordered materials.",
+      "summary_cn": "利用第一性原理训练的机器学习势，比较非晶锗锑碲的四种分子动力学方法、谐性理论与Wigner输运。室温热导率较谐性预测高约16%，经典统计下Wigner与动力学结果偏差小于5%。研究揭示非谐展宽可打开额外振动耦合通道、增强热输运，表明非谐性并不总会抑制无序固体传热。",
+      "pdf_filename": "2611.33089.pdf",
+      "crawled_date": "2026-11-25",
+      "notes": "同一机器学习势贯通分子动力学与Wigner输运，定量揭示相变存储材料中非谐性增强传热的机制，为组内声子建模、功能材料性质预测及机器学习势的物理一致性验证提供直接参考。",
+      "pdf_url": "https://arxiv.org/pdf/2611.33089"
+    },
     {
       "arxiv_id": "2611.30348",
       "title": "Strain-Induced Tetragonal-to-Cubic Transition in MAPbI$_3$ from Machine-Learned Molecular Dynamics",
