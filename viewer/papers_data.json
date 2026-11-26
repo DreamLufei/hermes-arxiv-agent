@@ -1,10 +1,24 @@
 {
-  "count": 194,
+  "count": 195,
   "crawled_date_min": "2026-04-23",
-  "crawled_date_max": "2026-11-25",
+  "crawled_date_max": "2026-11-26",
   "published_date_min": "2026-04-22",
-  "published_date_max": "2026-11-24",
+  "published_date_max": "2026-11-25",
   "papers": [
+    {
+      "arxiv_id": "2611.33913",
+      "title": "PerovAgent: Autonomous Ligand Design for Halide Perovskite Nanocrystals",
+      "authors": "Seungjun Cha, Yoo Jae Jeong, Amanda Conde Del Moral, Juan-Pablo Correa-Baena, Seth R. Marder, David S. Ginger, Victor Fung, Guoxiang Hu",
+      "affiliations": "School of Materials Science and Engineering, Georgia Institute of Technology; School of Computational Science and Engineering, Georgia Institute of Technology; Materials Science and Engineering Program, University of Colorado Boulder; RASEI, The CU-Boulder/NLR Energy Institute, University of Colorado Boulder; School of Chemistry and Biochemistry, Georgia Institute of Technology; Department of Chemistry, University of Colorado Boulder; Department of Chemical and Biological Engineering, University of Colorado Boulder; Department of Chemistry, University of Washington",
+      "published_date": "2026-11-25",
+      "categories": "cond-mat.mtrl-sci",
+      "abstract": "Designing surface-capping ligands for high-performance halide perovskite nanocrystals requires navigating a vast molecular space while discovering design rules that govern ligand-surface interactions. Here, we introduce PerovAgent, an autonomous multi-agent framework that combines large language model (LLM)-driven scientific reasoning with computational tools for atomistic model construction, machine-learned interatomic potential evaluation, and statistical validation. Across ten independent campaigns on CsPbBr3 surfaces, PerovAgent adaptively explored and refined diverse ligand chemistries while progressively improving the binding-energy objective. Beyond optimization, the framework converts recurring chemical observations into explicit design principles that can be statistically evaluated. Of 35 formulated principles, 19 were prospectively supported, of which seven also passed the confound audit, highlighting the need to systematically validate plausible LLM-generated hypotheses during autonomous discovery. A recurrent alkynyl-phosphonate principle was further examined using density functional theory, which reproduced the predicted energetic preference. These results demonstrate an autonomous discovery framework that not only searches molecular space and optimizes the scalar objective but also transforms its search trajectory into systematically testable design principles. The framework can also be extended to more complex ligands, including zwitterionic, multidentate, and polymerizable ligands, to explore a wider range of ligand-surface interactions and uncover new design principles for halide perovskite nanocrystals.",
+      "summary_cn": "PerovAgent将大语言模型多智能体与原子建模、机器学习势及统计检验结合，自主设计钙钛矿纳米晶配体。十次独立搜索持续优化结合能，并把搜索经验转化为可检验设计规则；三十五条规则中十九条获前瞻支持，七条通过混杂审计，密度泛函计算复核了炔基膦酸盐的能量优势。",
+      "pdf_filename": "2611.33913.pdf",
+      "crawled_date": "2026-11-26",
+      "notes": "将LLM多智能体、机器学习势能评估与可证伪假说检验接成钙钛矿配体逆向设计闭环，直接呼应组内Perovskite-R1与功能材料发现；混杂审计和DFT复核比仅追求优化分数更具方法借鉴价值，但结果仍以计算验证为主。",
+      "pdf_url": "https://arxiv.org/pdf/2611.33913"
+    },
     {
       "arxiv_id": "2611.33089",
       "title": "Anharmonic enhancement of thermal conductivity in amorphous Ge$_2$Sb$_2$Te$_5$: A consistent picture from molecular dynamics and Wigner transport",
